@@ -1,1 +1,6 @@
-<h1> Pesquini </h1>
+<%= form_tag enterprises_path, method: 'get', id: 'searchbox' do %>
+
+	<%= text_field_tag :search, params[:search], placeholder: 'Procurar' %>
+	<%= submit_tag "Buscar", id: "button_submit", name: nil %>
+
+<% end %>
