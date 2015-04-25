@@ -3,10 +3,7 @@ class CreateEnterprises < ActiveRecord::Migration
 		create_table :enterprises do |t|
 			t.string :cnpj
 			t.string :corporate_name
-			t.string :sanctioning_organ
-			t.integer :amount_sanction
-			t.string :ranking_position
-			t.string :hiring_after_sanction
+			t.integer :sanction_organ
 		end
 	end
 end

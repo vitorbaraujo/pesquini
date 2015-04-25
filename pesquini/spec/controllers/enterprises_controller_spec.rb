@@ -5,7 +5,7 @@ RSpec.describe EnterprisesController, :type => :controller do
     describe '#index' do
       it "should work" do 
         get :index
-        expect(response).to have_http_status(:redirect)
+        expect(response).to have_http_status(:success)
       end
     end
   end
