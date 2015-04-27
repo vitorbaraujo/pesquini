@@ -1,10 +1,9 @@
+<%= search_form_for @search do |f| %>
+  <%= f.label :corporate_name_cont %>
+  <%= f.text_field :corporate_name_cont %>
+  <%= f.submit %>
+<% end %> 
 
-<%= @title %></br>
-<%= @enterprise.cnpj %></br>
-<%= @enterprise.corporate_name %></br></br>
-
-=begin
-<% @enterprises.each do |e| %>
-<%= e.cnpj %>
+<% @enterprises.each do |p| %>
+  <h2><%= p.corporate_name %> </h2>
 <% end %>
-=end 
