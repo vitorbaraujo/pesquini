@@ -1,7 +1,7 @@
 #!/bin/sh
 sudo apt-get install postgresql -y
 
-sudo apt-get install libpq-dev -y
+sudo apt-get install libpq-dev nodejs -y
 
 sudo service postgresql start
 sudo -u postgres psql -c "DROP DATABASE pesquini_development" || true
