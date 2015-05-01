@@ -1,4 +1,6 @@
 class WelcomeController < ApplicationController
-	def index
-	end
+    def index
+        @search = Enterprise.search(params[:q])
+        @enterprises = @search.result
+    end
  end
