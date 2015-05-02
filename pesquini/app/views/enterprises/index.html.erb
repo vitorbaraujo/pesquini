@@ -2,11 +2,14 @@
   <%= f.label :corporate_name_cont %>
   <%= f.text_field :corporate_name_cont %>
   <%= f.submit %>
-<% end %>
-
-<% @enterprises.each do |p| %>
-  <h2> <h3>Empresa:</h3> <%= p.corporate_name %> </h2>
-  <h2> <h3>CNPJ:</h3> <%= p.cnpj %> </h2>
-  <h2> <h3>Orgão Sancionador:</h3> <%= p.sanction_organ %> </h2>
-  <hr>
+<% end %> 
+<% if @enterprises.blank? %>
+	<h2>Nenhum resultado foi encontrado</h2>
+<% else %>
+	<% @enterprises.each do |p| %>
+ 	 <h2> <h3>Empresa:</h3> <%= p.corporate_name %> </h2>
+ 	 <h2> <h3>CNPJ:</h3> <%= p.cnpj %> </h2>
+ 	 <h2> <h3>Orgão Sancionador:</h3> <%= p.sanction_organ %> </h2>
+ 	 <hr>
+	<% end %>
 <% end %>
