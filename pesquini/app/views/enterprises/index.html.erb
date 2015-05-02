@@ -1,0 +1,15 @@
+<%= search_form_for @search do |f| %>
+  <%= f.label :corporate_name_or_cnpj_cont %>
+  <%= f.text_field :corporate_name_or_cnpj_cont%>
+  <%= f.submit %>
+<% end %> 
+<% if @enterprises.blank? %>
+	<h2>Nao existem sançoes contra a empresa procurada.</h2>
+<% else %>
+	<% @enterprises.each do |p| %>
+ 	 <h2> <h3>Empresa:</h3> <%= p.corporate_name %> </h2>
+ 	 <h2> <h3>CNPJ:</h3> <%= p.cnpj %> </h2>
+ 	 <h2> <h3>Orgão Sancionador:</h3> <%= p.sanction_organ %> </h2>
+ 	 <hr>
+	<% end %>
+<% end %>
