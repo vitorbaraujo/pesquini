@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root 'welcome#index'
+  get 'parser/cei' => 'parser#import'
+  get 'parser' => 'parser#index'
 
   resources :enterprises, only: [:index]
   get '/about' => 'welcome#about'

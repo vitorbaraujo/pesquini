@@ -1,9 +1,9 @@
-class State < ActiveRecord::Base
+class SanctionType < ActiveRecord::Base
   has_many :sanctions
-  validates_uniqueness_of :abbreviation
+  validates_uniqueness_of :type
 
   def refresh!
-    s = State.find_by_abbreviation(self.abbreviation)
+    s = SanctionType.find_by_type(self.type)
     self.attributes.each do |attr_name, attr_value|
         self.attr_name = s.attr_name
     end
