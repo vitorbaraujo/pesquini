@@ -6,7 +6,7 @@
 
 
 <% if @enterprises.blank? %>
-	<h2>Nenhum resultado foi encontrado</h2>
+	<h2>Nao existem sançoes contra a empresa procurada.</h2>
 <% else %>
 	<% @enterprises.each do |p| %>
  	 <h2> <h3>Empresa:</h3> <%= p.corporate_name %> </h2>
