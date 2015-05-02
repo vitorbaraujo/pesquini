@@ -29,7 +29,7 @@ development:
   username: pesquini
   password:
 
-test:
+test: &test
   <<: *default
   database: pesquini_development
   adapter: postgresql
@@ -60,3 +60,6 @@ production:
   database: pesquini_production
   username: pesquini
   password: <%= ENV['PESQUINI_DATABASE_PASSWORD'] %>
+
+cucumber:
+  <<: *test
