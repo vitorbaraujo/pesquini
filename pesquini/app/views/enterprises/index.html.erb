@@ -3,12 +3,15 @@
   <%= f.search_field :corporate_name_cont%>
   <%= f.submit %>
 <% end %> 
+
+
 <% if @enterprises.blank? %>
-	<h2>Nao existem sançoes contra a empresa procurada.</h2>
+  <div class="entreprises_title"><h2>Nao existem sançoes contra a empresa procurada.</h2></div>
 <% else %>
-	<% @enterprises.each do |p| %>
- 	 <h2> <h3>Empresa:</h3> <%= p.corporate_name %> </h2>
- 	 <h2> <h3>CNPJ:</h3> <%= p.cnpj %> </h2>
- 	 <hr>
-	<% end %>
+<div class="enterprises_title"><h2> Lista das empresas encontradas contendo o termo que foi pesquisado</h2> </div>
+<% @enterprises.each do |p| %>
+  <h3>Empresa: <%= link_to p.corporate_name, p %> </h3>
+  <h3>CNPJ: <%= p.cnpj %> </h3>
+  <hr>
+  <% end %>
 <% end %>
