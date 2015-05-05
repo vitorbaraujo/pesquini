@@ -15,7 +15,7 @@ Dado(/^que eu clico no text field$/) do
 end
 
 Dado(/^que insiro uma empresa existente$/) do
-    fill_in 'Corporate name or Cnpj contains', :with=> "samsung"
+    fill_in 'Corporate name contains', :with=> "samsung"
 end
 
 Quando(/^eu clico no link "(.*?)"$/) do |arg1|
