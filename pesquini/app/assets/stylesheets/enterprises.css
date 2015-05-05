@@ -1,52 +1,59 @@
-#enterprises_index .search_form
-{
+/********************************************************/
+/* Index -- enterprises */
+/********************************************************/
+
+#enterprises_index{
+  padding-top:  60px;
+}
+
+#enterprises_index .search_form{
   text-align: center;
   padding-bottom:  50px;
-  padding-top:  50px;
   background-color:  #C2C2A3;
 }
 
-#enterprises_index .search_form:after
-{
+#enterprises_index .search_form:after{
   background-color: black;
 }
 
-
-#enterprises_index .search_form hr
-{
+#enterprises_index .search_form hr{
   border-color: #fcac45;
   border-width: 4px;
   width: 200px;
 }
 
-#enterprises_index .search_form  .division hr
-{
+#enterprises_index  .division hr{
   border-color: black;
   border-width: 4px;
 }
 
-#enterprises_index  .division hr
-{
-  border-color: black;
-  border-width: 4px;
-}
-
-
-
-#enterprises_index .entreprises_title
-{
+#enterprises_index .entreprises_title{
   text-align: center;
   padding-bottom:  30px;
 }
 
-#enterprises_index .entreprises_title hr
-{
+#enterprises_index .entreprises_title hr{
   border-color: #fcac45;
   border-width: 4px;
   width: 200px;
 }
 
-#enterprises_index .same_line span
-{
-  display:inline-block;
-}​
+#enterprises_show{
+  padding-top:  60px;
+}
+
+/********************************************************/
+/* End */
+/********************************************************/
+
+
+
+/********************************************************/
+/* Show-- enterprises */
+/********************************************************/
+
+
+
+/********************************************************/
+/* End */
+/********************************************************/

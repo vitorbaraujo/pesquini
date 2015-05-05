@@ -1,6 +1,6 @@
 <!-- Navigation
   ==========================================-->
-<nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
+<nav id="tf-menu" class="navbar navbar-default navbar-fixed-top on">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -10,17 +10,17 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">PesquIni</a>
+      <!--<a class="navbar-brand" href="index.html">PesquIni</a>-->
+      <%= link_to image_tag('pesquini_logo.png'), root_path %>
+
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#tf-home" class="page-scroll">Home</a></li>
-        <li><a href="#tf-about" class="page-scroll">Pesquisa</a></li>
-        <li><a href="#tf-search" class="page-scroll">Rankings</a></li>
-        <li><a href="#tf-services" class="page-scroll">Outro</a></li>
-        <li><a href="#tf-clients" class="page-scroll">Sobre nós</a></li>
+        <li><a href="#tf-search" class="page-scroll">Pesquisas</a></li>
+        <li><a href="#tf-services" class="page-scroll">Rankings</a></li>
+        <li><%= link_to "Enterprises", enterprises_path %></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

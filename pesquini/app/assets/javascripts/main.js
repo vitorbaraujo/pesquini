@@ -10,13 +10,15 @@
       ======================================*/
 
       $(document).ready(function() {
-      var welcome = document.getElementById('tf-home');
-      if (welcome == null)
+      /*var welcome = document.getElementById('tf-home');*/
+      if (document.getElementById('tf-home')  == null)
       {
         $('.navbar-default').addClass('on');
       }
       else
       {
+        $('.navbar-default').removeClass('on');
+      
 
         $(window).bind('scroll', function() {
             var navHeight = $(window).height() - 100;
@@ -26,8 +28,9 @@
                 $('.navbar-default').removeClass('on');
             }
         });
-      }
-    });
+
+        }
+      });
 
       $('body').scrollspy({ 
           target: '.navbar-default',
