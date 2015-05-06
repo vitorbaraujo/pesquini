@@ -166,25 +166,50 @@ font-weight: 900;
 
 .content{
 	position: relative;
-	padding: 250px 0 0;
+	padding: 150px 0 0;
 }
+.content img{
+	max-width:100%;
+}
+
 
 .color{
 	color: #fcac45;
 }
 
+.color2{
+	color: #003300;
+}
+
+.color3{
+	color: #8F8F00;
+}
 
 .content_search  {
-
-    width: auto;
+    	width: auto;
 	margin: 0 auto;
 	max-width: 500px;
-	padding: 100px 0 0;
+	padding-top: 30px;
 	padding-left: 5px;
 	padding-right: 5px;
 }
+.text_pesq_empr{
+
+	padding-top: 20px;
+}
+
+
+.content_search hr {
+	border-top: 4px solid rgba(252, 172, 69, 0.34);
+	width: 100px;
+	text-align: center;
+	margin-top: 10px;
+	position: relative;
+}
+
 .content_search button:hover {
-	background: #fcac45;	
+	/*background: #fcac45;*/
+	background: #8F8F00;
 }
 
 
