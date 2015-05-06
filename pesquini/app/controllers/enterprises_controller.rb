@@ -10,7 +10,7 @@ class EnterprisesController < ApplicationController
 
       @search = Enterprise.search(params[:q].try(:merge, m: 'or'))
 
-      puts params ,"asa"*20 
+      puts params ,"asa"*20
       @enterprises = @search.result
     end
 
@@ -19,6 +19,7 @@ class EnterprisesController < ApplicationController
 
   def show
     @enterprise = Enterprise.find(params[:id])
+    @sanctions = Sanction.where(enterprise_id: @enterprise.id)
   end
 
  end

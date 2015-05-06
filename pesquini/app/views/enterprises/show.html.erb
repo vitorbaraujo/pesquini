@@ -6,8 +6,14 @@
 
 <div id="enterprises_show">
 
+
    <h3> Empresa: <%= @enterprise.corporate_name %> </h3>
    <h3> CNPJ:<%= @enterprise.cnpj %> </h3>
-   <hr>
+   <% @sanctions.each do |p| %>
+        <h3> Numero do processo: <%= p.process_number %> </h3>
+   <% end %>
+   <h3> <%=  %> </h3>
 
+   <hr>
+   <%= render :partial => 'sanctions_itens' %>
 </div>
