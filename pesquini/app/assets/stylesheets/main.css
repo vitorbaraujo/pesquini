@@ -209,7 +209,7 @@ font-weight: 900;
 
 .content_search button:hover {
 	/*background: #fcac45;*/
-	background: #8F8F00;
+	background: #003300;
 }
 
 
@@ -387,10 +387,17 @@ img.img-circle.search-img {
 	transition: all 0.5s;
 }
 
-#tf-services .service:hover>i.fa{
+#tf-services a{
+	color: #5a5a5a;
+}
+
+#tf-services a:hover>i.fa{
 	background: #FCAC45;
 	color: #ffffff;
 }
+
+
+
 
 /********************************************************/
 /* End */
@@ -422,14 +429,22 @@ img.img-circle.search-img {
 	padding: 80px 0;
 	background-attachment: fixed;
 }
-
-#clients .item{
+/*
+#tf-clients .item{
     padding: 0;
     margin: 35px;
     color: #FFF;
     text-align: center;
 }
-
+*/
+#tf-clients hr{
+	border-color: #fcac45;
+	border-width: 4px;
+	width: 100px;
+}
+#tf-clients .about_us{
+	padding-top: 40px;
+}
 /********************************************************/
 /* End */
 /********************************************************/
