@@ -5,16 +5,20 @@ class GraphicsController < ApplicationController
 
   def index
     @data = total_by_state
-    puts "a"*80, @data 
+    @states = @@states_list
+  end
+
+  def percentual_sanction(value)
+      total = Sanction.all.count
+      value * 100 / total
   end
 
   def total_by_state
     @results = []
     @@states_list.each do |s|
       state = State.find_by_abbreviation("#{s}")
-      #puts state.inspect, "a"*80 ,state[:id]
-      sanctions = Sanction.where(state_id: state[:id])
-      @results << sanctions.count
+      sanctions_by_state = Sanction.where(state_id: state[:id])
+    @results << percentual_sanction(sanctions_by_state.count)
     end
     @results
   end

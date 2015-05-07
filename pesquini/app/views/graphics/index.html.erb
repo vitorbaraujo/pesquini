@@ -1,3 +1,5 @@
+<%= @states%>
+
 <script type="text/javascript" charset="utf-8">
  
 $(function () {
@@ -26,6 +28,8 @@ $(function () {
                 }
             }
         },
+        <%= @data%>
+
         series: [{
             type: 'pie',
             name: 'Browser share',
@@ -36,7 +40,6 @@ $(function () {
                     name: 'Chrome',
                     y: 12.8,
                     sliced: true,
-                    selected: true
                 },
                 ['Safari',    8.5],
                 ['Opera',     6.2],
