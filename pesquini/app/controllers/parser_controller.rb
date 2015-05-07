@@ -44,7 +44,7 @@ class ParserController < ApplicationController
 
   def build_sanction_type(row_data)
     s = SanctionType.new
-    s.type = check_nil_ascii(row_data["Tipo Sanção"])
+    s.description = check_nil_ascii(row_data["Tipo Sanção"])
     check_and_save(s)
   end
 
@@ -63,6 +63,7 @@ class ParserController < ApplicationController
     s.process_number = check_nil_ascii(row_data["Número do processo"])
     s.enterprise_id = enterprise.id
     s.sanction_type_id = sanction_type.id
+    s.sanction_organ = check_nil_ascii(row_data["Órgão Sancionador"])
     s.state_id = state.id
     check_and_save(s)
   end
