@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'parser/cei' => 'parser#import'
   get 'parser' => 'parser#index'
 
-  resources :enterprises, only: [:index]
+  resources :enterprises, only: [:index, :show]
   get '/about' => 'welcome#about'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

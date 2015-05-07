@@ -1,4 +1,4 @@
-class CreateSanctions < ActiveRecord::Migration 
+class CreateSanctions < ActiveRecord::Migration
 	def change
 		create_table :sanctions do |t|
 			t.date :initial_date

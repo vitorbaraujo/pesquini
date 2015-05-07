@@ -166,25 +166,50 @@ font-weight: 900;
 
 .content{
 	position: relative;
-	padding: 250px 0 0;
+	padding: 150px 0 0;
 }
+.content img{
+	max-width:100%;
+}
+
 
 .color{
 	color: #fcac45;
 }
 
+.color2{
+	color: #003300;
+}
+
+.color3{
+	color: #8F8F00;
+}
 
 .content_search  {
-
-    width: auto;
+    	width: auto;
 	margin: 0 auto;
 	max-width: 500px;
-	padding: 100px 0 0;
+	padding-top: 30px;
 	padding-left: 5px;
 	padding-right: 5px;
 }
+.text_pesq_empr{
+
+	padding-top: 20px;
+}
+
+
+.content_search hr {
+	border-top: 4px solid rgba(252, 172, 69, 0.34);
+	width: 100px;
+	text-align: center;
+	margin-top: 10px;
+	position: relative;
+}
+
 .content_search button:hover {
-	background: #fcac45;	
+	/*background: #fcac45;*/
+	background: #003300;
 }
 
 
@@ -362,10 +387,17 @@ img.img-circle.search-img {
 	transition: all 0.5s;
 }
 
-#tf-services .service:hover>i.fa{
+#tf-services a{
+	color: #5a5a5a;
+}
+
+#tf-services a:hover>i.fa{
 	background: #FCAC45;
 	color: #ffffff;
 }
+
+
+
 
 /********************************************************/
 /* End */
@@ -397,14 +429,22 @@ img.img-circle.search-img {
 	padding: 80px 0;
 	background-attachment: fixed;
 }
-
-#clients .item{
+/*
+#tf-clients .item{
     padding: 0;
     margin: 35px;
     color: #FFF;
     text-align: center;
 }
-
+*/
+#tf-clients hr{
+	border-color: #fcac45;
+	border-width: 4px;
+	width: 100px;
+}
+#tf-clients .about_us{
+	padding-top: 40px;
+}
 /********************************************************/
 /* End */
 /********************************************************/
@@ -442,7 +482,7 @@ nav#footer p{
 	background: #FCAC45;
 	border-color: #FCAC45;
 	color: #ffffff;
-
+}
 /********************************************************/
 /* End */
 /********************************************************/
@@ -457,3 +497,4 @@ nav#footer p{
 /********************************************************/
 /* End */
 /********************************************************/
+
