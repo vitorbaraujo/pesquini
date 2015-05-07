@@ -4,9 +4,8 @@ class GraphicsController < ApplicationController
                    "TO", "GO", "PE", "AP", "MS", "MT", "MA", "PI"]
 
   def index
-    @data = total_by_state
-    @states = @@states_list
-      gon.xd = @@states_list[0]
+    gon.states = @@states_list
+    gon.dados = total_by_state
   end
 
   def percentual_sanction(value)
