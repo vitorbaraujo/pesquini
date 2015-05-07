@@ -8,9 +8,6 @@ class Sanction < ActiveRecord::Base
 
   def refresh!
     s = Sanction.find_by_process_number(self.process_number)
-    self.attributes.each do |attr_name, attr_value|
-      self.attr_name = s.attr_name
-    end
   end
 
 end	
