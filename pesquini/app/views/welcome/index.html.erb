@@ -3,8 +3,6 @@
 <div id="tf-home" class="text-center">
   <div class="overlay">
     <div class="content">
-      <h8><%= link_to image_tag('pesquini_logo.png'), root_path %></h8>
-      <p class="lead"><strong>Pesquisa</strong> de empresas <strong>Inidôneas</strong></p>
       <!--<h1>Pesqu<strong><span class="color">Ini</span></strong></h1>-->
       <%= image_tag 'pesquini_small2.png' %>
     </div>
@@ -29,6 +27,7 @@
     </div>
   </div>
 </div>
+
 
 <!-- About Empresas
 ==========================================-->
@@ -184,30 +183,31 @@
 <div id="tf-services" class="text-center">
   <div class="container">
     <div class="section-title center">
-      <h2><strong>Ranking</strong> de empresas</h2>
+      <h2><strong>Gráficos</strong> sobre empresas</h2>
       <div class="line">
         <hr>
       </div>
       <div class="clearfix"></div>
-      <em>Visualização de rankings de empresas inidôneas. Por meio dessa ferramenta é possivel obter informações como, por exemplo, quais empresas geraram maiores prejuízos, sofreram maior número de sanções.</em>
+      <em>Visualização de gráficos sobre empresas inidôneas. Por meio dessa ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral.</em>
     </div>
     <div class="space"></div>
     <div class="row">
       <div class="col-md-3 col-sm-6 service">
         <%= link_to(enterprises_path, method: :get) do %>
         <i class="fa fa-upload"></i>
-        <h4><strong>Número de sanções</strong></h4>
-        <p>Ranking das empresas com maior número de sanções.</p>
+        <h4><strong>Estatísticas de sanções</strong></h4>
+        <p>Gráfico que indica  a quantidade de sanções por Unidade Federativa.</p>
         <% end %>
       </div>
-
+      <!--
       <div class="col-md-3 col-sm-6 service">
-        <%= link_to(enterprises_path, method: :get) do %>
+        < %= link_to(enterprises_path, method: :get) do %>
         <i class="fa fa-usd"></i>
         <h4><strong>Gastos</strong></h4>
         <p>Ranking das empresas que geraram maiores prejuísos ao Estado.</p>
-        <% end %>
+        < % end %>
       </div>
+      -->
 <!--
       <div class="col-md-3 col-sm-6 service">
         <i class="fa fa-clock-o"></i>
