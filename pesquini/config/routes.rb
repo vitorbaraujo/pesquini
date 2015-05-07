@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  root 'welcome#index'
+  get 'parser/cei' => 'parser#import'
+  get 'parser' => 'parser#index'
+
+  resources :enterprises, only: [:index, :show]
+
+  get '/about' => 'welcome#about'
+
+  get '/graphics' => 'graphics#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
