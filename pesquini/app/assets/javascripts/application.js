@@ -15,4 +15,7 @@
 //= require bootstrap-sprockets
 //= require owl.carousel
 //= require turbolinks
+//= require highcharts
+//= require highcharts/highcharts-more
+//= require highcharts/modules/exporting
 //= require_tree .
