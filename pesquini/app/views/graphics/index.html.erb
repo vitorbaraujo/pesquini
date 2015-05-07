@@ -1,44 +1,5 @@
-<%= @states%>
 
-<script type="text/javascript" charset="utf-8">
+<%= high_chart("sanjana", @chart) %>
+<h3 align = "center"><%= @titulo %></h3>
  
-$(function () {
-    $('#container').highcharts({
-        chart: {
-            type: 'column',
-            margin: 75,
-            options3d: {
-                enabled: true,
-                alpha: 10,
-                beta: 25,
-                depth: 70
-            }
-        },
-        title: {
-            text: '3D chart with null values'
-        },
-        subtitle: {
-            text: 'Notice the difference between a 0 value and a null point'
-        },
-        plotOptions: {
-            column: {
-                depth: 25
-            }
-        },
-        xAxis: {
-            categories: gon.states
-        },
-        yAxis: {
-            title: {
-                text: null
-            }
-        },
-        series: [{
-            name: 'Sales',
-            data: gon.dados
-        }]
-    });
-});
-</script>
- 
-<div id="container" style="height: 600px"></div>
+<div id="sanjana" style="height: 800px"></div>
