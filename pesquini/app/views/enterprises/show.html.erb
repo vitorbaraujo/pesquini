@@ -8,12 +8,14 @@
 
 
    <h3> Empresa: <%= @enterprise.corporate_name %> </h3>
-   <h3> CNPJ:<%= @enterprise.cnpj %> </h3>
+   <h3> CNPJ :<%= @enterprise.cnpj %> </h3>
    <% @sanctions.each do |p| %>
+        <h3> Orgao Sancionador: <%= p.sanction_organ %> </h3>
         <h3> Numero do processo: <%= p.process_number %> </h3>
+        <h3> Data de Inicio da Sancao: <%= p.initial_date %> </h3>
+        <h3> Data Final da Sancao: <%= p.final_date %> </h3>
+        <h3> UF: <%= p.state.nil? ? "Dado nao informado" : p.state.abbreviation %> </h3>
+        <h3> Tipo Sancao: <%= p.sanction_type.nil? ? "Dado nao informado" : p.sanction_type.description %> </h3>
    <% end %>
-   <h3> <%=  %> </h3>
-
    <hr>
-   <%= render :partial => 'sanctions_itens' %>
 </div>

@@ -20,6 +20,8 @@ class EnterprisesController < ApplicationController
   def show
     @enterprise = Enterprise.find(params[:id])
     @sanctions = Sanction.where(enterprise_id: @enterprise.id)
+    #@sanction_type = SanctionType.where(sanction_id: @sanctions)
+    #@state = State.where(sanctions_id: @sanctions.id)
   end
 
  end

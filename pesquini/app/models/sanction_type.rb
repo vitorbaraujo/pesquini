@@ -1,6 +1,6 @@
 class SanctionType < ActiveRecord::Base
   has_many :sanctions
-  validates_uniqueness_of :type
+  validates_uniqueness_of :description
 
   def refresh!
     s = SanctionType.find_by_type(self.type)
