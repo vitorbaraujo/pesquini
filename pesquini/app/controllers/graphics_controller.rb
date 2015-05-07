@@ -6,6 +6,7 @@ class GraphicsController < ApplicationController
   def index
     @data = total_by_state
     @states = @@states_list
+      gon.xd = @@states_list[0]
   end
 
   def percentual_sanction(value)

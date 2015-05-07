@@ -28,13 +28,12 @@ $(function () {
                 }
             }
         },
-        <%= @data%>
 
         series: [{
             type: 'pie',
             name: 'Browser share',
             data: [
-                ['Firefox',   45.0],
+                [gon.xd,   45.0],
                 ['IE',       26.8],
                 {
                     name: 'Chrome',
