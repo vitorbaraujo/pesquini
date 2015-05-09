@@ -47,7 +47,9 @@
         <hr>
       <% end %>
     <% end %>
-
+    <div class="pagination">
+      <%= will_paginate @enterprises, renderer: BootstrapPagination::Rails %>
+    </div>
   </div>
 
   <span class="division"> <hr> </span>
