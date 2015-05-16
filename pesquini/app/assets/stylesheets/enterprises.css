@@ -75,6 +75,32 @@
 }
 
 
+/***** Pagination **********/
+
+.pagination li a {
+  color: black;
+}
+
+.pagination li a {
+  color: black;
+}
+
+.pagination .active span{
+  background-color: #FCAC45;
+}
+
+.pagination .active span{
+  background-color: #FCAC45;
+}
+
+.pagination .active span:hover{
+  background-color: #FCAC45;
+}
+.pagination  li a:hover{
+  color: #FCAC45;
+}
+
+
 /********************************************************/
 /* End */
 /********************************************************/
