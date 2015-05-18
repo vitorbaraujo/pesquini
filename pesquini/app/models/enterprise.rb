@@ -1,5 +1,5 @@
 class Enterprise < ActiveRecord::Base
-
+  
   has_many :sanctions
   validates_uniqueness_of :cnpj
 

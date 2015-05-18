@@ -15,8 +15,9 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'simplecov', :require => false, :group => :test
 gem 'ransack'
-
+gem 'will_paginate', '~> 3.0.6'
 gem 'bootstrap-sass'
+gem 'will_paginate-bootstrap'
 gem "font-awesome-rails"
 gem 'owlcarousel-rails'
 gem 'highcharts-rails'

@@ -1,7 +1,7 @@
-require 'rails_helper'
+    require 'rails_helper'
 
 RSpec.describe EnterprisesController, :type => :controller do 
-    describe "GET" do 
+    describe   "GET" do 
       describe '#index' do
         it "should work" do 
           get :index
