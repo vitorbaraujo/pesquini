@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get '/about' => 'welcome#about'
   get '/rankings' => 'rankings#index'
+  get '/more' => 'welcome#more'
   get '/graphics' => 'graphics#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
