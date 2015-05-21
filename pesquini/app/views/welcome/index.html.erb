@@ -199,6 +199,27 @@
         <p>Gráfico que indica  a quantidade de sanções por Unidade Federativa.</p>
         <% end %>
       </div>
+
+
+<div id="tf-services" class="text-center">
+  <div class="container">
+    <div class="section-title center">
+      <h2><strong>Rankings</strong> sobre empresas</h2>
+      <div class="line">
+        <hr>
+      </div>
+      <div class="clearfix"></div>
+      <em>Visualização de gráficos sobre empresas inidôneas. Por meio dessa ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral.</em>
+    </div>
+    <div class="space"></div>
+    <div class="row">
+      <div class="col-md-3 col-sm-6 service">
+        <%= link_to(rankings_path, method: :get) do %>
+        <i class="fa fa-upload"></i>
+        <h4><strong>Ranking das empresas com mais sanções</strong></h4>
+        <p>Ranking que indica  a quantidade de empresas com mais sançoes.</p>
+        <% end %>
+      </div>      
       <!--
       <div class="col-md-3 col-sm-6 service">
         < %= link_to(enterprises_path, method: :get) do %>
