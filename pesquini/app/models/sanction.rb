@@ -1,6 +1,6 @@
 class Sanction < ActiveRecord::Base
 
-  belongs_to :enterprise
+  belongs_to :enterprise, counter_cache: true
   belongs_to :sanction_type
   belongs_to :state
 

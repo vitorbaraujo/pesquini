@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 6) do
+ActiveRecord::Schema.define(version: 7) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "enterprises", force: :cascade do |t|
-    t.string "cnpj"
-    t.string "corporate_name"
+    t.string  "cnpj"
+    t.string  "corporate_name"
+    t.integer "sanctions_count", default: 0
   end
 
   create_table "payments", force: :cascade do |t|
