@@ -37,3 +37,31 @@ end
 Quando(/^eu clico no id "(.*?)"$/) do |arg1|
   find("#"+arg1).click
 end
+
+Dado(/^que a empresa COOPERSEMO exista$/) do
+  @enterprise = Enterprise.new
+  @enterprise.corporate_name = "COOPERSEMO"
+  @enterprise.save
+end
+
+Dado(/^que uma sançao exista$/) do
+  @sanction = Sanction.new
+  @sanction.sanction_type_id = 1
+  @sanction.save
+end
+
+Dado(/^que eu visitei a pagina de rankings$/) do
+  visit '/rankings'
+end
+
+Entao(/^vejo o ranking das empresas com os dados, posiçao, nome e numero de sançoes$/) do
+  page.should have_content('COOPERSEMO')
+end
+
+Dado(/^que eu clico no nome da empresa$/) do
+  visit '/enterprises/1122'
+end
+
+Entao(/^vejo os dados das sançoes da mesma$/) do
+  page.should have_content(1)
+end
