@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :enterprises, only: [:index, :show]
 
   get '/about' => 'welcome#about'
-
+  get '/rankings' => 'rankings#index'
   get '/graphics' => 'graphics#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

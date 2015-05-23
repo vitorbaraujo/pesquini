@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe EnterprisesController, :type => :controller do 
+RSpec.describe RankingsController, :type => :controller do 
     describe   "GET" do 
       describe '#index' do
         it "should work" do 

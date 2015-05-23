@@ -1,0 +1,14 @@
+<!-- Deixar enquanto não arrumar o padding-->
+<br><br><br><br>
+<!-- fim -->
+
+<div class="container">
+  <div id="titulo_ranking"><h2>Ranking de empresas com mais sanções</h2>
+  <hr>
+  </div>
+  <%@enterprises.each_with_index do |e, index| %>
+ <h3><%= index +1 %> )   <%= link_to e.corporate_name, e %><br></h3>
+ Número de sanções da empresa: <%= e.sanctions.count %><hr>
+
+<% end %>
+</div>
