@@ -1,36 +1,27 @@
-#tf-statistics{
-  background: url("/assets/statistics-arrow.jpg");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  color: #ffffff;
+#tf-sanction_by_state{
+  padding: 80px 0;
+}
+ul.sanction_by_state-list{ margin: 30px 0 0 ;}
+ul.sanction_by_state-list li{
+  display: block;
+  font-size: 16px;
+  line-height: 30px;
+  font-family: 'Open Sans', sans-serif;
+}
+ul.sanction_by_state-list li span{ 
+  margin-right: 10px;
 }
 
-#tf-statistics .overlay{
-  background: -moz-linear-gradient(top,  rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.73) 17%, rgba(0,0,0,0.66) 35%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.4) 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.8)), color-stop(17%,rgba(0,0,0,0.73)), color-stop(35%,rgba(0,0,0,0.66)), color-stop(62%,rgba(0,0,0,0.55)), color-stop(100%,rgba(0,0,0,0.4))); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* IE10+ */
-  background: linear-gradient(to bottom,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', endColorstr='#66000000',GradientType=0 ); /* IE6-9 */
+#tf-most_sanctioned_ranking{
   padding: 80px 0;
-  background-attachment: fixed;
 }
-/*
-#tf-clients .item{
-    padding: 0;
-    margin: 35px;
-    color: #FFF;
-    text-align: center;
+ul.most_sanctioned_ranking-list{ margin: 30px 0 0 ;}
+ul.most_sanctioned_ranking-list li{
+  display: block;
+  font-size: 16px;
+  line-height: 30px;
+  font-family: 'Open Sans', sans-serif;
 }
-*/
-#tf-statistics hr{
-  border-color: #fcac45;
-  border-width: 4px;
-  width: 100px;
-}
-#tf-statistics .about_us{
-  padding-top: 40px;
+ul.most_sanctioned_ranking-list li span{ 
+  margin-right: 10px;
 }
