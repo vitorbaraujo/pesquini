@@ -65,3 +65,13 @@ end
 Entao(/^vejo os dados das sançoes da mesma$/) do
   page.should have_content(1)
 end
+
+Dado(/^que eu estou em qualquer pagina da aplicaçao$/) do
+  visit '/' 
+end
+
+Entao(/^vejo o texto "(.*?)"$/) do |arg1|
+  page.should have_content(arg1)
+end
+
+

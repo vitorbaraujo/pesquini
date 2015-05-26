@@ -9,8 +9,9 @@
   <div class="section-title">
   <h2><%= @enterprise.corporate_name %> </h2>
   </div>
+  <br>
+  <h4> CNPJ da Empresa: <%= @enterprise.cnpj %> </h4>
   <hr>
-  <h3> CNPJ :<%= @enterprise.cnpj %> </h3>
    <% @sanctions.each do |p| %>
       <h3> Órgao Sancionador: <%= p.sanction_organ %> </h3>
       <h3> Número do processo: <%= p.process_number %> </h3>
@@ -20,6 +21,7 @@
       <h3> Tipo Sancao: <%= p.sanction_type.nil? ? "Dado nao informado" : p.sanction_type.description %> </h3>
       <hr>
    <% end %>
+    <%= will_paginate @sanctions,  renderer: BootstrapPagination::Rails %>
    <% if @sanctions.empty? %>
       <h3> Dados sobre sanções não informados </h3>
    <% end %>
