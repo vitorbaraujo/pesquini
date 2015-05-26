@@ -115,6 +115,11 @@
   padding-top:  60px;
 }
 
+#enterprises_show hr{
+  border-color: #fcac45;
+  border-width: 1px;
+  width: 800px;
+}
 #enterprises_show .section-title{
   text-align: center;
 }

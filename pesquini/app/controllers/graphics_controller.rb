@@ -20,12 +20,7 @@ class GraphicsController < ApplicationController
     f.chart({:defaultSeriesType=>"column"})
 end
   end
-
-  def percentual_sanction(value)
-      total = Sanction.all.count
-      value * 100 / total
-  end
-
+  
   def total_by_state
     @results = []
     @@states_list.each do |s|

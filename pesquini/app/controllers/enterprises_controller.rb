@@ -12,6 +12,7 @@ class EnterprisesController < ApplicationController
 
   def show
     @enterprise = Enterprise.find(params[:id])
-    @sanctions = Sanction.where(enterprise_id: @enterprise.id)
+    @collection = Sanction.where(enterprise_id: @enterprise.id)
+    @sanctions = @collection.paginate(:page => params[:page], :per_page => 10)
   end
  end
