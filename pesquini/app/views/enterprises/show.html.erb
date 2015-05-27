@@ -6,26 +6,32 @@
 
 <div id="enterprises_show">
   <div class="container">
-  <div class="section-title">
-  <h2><%= @enterprise.corporate_name %> </h2>
-  </div>
-  <br>
-  <h4> CNPJ da Empresa: <%= @enterprise.cnpj %> </h4>
-  <hr>
-   <% @sanctions.each do |p| %>
-      <h3> Órgao Sancionador: <%= p.sanction_organ %> </h3>
-      <h3> Número do processo: <%= p.process_number %> </h3>
-      <h3> Data de Inicio da Sanção: <%= p.initial_date %> </h3>
-      <h3> Data Final da Sanção: <%= p.final_date %> </h3>
-      <h3> UF: <%= p.state.nil? ? "Dado nao informado" : p.state.abbreviation %> </h3>
-      <h3> Tipo Sancao: <%= p.sanction_type.nil? ? "Dado nao informado" : p.sanction_type.description %> </h3>
-      <hr>
-   <% end %>
-    <%= will_paginate @sanctions,  renderer: BootstrapPagination::Rails %>
-   <% if @sanctions.empty? %>
-      <h3> Dados sobre sanções não informados </h3>
-   <% end %>
 
-   <hr>
+    <div class="section-title">
+      <h2><%= @enterprise.corporate_name %> </h2><br>
+      <h4> CNPJ da Empresa: <%= @enterprise.cnpj %> </h4>
+    </div>
+    <span id="title-hr"><hr></span>
+
+    <div class="sanction-info">
+        <div class =" lowercase-letter">
+        <% @sanctions.each_with_index do |p, index| %>
+          <h4><%= index +1 %></h4>
+          <h4> Órgao Sancionador: <%= p.sanction_organ %> </h4>
+          <h4> Número do processo: <%= p.process_number %> </h4>
+          <h4> Data de Inicio da Sanção: <%= p.initial_date %> </h4>
+          <h4> Data Final da Sanção: <%= p.final_date %> </h4>
+          <h4> UF: <%= p.state.nil? ? "Dado nao informado" : p.state.abbreviation %> </h4>
+          <h4> Tipo Sanção: <%= p.sanction_type.nil? ? "Dado nao informado" : p.sanction_type.description %> </h4>
+          <hr align="left">
+       <% end %>
+       </div>
+     </div>
+    <%= will_paginate @sanctions,  renderer: BootstrapPagination::Rails %>
+
+     <% if @sanctions.empty? %>
+        <h3> Dados sobre sanções não informados </h3>
+     <% end %>
+
   </div>
 </div>
