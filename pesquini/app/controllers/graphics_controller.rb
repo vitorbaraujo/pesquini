@@ -2,6 +2,7 @@ class GraphicsController < ApplicationController
   @@states_list = ["BA", "DF", "RJ", "PA", "MG", "SP", "AM", "RS", "SC", "ES", "PR", 
                    "PB", "RN", "CE", "AL", "RR", "SE", "RO","PI" , "AC", 
                    "TO", "GO", "PE", "AP", "MS", "MT", "MA","Não Informado"]
+  @initial_date
 
   def index
     gon.states = @@states_list
@@ -31,12 +32,20 @@ end
     @results
   end
 
-  def pie_graphics 
+  def column_graphics 
     data = Hash.new
     total = total_by_state
     @@states_list.each.with_index do |s,index|
       data[:s] = total[index]
     end
     data 
+  end
+
+  def filter_years
+    @sanction = Sanction.new(params[:initial_date])
+    respond to do |format|
+      format.json{render json: @sanction.initial_date_hash}
+    end
+    puts @sanction.initial_date_hash
   end
 end

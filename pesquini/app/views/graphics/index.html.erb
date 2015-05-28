@@ -1,5 +1,13 @@
-
 <%= high_chart("sanjana", @chart) %>
-<h3 align = "center"><%= @titulo %></h3>
- 
+<h3 align = "center"><%= @titulo %></h3> 
 <div id="sanjana" style="height: 800px"></div>
+
+<%= form_tag("/graphics/filter_years.json",id: "new-request", method: "get", remote: true, :class =>'form-inline') do %>
+
+  <div class="form-group">
+  <%= label_tag(:initial_date, "Ano de início") %>
+  <%= select_tag(:initial_date, options_for_select( Sanction.all.pluck(:initial_date).uniq.sort!), class: 'form-control') %>
+  </div>
+  <div class="form-group">
+  </div>
+<% end %>
