@@ -3,9 +3,16 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
     protect_from_forgery with: :exception
 
-    rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+  rescue_from ActiveRecord::RecordNotFound, :with => :render_not_found
+  rescue_from ActionController::RoutingError, :with => :render_not_found
 
-    private def record_not_found
-        render :text => "404 Not Found", :status => 404
-    end
+  def raise_not_found!
+    raise ActionController::RoutingError.new("No route matches #{params[:unmatched_route]}")
+  end
+
+  def render_not_found(e)
+        render :text => '404 not found', :status => :not_found
+  end
 end
+
+
