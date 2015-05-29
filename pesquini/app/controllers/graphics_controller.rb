@@ -42,10 +42,10 @@ end
   end
 
   def filter_years
-    @sanction = Sanction.new(params[:initial_date])
     respond to do |format|
       format.json{render json: @sanction.initial_date_hash}
     end
     puts @sanction.initial_date_hash
   end
 end
+  

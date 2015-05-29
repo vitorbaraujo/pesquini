@@ -32,6 +32,5 @@ describe Enterprise do
         expect(duplicated_enterprise).not_to be_valid
       end
     end
-  
   end   
 end
