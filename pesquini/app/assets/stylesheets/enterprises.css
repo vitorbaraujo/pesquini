@@ -112,18 +112,36 @@
 /********************************************************/
 
 #enterprises_show{
-  padding-top:  60px;
+  padding-top:  80px;
 }
 
 #enterprises_show hr{
   border-color: #fcac45;
   border-width: 1px;
-  width: 800px;
-}
-#enterprises_show .section-title{
-  text-align: center;
+  width: 400px;
 }
 
+#enterprises_show .section-title {
+  overflow: auto;
+}
+
+#enterprises_show .section-title{
+  text-align: center;
+  padding-bottom: 0px;
+}
+
+#enterprises_show #title-hr hr{
+  border-width: 4px;
+  width: 200px;
+}
+
+#enterprises_show .sanction-info{
+  padding-top:30px;
+}
+
+#enterprises_show .lowercase-letter  h4 {
+  text-transform:capitalize;
+}
 
 
 /********************************************************/
