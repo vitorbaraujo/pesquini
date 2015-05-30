@@ -10,8 +10,10 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new("No route matches #{params[:unmatched_route]}")
   end
 
-  def render_not_found(e)
-        render :text => '404 not found', :status => :not_found
+  def render_not_found
+    respond_to do |f|
+      f.html{ render :template => "errors/404", :status => 404 }
+    end
   end
 end
 
