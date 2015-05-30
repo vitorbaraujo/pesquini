@@ -4,9 +4,9 @@
 <%= form_tag("/graphics", method: "get") do %>
 
 <div class="input-group custom-search-form">
-  <label>Ano</label>
+  <label>Selecione o Ano</label>
     <select name="year_" class="form-control">
-      <option value="0">Selecione o ano</option>
+      <option value="0">Todos</option>
         <% sanjana.each do |year_| %>
           <option value="<%= year_ %>">
             <%= year_ %>
@@ -17,7 +17,6 @@
 
 <div class="btn-group app-btn-group" role="group" aria-label="...">
   <button type="submit" class="btn btn-primary app-btn">Confirmar</button>
-  <button type="reset" class="btn btn-primary app-btn">Limpar</button>
 </div>
 <% end %>
 

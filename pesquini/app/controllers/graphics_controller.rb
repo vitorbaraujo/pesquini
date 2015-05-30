@@ -28,12 +28,17 @@ end
       state = State.find_by_abbreviation("#{s}")
       sanctions_by_state = Sanction.where(state_id: state[:id])
       selected_year = []
+      if(params[:year_].to_i != 0)
         sanctions_by_state.each do |s|
           if(s.initial_date.year ==  params[:year_].to_i)
             selected_year << s
           end
         end
         @results << (selected_year.count)
+      else
+        @results << (sanctions_by_state.count)
+      end
+
     end
   @results
   end
