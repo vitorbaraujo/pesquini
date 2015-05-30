@@ -52,17 +52,26 @@ end
     gon.dados = total_by_type
     @titulo = "Gráfico de Sanções por Tipo"
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
-    f.title(:text => "Gráficos de Sanções por Tipo")
+    f.title(:text => @titulo)
     f.xAxis(:categories => @@sanction_type_list)
     f.series(:name => "Numero de Sanções", :yAxis => 0, :data => total_by_type)
     f.yAxis [
-    {:title => {:text => "Sanções", :margin => 70} },
-    {:title => {:text => "Sanções"}, :opposite => true},
+    {:title => {:text => "Sanções", :margin => 70} }
     ]
 
     f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
-    f.chart({:defaultSeriesType=>"column"})
+    f.chart({:defaultSeriesType=>"pie"})
   end
-
+end
+def total_by_type
+    @results = []
+    @@sanction_type_list.each do |s|
+      type = SanctionType.find_by_description("#{s}")
+      puts " a" *80, type
+      sanctions_by_type = Sanction.where(sanction_type_id: type)
+    @results << (sanctions_by_type.count)
+    end
+    @results
+  end
 
 end
