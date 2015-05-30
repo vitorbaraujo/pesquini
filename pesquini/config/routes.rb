@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+  Rails.application.routes.draw do
   root 'welcome#index'
   get 'parser/cei' => 'parser#import'
   get 'parser' => 'parser#index'
@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/rankings' => 'rankings#index'
   get '/more' => 'welcome#more'
   get '/graphics' => 'graphics#index'
+  match 'graphics', controller: 'graphics', action: 'total_by_state', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
