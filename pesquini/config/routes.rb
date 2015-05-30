@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/statistics' => 'statistics#index'
   get '/statistics/sanction_by_state_graph' => 'statistics#sanction_by_state_graph'
   get '/statistics/most_sanctioned_ranking' => 'statistics#most_sanctioned_ranking'
+  get '/statistics/sanction_by_type_graph' => 'statistics#sanction_by_type_graph'
   get '/more' => 'welcome#more'
   get '/graphics' => 'graphics#index'
 

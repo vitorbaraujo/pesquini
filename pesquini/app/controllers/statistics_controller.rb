@@ -40,4 +40,29 @@ end
     @results
   end
 
+
+
+@@sanction_type_list = ["INIDONEIDADE - LEGISLAçãO ESTADUAL", "IMPEDIMENTO - LEI DO PREGãO", "PROIBIçãO - LEI ELEITORAL", "INIDONEIDADE - LEI DE LICITAçõES",
+ "SUSPENSãO - LEI DE LICITAçõES", "SUSPENSãO - LEGISLAçãO ESTADUAL", "PROIBIçãO - LEI DE IMPROBIDADE", "DECISãO JUDICIAL LIMINAR/CAUTELAR QUE IMPEçA CONTR...", 
+ "INIDONEIDADE - LEI DA ANTT E ANTAQ ", "INIDONEIDADE - LEI DA ANTT E ANTAQ ", 
+                   "INIDONEIDADE - LEI ORGâNICA TCU"]
+
+  def sanction_by_type_graph
+    gon.sanction_types = @@sanction_type_list
+    gon.dados = total_by_type
+    @titulo = "Gráfico de Sanções por Tipo"
+    @chart = LazyHighCharts::HighChart.new('graph') do |f|
+    f.title(:text => "Gráficos de Sanções por Tipo")
+    f.xAxis(:categories => @@sanction_type_list)
+    f.series(:name => "Numero de Sanções", :yAxis => 0, :data => total_by_type)
+    f.yAxis [
+    {:title => {:text => "Sanções", :margin => 70} },
+    {:title => {:text => "Sanções"}, :opposite => true},
+    ]
+
+    f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
+    f.chart({:defaultSeriesType=>"column"})
+  end
+
+
 end
