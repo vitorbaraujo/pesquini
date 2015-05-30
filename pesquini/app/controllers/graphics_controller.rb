@@ -7,7 +7,7 @@ class GraphicsController < ApplicationController
   def index
     gon.states = @@states_list
     gon.dados = total_by_state
-    @titulo = "Gráfico de Sanções por Estado "
+    @titulo = "Gráfico de Sanções por Estado " 
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
     f.title(:text => "Gráficos de Sanções por Estado")
     f.xAxis(:categories => @@states_list)
@@ -28,21 +28,16 @@ end
       state = State.find_by_abbreviation("#{s}")
       sanctions_by_state = Sanction.where(state_id: state[:id])
       selected_year = []
-      
-      sanctions_by_state.each do |s|
-        if(s.initial_date.year ==  params[:year_].to_i)
-          selected_year << s 
+        sanctions_by_state.each do |s|
+          if(s.initial_date.year ==  params[:year_].to_i)
+            selected_year << s
+          end
         end
-      end
-
-      if(params[:year] == nil)
-        @results << (sanctions_by_state.count)
-      else
         @results << (selected_year.count)
-      end
     end
-    @results
+  @results
   end
+
 
   def column_graphics 
     data = Hash.new
