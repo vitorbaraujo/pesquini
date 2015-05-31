@@ -53,7 +53,7 @@ Dado(/^que uma sançao exista$/) do
 end
 
 Dado(/^que eu visitei a pagina de rankings$/) do
-  visit '/rankings'
+  visit '/statistics/most_sanctioned_ranking'
 end
 
 Entao(/^vejo o ranking das empresas com os dados, posiçao, nome e numero de sançoes$/) do
@@ -76,4 +76,14 @@ Entao(/^vejo o texto "(.*?)"$/) do |arg1|
   page.should have_content(arg1)
 end
 
+Dado(/^que eu estou na index de statistics$/) do
+  visit '/statistics'
+end
 
+Quando(/^eu clico no no link "(.*?)"$/) do |arg1|
+  click_link arg1
+end
+
+Entao(/^vejo o grafico de pizza de sanção por tipo$/) do
+ page.should have_content(@titulo)
+end
