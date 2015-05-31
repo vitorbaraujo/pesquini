@@ -53,7 +53,7 @@ Dado(/^que uma sançao exista$/) do
 end
 
 Dado(/^que eu visitei a pagina de rankings$/) do
-  visit '/rankings'
+  visit '/statistics/most_sanctioned_ranking'
 end
 
 Entao(/^vejo o ranking das empresas com os dados, posiçao, nome e numero de sançoes$/) do
