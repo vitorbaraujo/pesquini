@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :enterprises, only: [:index, :show]
 
   get '/about' => 'welcome#about'
-  get '/rankings' => 'rankings#index'
+  get '/statistics' => 'statistics#index'
+  get '/statistics/sanction_by_state_graph' => 'statistics#sanction_by_state_graph'
+  get '/statistics/most_sanctioned_ranking' => 'statistics#most_sanctioned_ranking'
   get '/more' => 'welcome#more'
   get '/graphics' => 'graphics#index'
 

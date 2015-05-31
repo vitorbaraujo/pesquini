@@ -194,7 +194,7 @@
     <div class="space"></div>
     <div class="row">
       <div class="col-md-3 col-sm-6 service">
-        <%= link_to(graphics_path, method: :get) do %>
+        <%= link_to(statistics_path(:anchor => "tf-sanction_by_state"))do %>
         <i class="fa fa-upload"></i>
         <h4><strong>Estados com mais sanções</strong></h4>
         <p>Gráfico que indica  a quantidade de sanções por Unidade Federativa.</p>
@@ -202,7 +202,7 @@
       </div>
 
       <div class="col-md-3 col-sm-6 service">
-        <%= link_to(rankings_path, method: :get) do %>
+        <%= link_to(statistics_path(:anchor => "tf-most_sanctioned_ranking"))do %>
         <i class="fa fa-upload"></i>
         <h4><strong>Empresas com mais sanções</strong></h4>
         <p>Ranking que indica  a quantidade de empresas com mais sançoes.</p>
