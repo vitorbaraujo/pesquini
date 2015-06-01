@@ -91,3 +91,17 @@ end
 Entao(/^vejo o grafico de estados com mais sanções$/) do
 page.should have_content(@titulo)
 end
+
+Dado(/^que estou na index na welcome$/) do
+  visit '/'
+end
+
+Então(/^eu sou redirecionado ao quadro de estatisticas$/) do
+ page.should have_content('Gráfico que indica a quantidade de sanções por Unidade Federativa.')
+end
+
+Então(/^eu vejo o texto "(.*?)"$/) do |arg1|
+  page.should have_content arg1
+end
+
+
