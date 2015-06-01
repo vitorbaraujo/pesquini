@@ -87,3 +87,7 @@ end
 Entao(/^vejo o grafico de pizza de sanção por tipo$/) do
  page.should have_content(@titulo)
 end
+
+Entao(/^vejo o grafico de estados com mais sanções$/) do
+page.should have_content(@titulo)
+end
