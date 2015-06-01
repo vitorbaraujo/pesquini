@@ -23,7 +23,7 @@ Dado que insiro uma empresa existente
 Quando eu clico no botão "Search"
 Entao vejo todos os dados desta empresa.
 
-Cenário: Entrar na pagina de estatisticas para ver o grafico dos estados com mais sanções
+Cenário: Entrar na pagina de estatisticas para ver o grafico dos estados com mais sanções, grafico por tipo de sanção ou ranking de empresas.
 
 Dado que estou na index na welcome
 Quando eu clico no link "Estatisticas"
