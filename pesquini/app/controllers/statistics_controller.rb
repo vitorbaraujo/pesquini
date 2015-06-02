@@ -17,6 +17,9 @@ class StatisticsController < ApplicationController
     @titulo = "Gráfico de Sanções por Estado"
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
     f.title(:text => "Gráficos de Sanções por Estado")
+    if(params[:year_].to_i != 0)
+       f.title(:text => params[:year_].to_i ) 
+     end
     f.xAxis(:categories => @@states_list)
     f.series(:name => "Numero de Sanções", :yAxis => 0, :data => total_by_state)
     f.yAxis [
@@ -35,9 +38,20 @@ end
     @@states_list.each do |s|
       state = State.find_by_abbreviation("#{s}")
       sanctions_by_state = Sanction.where(state_id: state[:id])
-    @results << (sanctions_by_state.count)
+      selected_year = []
+      if(params[:year_].to_i != 0)
+        sanctions_by_state.each do |s|
+          if(s.initial_date.year ==  params[:year_].to_i)
+            selected_year << s
+          end
+        end
+        @results << (selected_year.count)
+      else
+        @results << (sanctions_by_state.count)
+      end
+
     end
-    @results
+  @results
   end
 
 
