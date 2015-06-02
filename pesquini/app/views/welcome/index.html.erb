@@ -13,10 +13,11 @@
       <div class="input-group">
         <%= f.text_field :corporate_name_cont, class: "form-control input-lg id", placeholder: "Digite nome ou CNPJ da empresa", placeholder: "Digite nome ou CNPJ da empresa"%>
         <span class="input-group-btn">
-          <%= f.submit "Pesquisar", class: "btn btn-lg btn-r", id: "search_index" do %>
+          <%= f.button type: "submit", class: "btn btn-lg btn-r", id: "search_index" do %>
             <i class="fa fa-search fa-lg"></i>
           <% end %>
         </span>
+
       </div>
       <% end %>
       <div class="text_pesq_empr">
@@ -192,8 +193,9 @@
     </div>
     <div class="space"></div>
     <div class="row">
+      
       <div class="col-md-3 col-sm-6 service">
-        <%= link_to(graphics_path, method: :get) do %>
+        <%= link_to(statistics_path(:anchor => "tf-sanction_by_state"))do %>
         <i class="fa fa-upload"></i>
         <h4><strong>Estados com mais sanções</strong></h4>
         <p>Gráfico que indica  a quantidade de sanções por Unidade Federativa.</p>
@@ -201,10 +203,18 @@
       </div>
 
       <div class="col-md-3 col-sm-6 service">
-        <%= link_to(rankings_path, method: :get) do %>
+        <%= link_to(statistics_path(:anchor => "tf-most_sanctioned_ranking"))do %>
         <i class="fa fa-upload"></i>
         <h4><strong>Empresas com mais sanções</strong></h4>
         <p>Ranking que indica  a quantidade de empresas com mais sançoes.</p>
+        <% end %>
+      </div>
+
+       <div class="col-md-3 col-sm-6 service">
+        <%= link_to(statistics_path(:anchor => "tf-sanction_by_type"))do %>
+        <i class="fa fa-upload"></i>
+        <h4><strong>Tipos de sanções</strong></h4>
+        <p>Gráfico que indica os tipos de sanção mais recorrentes e suas quantidades.</p>
         <% end %>
       </div>
       <!--

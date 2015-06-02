@@ -11,5 +11,3 @@ Dado que a empresa COOPERSEMO exista
 Dado que uma sançao exista
 Dado que eu visitei a pagina de rankings
 Entao vejo o ranking das empresas com os dados, posiçao, nome e numero de sançoes
-Dado que eu clico no nome da empresa
-Entao vejo os dados das sançoes da mesma

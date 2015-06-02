@@ -3,22 +3,30 @@
 Funcionalidade: Pesquisar Empresas Inidonias
   Ao usuário entrar no sistema, ele poderá inserir o nome ou cnpj de uma das empresas no campo pré-determinado para tal função
 
-Cenário: Abrir página de pesquisar empresas   
+Cenário: Abrir página inicial 
 
-Ao usuário tentar pesquisar uma empresa existente, ela deverá ter seus dados mostrados.
-
-Dado que a empresa samsung exista
-Dado que eu estou na index de enterprises
-Dado que insiro uma empresa existente
-Quando eu clico no botão "Search"
-Entao vejo o texto os dados desta empresa.
-
-Cenário: Abrir página inicial  
-
-Ao usuário tentar pesquisar uma empresa existente, ela deverá ter seus dados mostrados.
+Ao usuário tentar pesquisar uma empresa existente, ela deverá ter seus dados mostrados a partir da pagina de pesquisar empresas.
 
 Dado que a empresa samsung exista
 Dado que eu estou na index da welcome
 Dado que insiro uma empresa existente
 Quando eu clico no id "search_index"
-Entao vejo o texto os dados desta empresa.
+Entao vejo os dados prévios desta empresa.
+
+Cenário: Abrir página de pesquisar empresas   
+
+Ao usuário tentar pesquisar uma empresa existente, ela deverá ter seus dados mostrados a partir da pagina inicial.
+
+Dado que a empresa samsung exista
+Dado que eu estou na index de enterprises
+Dado que insiro uma empresa existente
+Quando eu clico no botão "Search"
+Entao vejo todos os dados desta empresa.
+
+Cenário: Entrar na pagina de estatisticas para ver o grafico dos estados com mais sanções, grafico por tipo de sanção ou ranking de empresas.
+
+Dado que estou na index na welcome
+Quando eu clico no link "Estatisticas"
+Então eu sou redirecionado ao quadro de estatisticas
+Quando eu clico no link "Estados com mais sanções"
+Então eu vejo o texto "Nesse gráfico estão disponiveis as informações sobre a quantidade de sanções que cada unidade federativa brasileira recebeu desde o começo da obtenção de dados. "

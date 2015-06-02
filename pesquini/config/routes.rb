@@ -5,11 +5,15 @@
 
   resources :enterprises, only: [:index, :show]
 
-  get '/about' => 'welcome#about'
   get '/rankings' => 'rankings#index'
+  get '/statistics' => 'statistics#index'
+  get '/statistics/sanction_by_state_graph' => 'statistics#sanction_by_state_graph'
+  get '/statistics/most_sanctioned_ranking' => 'statistics#most_sanctioned_ranking'
+  get '/statistics/sanction_by_type_graph' => 'statistics#sanction_by_type_graph'
   get '/more' => 'welcome#more'
   get '/graphics' => 'graphics#index'
-  match 'graphics', controller: 'graphics', action: 'total_by_state', via: 'get'
+  match 'statistics', controller: 'statistics', action: 'total_by_state', via: 'get'
+  get '*unmatched_route', :to => 'application#raise_not_found!'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
