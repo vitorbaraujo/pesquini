@@ -5,7 +5,7 @@ Funcionalidade: Pesquisar Empresas Inidonias
 
 Cenário: Abrir página inicial 
 
-Ao usuário tentar pesquisar uma empresa existente, ela deverá ter seus dados prévios mostrados.
+Ao usuário tentar pesquisar uma empresa existente, ela deverá ter seus dados mostrados a partir da pagina de pesquisar empresas.
 
 Dado que a empresa samsung exista
 Dado que eu estou na index da welcome
@@ -15,7 +15,7 @@ Entao vejo os dados prévios desta empresa.
 
 Cenário: Abrir página de pesquisar empresas   
 
-Ao usuário tentar pesquisar uma empresa existente, ela deverá ter seus dados mostrados.
+Ao usuário tentar pesquisar uma empresa existente, ela deverá ter seus dados mostrados a partir da pagina inicial.
 
 Dado que a empresa samsung exista
 Dado que eu estou na index de enterprises
