@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+  Rails.application.routes.draw do
   root 'welcome#index'
   get 'parser/cei' => 'parser#import'
   get 'parser' => 'parser#index'
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/statistics/sanction_by_type_graph' => 'statistics#sanction_by_type_graph'
   get '/more' => 'welcome#more'
   get '/graphics' => 'graphics#index'
+  match 'statistics', controller: 'statistics', action: 'total_by_state', via: 'get'
   get '*unmatched_route', :to => 'application#raise_not_found!'
 
   # The priority is based upon order of creation: first created -> highest priority.
