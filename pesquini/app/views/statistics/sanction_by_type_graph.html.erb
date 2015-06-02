@@ -1,6 +1,32 @@
+
+<% states_list = ["AC", "AL","AM", "AP","BA", "CE","DF", "ES", "GO","RJ", "PA", "MT", "MA","MG", "SP", "RS", "SC", "PR", "PB", "RN",  "RR", "SE", "RO","PI" , "TO",  "PE",  "MS","Não Informado"] %>
+
 <br>
 <br>
 <br>
+
+<div class="graphics">
+<%= form_tag("/statistics/sanction_by_type_graph", method: "get") do %>
+
+<div class="input-group custom-search-form">
+  <label>Selecione o Estado</label>
+    <select name="state_" class="form-control">
+      <option value="0">Todos</option>
+        <% states_list.each do |state_| %>
+          <option value="<%= state_ %>">
+            <%= state_ %>
+          </option>
+        <% end %>
+    </select>
+</div>
+
+<div class="btn-group app-btn-group" role="group" aria-label="...">
+  <button type="submit" class="btn btn-primary app-btn">Confirmar</button>
+</div>
+<% end %>
+
+</div>
+
 
 <%= high_chart("sanjana2", @chart) %>
 <h3 align = "center"><%= @titulo %></h3>
