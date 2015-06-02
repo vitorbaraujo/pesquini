@@ -69,11 +69,31 @@ Entao(/^vejo os dados das sançoes da mesma$/) do
 end
 
 Dado(/^que eu estou em qualquer pagina da aplicaçao$/) do
-  visit '/' 
+  visit '/'
 end
 
 Entao(/^vejo o texto "(.*?)"$/) do |arg1|
   page.should have_content(arg1)
+end
+
+Dado(/^que eu estou na pagina inicial da aplicaçao$/) do
+  visit '/' # express the regexp above with the code you wish you had
+end
+
+Quando(/^o usuário digitar uma url inválida$/) do
+  visit '/sasd'# express the regexp above with the code you wish you had
+end
+
+Então(/^o sistema deve mostrar uma mensagem de página não encontrada$/) do
+  page.should have_content(404) # express the regexp above with the code you wish you had
+end
+
+Dado(/^que eu estou na pagina inicial da aplicacao$/) do
+  visit '/'# express the regexp above with the code you wish you had
+end
+
+Quando(/^o usuário digitar uma id de uma empresa não existente no banco$/) do
+  visit'/enterprises/4500' # express the regexp above with the code you wish you had
 end
 
 Dado(/^que eu estou na index de statistics$/) do
