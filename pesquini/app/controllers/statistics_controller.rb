@@ -124,19 +124,25 @@ end
 def total_by_type
     @results = []
     results2 = []
+    state = State.find_by_abbreviation(params[:state_])
     cont = 0
 
     @@sanction_type_list.each do |s|
       sanction = SanctionType.find_by_description(s[0])
-      sanctions_by_type = Sanction.where(sanction_type:  sanction)
-      cont = cont + (sanctions_by_type.count)
+      unless state.nil?
+        sanctions_by_type = Sanction.where(sanction_type: sanction, state_id: state[:id])
+      else
+        santions_by_type = Sanction.where(sanction_type:  sanction)
+      end
+
+    cont = cont + (sanctions_by_type.count) unless sanctions_by_type.nil?
     results2 << s[1]
-    results2 << (sanctions_by_type.count)
+    results2 << (sanctions_by_type.count) unless sanctions_by_type.nil?
     @results << results2
     results2 = []
     end
     results2 << "Não Informado" 
-    total =Sanction.all.count
+    total = Sanction.where(state_id: state[:id]).count
     results2 << (total - cont)
     @results << results2
     @results = @results.sort_by { |i| i[0] }
