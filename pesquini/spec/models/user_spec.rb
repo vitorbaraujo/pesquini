@@ -20,7 +20,6 @@ RSpec.describe User, :type => :model do
 					expect(@user).not_to be_valid
 				end
 			end
-
 			describe 'with less than 5 chars' do
 				before { @user.login = 'b'*2 }
 				it 'should not pass' do
@@ -31,6 +30,26 @@ RSpec.describe User, :type => :model do
 				before { @user.login = @aux.login }
 				it 'should not pass' do
 					expect(@user).not_to be_valid
+				end
+			end
+			describe 'blank field' do
+				before {@user.login = nil }
+				it 'should not pass' do
+					expect(@user).not_to be_valid
+				end
+			end
+		end	
+		describe 'password' do
+			describe 'blank field' do
+				before{ @user.password = nil }
+				it 'should not pass' do
+					expect(@user).not_to be_valid
+				end
+			end
+			describe 'with less than 8 chars' do
+				before { @user.password = 'c'*5 }
+				it 'should not pass' do
+					expect(@user).not_to be_valid					
 				end
 			end
 		end
