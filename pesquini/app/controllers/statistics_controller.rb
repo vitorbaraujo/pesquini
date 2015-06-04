@@ -8,7 +8,7 @@ class StatisticsController < ApplicationController
   end
 
   def most_sanctioned_ranking
-    @enterprises = Enterprise.featured
+    @enterprises = Enterprise.featured(10)
   end
 
   def sanction_by_state_graph
@@ -37,19 +37,13 @@ end
     @results = []
     @@states_list.each do |s|
       state = State.find_by_abbreviation("#{s}")
-      sanctions_by_state = Sanction.where(state_id: state[:id])
       selected_year = []
       if(params[:year_].to_i != 0)
-        sanctions_by_state.each do |s|
-          if(s.initial_date.year ==  params[:year_].to_i)
-            selected_year << s
-          end
-        end
-        @results << (selected_year.count)
+        sanctions_by_state = Sanction.by_year(params[:year_]).where(state_id: state[:id])
       else
-        @results << (sanctions_by_state.count)
+        sanctions_by_state = Sanction.where(state_id: state[:id])
       end
-
+      @results << (sanctions_by_state.count)
     end
   @results
   end

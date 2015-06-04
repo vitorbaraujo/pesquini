@@ -1,11 +1,11 @@
 class Enterprise < ActiveRecord::Base
 
-    has_many :sanctions
-    validates_uniqueness_of :cnpj
+  has_many :sanctions
+  validates_uniqueness_of :cnpj
 
-    scope :featured,  -> { order('sanctions_count DESC') .limit(10)}
+  scope :featured, ->(number=nil){number ? order('sanctions_count DESC').limit(number) :order('sanctions_count DESC')}
 
-    def refresh!
-        e   = Enterprise.find_by_cnpj(self.cnpj)
-    end
+  def refresh!
+    e = Enterprise.find_by_cnpj(self.cnpj)
+  end
 end
