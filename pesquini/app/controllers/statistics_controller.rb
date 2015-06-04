@@ -8,7 +8,7 @@ class StatisticsController < ApplicationController
   end
 
   def most_sanctioned_ranking
-    @enterprises = Enterprise.featured(10)
+    @enterprises = Enterprise.featured
   end
 
   def sanction_by_state_graph
@@ -37,13 +37,19 @@ end
     @results = []
     @@states_list.each do |s|
       state = State.find_by_abbreviation("#{s}")
+      sanctions_by_state = Sanction.where(state_id: state[:id])
       selected_year = []
       if(params[:year_].to_i != 0)
-        sanctions_by_state = Sanction.by_year(params[:year_]).where(state_id: state[:id])
+        sanctions_by_state.each do |s|
+          if(s.initial_date.year ==  params[:year_].to_i)
+            selected_year << s
+          end
+        end
+        @results << (selected_year.count)
       else
-        sanctions_by_state = Sanction.where(state_id: state[:id])
+        @results << (sanctions_by_state.count)
       end
-      @results << (sanctions_by_state.count)
+
     end
   @results
   end
@@ -118,25 +124,27 @@ end
 def total_by_type
     @results = []
     results2 = []
-    state = State.find_by_abbreviation(params[:state_])
     cont = 0
+    state = State.find_by_abbreviation(params[:state_])
 
     @@sanction_type_list.each do |s|
       sanction = SanctionType.find_by_description(s[0])
-      unless state.nil?
-        sanctions_by_type = Sanction.where(sanction_type: sanction, state_id: state[:id])
-      else
-        santions_by_type = Sanction.where(sanction_type:  sanction)
+      sanctions_by_type = Sanction.where(sanction_type:  sanction)
+      if (params[:state_] && params[:state_] != "0")
+        sanctions_by_type = sanctions_by_type.where(state_id: state[:id])
       end
-
-    cont = cont + (sanctions_by_type.count) unless sanctions_by_type.nil?
+      cont = cont + (sanctions_by_type.count)
     results2 << s[1]
-    results2 << (sanctions_by_type.count) unless sanctions_by_type.nil?
+    results2 << (sanctions_by_type.count)
     @results << results2
     results2 = []
     end
     results2 << "Não Informado" 
-    total = Sanction.where(state_id: state[:id]).count
+      if (params[:state_] && params[:state_] != "0")
+        total =Sanction.where(state_id: state[:id] ).count
+      else
+        total = Sanction.count
+      end
     results2 << (total - cont)
     @results << results2
     @results = @results.sort_by { |i| i[0] }
