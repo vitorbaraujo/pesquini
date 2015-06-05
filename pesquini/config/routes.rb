@@ -10,6 +10,7 @@
 
   #session_controller
   get '/signin' => 'sessions#new'
+  delete '/signout' => 'sessions#destroy'
   resources :sessions, only: [:new, :create, :destroy]
 
   get '/rankings' => 'rankings#index'
