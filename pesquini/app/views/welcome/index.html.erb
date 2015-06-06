@@ -11,12 +11,13 @@
 
       <%= search_form_for @search do |f| %>
       <div class="input-group">
-        <%= f.text_field :corporate_name_cont, class: "form-control input-lg", placeholder: "Digite nome ou CNPJ da empresa", placeholder: "Digite nome ou CNPJ da empresa"%>
+        <%= f.text_field :corporate_name_cont, class: "form-control input-lg id", placeholder: "Digite nome ou CNPJ da empresa", placeholder: "Digite nome ou CNPJ da empresa"%>
         <span class="input-group-btn">
-          <%= f.button type: "submit",  class: "btn btn-lg btn-r" do %>
+          <%= f.button type: "submit", class: "btn btn-lg btn-r", id: "search_index" do %>
             <i class="fa fa-search fa-lg"></i>
           <% end %>
         </span>
+
       </div>
       <% end %>
       <div class="text_pesq_empr">
@@ -66,7 +67,7 @@
             </li>
             <li>
               <span class="fa fa-dot-circle-o"></span>
-              <strong>Outras</strong> -  <a href ="#"><em>Clique aqui saber sobre mais sanções e informações sobre elas</em></a>
+              <strong>Outras</strong> -  <a class = "more_link" href ="more"><em>Clique aqui saber sobre mais sanções e informações sobre elas</em></a>
             </li>
           </ul>
         </div>
@@ -115,7 +116,7 @@
           </div>
         </div>
         <%  end %>
- <!--     
+ <!--
         <div class="item">
           <div class="thumbnail">
             < %= image_tag 'search/lupa.png', class: "img-circle search-img" %>
@@ -183,20 +184,37 @@
 <div id="tf-services" class="text-center">
   <div class="container">
     <div class="section-title center">
-      <h2><strong>Gráficos</strong> sobre empresas</h2>
+      <h2><strong>Estatísticas</strong> sobre empresas</h2>
       <div class="line">
         <hr>
       </div>
       <div class="clearfix"></div>
-      <em>Visualização de gráficos sobre empresas inidôneas. Por meio dessa ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral.</em>
+      <em>Visualização de gráficos e rankings sobre empresas inidôneas. Por meio dessa ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral.</em>
     </div>
     <div class="space"></div>
     <div class="row">
+      
       <div class="col-md-3 col-sm-6 service">
-        <%= link_to(graphics_path, method: :get) do %>
+        <%= link_to(statistics_path(:anchor => "tf-sanction_by_state"))do %>
         <i class="fa fa-upload"></i>
-        <h4><strong>Estatísticas de sanções</strong></h4>
+        <h4><strong>Estados com mais sanções</strong></h4>
         <p>Gráfico que indica  a quantidade de sanções por Unidade Federativa.</p>
+        <% end %>
+      </div>
+
+      <div class="col-md-3 col-sm-6 service">
+        <%= link_to(statistics_path(:anchor => "tf-most_sanctioned_ranking"))do %>
+        <i class="fa fa-upload"></i>
+        <h4><strong>Empresas com mais sanções</strong></h4>
+        <p>Ranking que indica  a quantidade de empresas com mais sançoes.</p>
+        <% end %>
+      </div>
+
+       <div class="col-md-3 col-sm-6 service">
+        <%= link_to(statistics_path(:anchor => "tf-sanction_by_type"))do %>
+        <i class="fa fa-upload"></i>
+        <h4><strong>Tipos de sanções</strong></h4>
+        <p>Gráfico que indica os tipos de sanção mais recorrentes e suas quantidades.</p>
         <% end %>
       </div>
       <!--

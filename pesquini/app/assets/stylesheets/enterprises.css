@@ -75,6 +75,32 @@
 }
 
 
+/***** Pagination **********/
+
+.pagination li a {
+  color: black;
+}
+
+.pagination li a {
+  color: black;
+}
+
+.pagination .active span{
+  background-color: #FCAC45;
+}
+
+.pagination .active span{
+  background-color: #FCAC45;
+}
+
+.pagination .active span:hover{
+  background-color: #FCAC45;
+}
+.pagination  li a:hover{
+  color: #FCAC45;
+}
+
+
 /********************************************************/
 /* End */
 /********************************************************/
@@ -86,13 +112,36 @@
 /********************************************************/
 
 #enterprises_show{
-  padding-top:  60px;
+  padding-top:  80px;
+}
+
+#enterprises_show hr{
+  border-color: #fcac45;
+  border-width: 1px;
+  width: 400px;
+}
+
+#enterprises_show .section-title {
+  overflow: auto;
 }
 
 #enterprises_show .section-title{
   text-align: center;
+  padding-bottom: 0px;
 }
 
+#enterprises_show #title-hr hr{
+  border-width: 4px;
+  width: 200px;
+}
+
+#enterprises_show .sanction-info{
+  padding-top:30px;
+}
+
+#enterprises_show .lowercase-letter  h4 {
+  text-transform:capitalize;
+}
 
 
 /********************************************************/
