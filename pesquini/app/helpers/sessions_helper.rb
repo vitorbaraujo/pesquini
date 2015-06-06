@@ -18,7 +18,7 @@ module SessionsHelper
   	end
 
     def authorize
-      redirect_to '/signin', alert: "Nor authorize" unless signed_in?
+      redirect_to '/signin', alert: "Not authorize" unless signed_in?
     end
 
     def sign_out
