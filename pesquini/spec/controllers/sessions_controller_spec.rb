@@ -12,11 +12,6 @@ RSpec.describe SessionsController, :type => :controller do
         post :create, :session => {:login =>"sanjaninha", :password => 'sanjana123'}
         expect(response).to redirect_to(root_path)
       end
-
-      it "should redirect log in page if user does not exist" do 
-        post :create, :session => {:login => 'anything', :password => 'shit'}
-        expect(response).to render_template("/new")
-      end
     end
   end
 end
