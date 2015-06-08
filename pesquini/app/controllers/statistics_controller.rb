@@ -1,4 +1,5 @@
 class StatisticsController < ApplicationController
+
 @@states_list = ["BA", "DF", "RJ", "PA", "MG", "SP", "AM", "RS", "SC", "ES", "PR", 
                    "PB", "RN", "CE", "AL", "RR", "SE", "RO","PI" , "AC", 
                    "TO", "GO", "PE", "AP", "MS", "MT", "MA","Não Informado"]
@@ -10,7 +11,6 @@ class StatisticsController < ApplicationController
 
 
   def  index
-#    @enterprises = Enterprise.featured
   end
 
   def most_sanctioned_ranking
@@ -63,16 +63,6 @@ end
 
 
 @@sanction_type_list = Hash.new
-
-#@@sanction_type_list = ["INIDONEIDADE - LEGISLAçãO ESTADUAL", "IMPEDIMENTO - LEI DO PREGãO", "PROIBIçãO - LEI ELEITORAL", "INIDONEIDADE - LEI DE LICITAçõES",
- #{}"SUSPENSãO - LEI DE LICITAçõES", "SUSPENSãO - LEGISLAçãO ESTADUAL", "PROIBIçãO - LEI DE IMPROBIDADE", "DECISãO JUDICIAL LIMINAR/CAUTELAR QUE IMPEçA CONTRATAçãO", 
- #{}"INIDONEIDADE - LEI DA ANTT E ANTAQ ",  "INIDONEIDADE - LEI ORGâNICA TCU", "IMPEDIMENTO - LEGISLAçãO ESTADUAL", "SUSPENSãO E IMPEDIMENTO - LEI DE ACESSO à INFORMAçãO",
- #{}"PROIBIçãO - LEI ANTITRUSTE", "IMPEDIMENTO - LEI DO RDC", "PROIBIçãO - LEI AMBIENTAL" ]
-
-#@@sanction_type_list_2 = ["I - Legislação Estadual", "I - Lei do Pregão", "P - Lei Eleitoral", "I - Lei de Legistações",
- #{}"S - Lei de Licitações", "S - Legislação estadual", "P - Lei de improbidade", "Decisão Judicial liminar/ Cautela que impeça contratação", 
- #{}"I - Lei da ANTT e ANTAQ",  "I - Lei Orgânica TCU", "I - Legislação Estadual", "S e I - Lei de Acesso à Informação",
- #{}"P - Lei Antitruste", "I - Lei do RDC", "P - Lei Ambiental" ]
 
 
 @@sanction_type_list = [
@@ -132,12 +122,17 @@ def total_by_type
     @results = []
     results2 = []
     cont = 0
+    @states = @@states_list
+    if @states[0] != "Todos"
+      @states.unshift("Todos")
+    end
+
     state = State.find_by_abbreviation(params[:state_])
 
     @@sanction_type_list.each do |s|
       sanction = SanctionType.find_by_description(s[0])
       sanctions_by_type = Sanction.where(sanction_type:  sanction)
-      if (params[:state_] && params[:state_] != "0")
+      if (params[:state_] && params[:state_] != "Todos")
         sanctions_by_type = sanctions_by_type.where(state_id: state[:id])
       end
       cont = cont + (sanctions_by_type.count)
@@ -147,7 +142,7 @@ def total_by_type
     results2 = []
     end
     results2 << "Não Informado" 
-      if (params[:state_] && params[:state_] != "0")
+      if (params[:state_] && params[:state_] != "Todos")
         total =Sanction.where(state_id: state[:id] ).count
       else
         total = Sanction.count
