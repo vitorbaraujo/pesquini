@@ -44,7 +44,7 @@ end
     @years = @@sanjana
     @@states_list.each do |s|
       state = State.find_by_abbreviation("#{s}")
-      sanctions_by_state = Sanction.where(state_id: state[:id])
+      sanctions_by_state = Sanction.where(state_id: state.id)
       selected_year = []
       if(params[:year_].to_i != 0)
         sanctions_by_state.each do |s|
@@ -109,6 +109,10 @@ titulo = "Gráfico Sanções por Tipo"
           }
         }
       })
+end
+    respond_to do |format|
+    format.html # show.html.erb
+    format.js
 end
 
 end

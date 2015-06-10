@@ -1,19 +1,19 @@
-<div class="graphics">
+<div class="search_sanction_type">
 
+<%= form_tag("/statistics/sanction_by_type_graph", method: "get", remote: true) do %>
 
-<% if @states[0] != "Todos" %>
-  <% @states.unshift("Todos") %>
-<% end %>
-
-<%= form_tag("/statistics/sanction_by_type_graph", method: "get") do %>
   <%= select_tag 'state_', options_for_select(@states, :selected => params[:state_]) %>
-<%= submit_tag "Confirmar", name: nil%>
+  <%= submit_tag "Confirmar", name: nil%>
+
 <% end %>
 
 </div>
 
+<div class="graph_sanction_type">
+  <%=  render  "sanction_by_type"%>
+</div>
 
-<%= high_chart("sanjana2", @chart) %>
-<h3 align = "center"><%= @titulo %></h3>
-<div id="sanjana" style="height: 200px"></div>
-
+<div id="teste12">
+  321123123jijfdsjis
+  safsdfas
+</div>
