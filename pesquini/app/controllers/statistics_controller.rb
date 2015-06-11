@@ -26,9 +26,9 @@ class StatisticsController < ApplicationController
     {:title => {:text => "Sanções", :margin => 70} },
     {:title => {:text => "Sanções"}, :opposite => true},
     ]
-
     f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
     f.chart({:defaultSeriesType=>"column"})
+ 
 end
 
   end
