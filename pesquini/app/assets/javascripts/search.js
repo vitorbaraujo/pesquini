@@ -1,5 +1,5 @@
  $(document ).ready(function ( ) {
-  var element = document.getElementById('enterprises_index')
+  var element = document.getElementById('enterprises_index');
   if (element)
   {
   var element1 = element.getElementsByClassName("fa_search")[0];
@@ -9,6 +9,5 @@
     $(search1).removeClass("off");
     $(element1).addClass('off');
   });
-
 
 });
