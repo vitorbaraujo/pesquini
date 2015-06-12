@@ -141,7 +141,7 @@ class StatisticsController < ApplicationController
   end
 
 
-  def total_by_type
+  def total_by_type()
     results = []
     results2 = []
     cont = 0

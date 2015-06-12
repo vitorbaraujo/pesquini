@@ -40,26 +40,6 @@ Quando(/^eu clico no id "(.*?)"$/) do |arg1|
   find("#"+arg1).click
 end
 
-Dado(/^que a empresa COOPERSEMO exista$/) do
-  @enterprise = Enterprise.new
-  @enterprise.corporate_name = "COOPERSEMO"
-  @enterprise.save
-end
-
-Dado(/^que uma sançao exista$/) do
-  @sanction = Sanction.new
-  @sanction.sanction_type_id = 1
-  @sanction.save
-end
-
-Dado(/^que eu visitei a pagina de rankings$/) do
-  visit '/statistics/most_sanctioned_ranking'
-end
-
-Entao(/^vejo o ranking das empresas com os dados, posiçao, nome e numero de sançoes$/) do
-  page.should have_content('COOPERSEMO')
-end
-
 Dado(/^que eu clico no nome da empresa$/) do
   visit '/enterprises/1122'
 end
@@ -145,5 +125,34 @@ end
 
 Então(/^eu sou redirecionado para a Homepage$/) do
   visit '/'
+
+Dado(/^que eu visitei a pagina de estatisticas$/) do
+  visit '/statistics'
+end
+
+Quando(/^eu clico no link "(.*?)" referente a Empresas com mais sançoes$/) do |arg1|
+  click_link arg1
+end
+
+Entao(/^vejo o ranking dos grupos das empresas com mais sançoes$/) do
+  visit '/statistics/most_sanctioned_ranking'
+end
+
+Dado(/^que eu estou na pagina de rankings$/) do
+    visit '/statistics/most_sanctioned_ranking'
+end
+
+Dado(/^que a empresa COOPERSEMO exista$/) do
+  @enterprise = Enterprise.new
+  @enterprise.corporate_name = "COOPERSEMO"
+  @enterprise.save
+end
+
+Quando(/^eu clico sobre no link "(.*?)"$/) do |arg1|
+  click_link arg1
+end
+
+Entao(/^vejo o nome de todas as empresas com (\d+) sanções$/) do |arg1|
+  page.should have_content arg1
 end
 
