@@ -1,13 +1,19 @@
 #language: pt
 
-Funcionalidade: Visualizar um ranking das empresas com mais sançoes
-  Ao usuario entrar no sistema, ele podera selecionar o icone dos rankings para ser direcionado a parte do site que contem o link para a pagina dos rankings, ou descer ate chegar ate esta parte do site
+Funcionalidade: Visualizar ranking das empresas com mais sançoes
 
 Cenario: Visualizar os rankings
 
-Ao usuário tentar clicar no icone ranking para ser direcionado a parte debaixo do site com o icone que direciona para a pagina dos rankings. Este ranking contara com as 10 empresas com mais sançoes e exibira os seguintes dados.
+Ao usuario acessar a pagina de estatisticas e selecionar a opçao "Empresas com mais sançoes", o sistema deve mostrar um ranking com os grupos de empresas com mais sançoes
 
+Dado que eu estou na pagina inicial da aplicaçao
+Dado que eu visitei a pagina de estatisticas
+Quando eu clico no link "Clique aqui para ser redirecionado para a página." referente a Empresas com mais sançoes
+Entao vejo o ranking dos grupos das empresas com mais sançoes
+
+Cenario: Visualizar empresas dentro dos grupos do ranking
+
+Dado que eu estou na pagina de rankings
 Dado que a empresa COOPERSEMO exista
-Dado que uma sançao exista
-Dado que eu visitei a pagina de rankings
-Entao vejo o ranking das empresas com os dados, posiçao, nome e numero de sançoes
+Quando eu clico sobre no link "Grupo de Empresas com 32 sanções"
+Entao vejo o nome de todas as empresas com 32 sanções
