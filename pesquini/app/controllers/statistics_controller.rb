@@ -3,6 +3,12 @@ class StatisticsController < ApplicationController
                    "PB", "RN", "CE", "AL", "RR", "SE", "RO","PI" , "AC", 
                    "TO", "GO", "PE", "AP", "MS", "MT", "MA","Não Informado"]
 
+@@sanjana = [1988, 1991, 1992, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 
+             2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 
+             2014, 2015] 
+
+
+
   def  index
 #    @enterprises = Enterprise.featured
   end
@@ -35,6 +41,7 @@ end
 
   def total_by_state
     @results = []
+    @years = @@sanjana
     @@states_list.each do |s|
       state = State.find_by_abbreviation("#{s}")
       sanctions_by_state = Sanction.where(state_id: state[:id])
