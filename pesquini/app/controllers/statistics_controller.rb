@@ -3,16 +3,16 @@ class StatisticsController < ApplicationController
 ######################################################
 # Declarações de variáveis Globais
 
-@@states_list = ["BA", "DF", "RJ", "PA", "MG", "SP", "AM", "RS", "SC", "ES", "PR", 
-                   "PB", "RN", "CE", "AL", "RR", "SE", "RO","PI" , "AC", 
+@@states_list = ["BA", "DF", "RJ", "PA", "MG", "SP", "AM", "RS", "SC", "ES", "PR",
+                   "PB", "RN", "CE", "AL", "RR", "SE", "RO","PI" , "AC",
                    "TO", "GO", "PE", "AP", "MS", "MT", "MA","Não Informado"]
 
-@@sanjana = ["Todos",1988, 1991, 1992, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 
-             2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 
-             2014, 2015] 
+@@sanjana = ["Todos",1988, 1991, 1992, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002,
+             2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013,
+             2014, 2015]
 
 @@sanction_type_list = [
- [ "INIDONEIDADE - LEGISLAçãO ESTADUAL", "Inidoneidade - Legislação Estadual"], 
+ [ "INIDONEIDADE - LEGISLAçãO ESTADUAL", "Inidoneidade - Legislação Estadual"],
  [ "IMPEDIMENTO - LEI DO PREGãO", "Impedimento - Lei do Pregão"],
  [ "PROIBIçãO - LEI ELEITORAL", "Proibição - Lei Eleitoral"],
  [ "INIDONEIDADE - LEI DE LICITAçõES","Inidoneidade - Lei de Licitações"],
@@ -37,7 +37,14 @@ class StatisticsController < ApplicationController
   end
 
   def most_sanctioned_ranking
-    @enterprises = Enterprise.featured
+    @enterprise_group = []
+    a = Enterprise.all.sort_by{|x| x.sanctions_count}
+    b = a.uniq.group_by(&:sanctions_count).to_a.reverse
+
+    b.each_with_index do |k,index|
+      @enterprise_group << k[0]
+    end
+    #@enterprise_group
   end
 
   def sanction_by_state_graph
@@ -47,7 +54,7 @@ class StatisticsController < ApplicationController
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(:text => titulo)
       if(params[:year_].to_i != 0)
-         f.title(:text => params[:year_].to_i ) 
+         f.title(:text => params[:year_].to_i )
        end
       f.xAxis(:categories => @@states_list)
       f.series(:name => "Número de Sanções", :yAxis => 0, :data => total_by_state)
@@ -70,10 +77,10 @@ class StatisticsController < ApplicationController
                  :data => total_by_type
         })
         f.options[:title][:text] = titulo
-        f.legend(:layout=> 'vertical',:style=> {:left=> 'auto', :bottom=> 'auto', :right=> '50px', :top=> '100px'}) 
+        f.legend(:layout=> 'vertical',:style=> {:left=> 'auto', :bottom=> 'auto', :right=> '50px', :top=> '100px'})
         f.plot_options(:pie=>{
-          :allowPointSelect=>true, 
-          :cursor=>"pointer" , 
+          :allowPointSelect=>true,
+          :cursor=>"pointer" ,
           :dataLabels=>{
             :enabled=>true,
             :color=>"black",
@@ -106,7 +113,7 @@ class StatisticsController < ApplicationController
   end
 
 
-  
+
   def total_by_state()
     results = []
     @years = @@sanjana
@@ -129,7 +136,7 @@ class StatisticsController < ApplicationController
   end
 
 
-  def total_by_type()
+  def total_by_type
     results = []
     results2 = []
     cont = 0
@@ -148,7 +155,7 @@ class StatisticsController < ApplicationController
       results << results2
       results2 = []
     end
-    results2 << "Não Informado" 
+    results2 << "Não Informado"
       if (params[:state_] && params[:state_] != "Todos")
         total =Sanction.where(state_id: state[:id] ).count
       else
