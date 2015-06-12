@@ -47,6 +47,11 @@ class StatisticsController < ApplicationController
     #@enterprise_group
   end
 
+  def enterprise_group_ranking
+    @quantidade = params[:sanctions_count]
+    @enterprises = Enterprise.where(sanctions_count: @quantidade)
+  end
+
   def sanction_by_state_graph
     gon.states = @@states_list
     gon.dados = total_by_state
