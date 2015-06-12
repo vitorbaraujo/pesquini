@@ -30,15 +30,6 @@ ul.most_sanctioned_ranking-list li span{
   padding: 50px;
 }
 
-
-#tf-sanction_by_state .active{
-background: rgba(0, 0, 0, 0.9);
-}
-
-#tf-most_sanctioned_ranking .active {
-background: rgba(0, 0, 0, 0.9);
-}
-
-#tf-sanction_by_type .active{
-background: rgba(0, 0, 0, 0.9);
+.back_button a{
+  color: black;
 }
