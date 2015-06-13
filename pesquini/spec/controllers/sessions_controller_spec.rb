@@ -14,4 +14,13 @@ RSpec.describe SessionsController, :type => :controller do
       end
     end
   end
+
+  describe "#destroy" do  
+    it "should sign out the user" do
+      post :create, :session => {:login =>"sanjaninha", :password => 'sanjana123'}
+      get :destroy
+      session[:user_id].should be(nil)
+      expect(response).to redirect_to(root_path)
+    end
+  end
 end
