@@ -124,4 +124,26 @@ Então(/^eu vejo o texto "(.*?)"$/) do |arg1|
   page.should have_content arg1
 end
 
+Dado(/^que um login exista$/) do
+  @user = User.new
+  @user.login = "admin"
+  @user.password_digest = "sanjana123"
+  @user.save
+end
+
+Dado(/^que estou na Homepage$/) do
+  visit '/'
+end
+
+Então(/^eu sou redirecionado a pagina de login$/) do
+   visit '/signin'
+end
+
+Quando(/^eu clico no botao "(.*?)"$/) do |arg1|
+  click_button arg1
+end
+
+Então(/^eu sou redirecionado para a Homepage$/) do
+  visit '/'
+end
 
