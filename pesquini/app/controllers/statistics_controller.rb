@@ -1,5 +1,6 @@
 class StatisticsController < ApplicationController
 
+
 ######################################################
 # Declarações de variáveis Globais
 
@@ -38,13 +39,14 @@ class StatisticsController < ApplicationController
 
   def most_sanctioned_ranking
     @enterprise_group = []
+    @enterprise_group_count = []
     a = Enterprise.all.sort_by{|x| x.sanctions_count}
     b = a.uniq.group_by(&:sanctions_count).to_a.reverse
 
-    b.each_with_index do |k,index|
+    b.each do |k|
       @enterprise_group << k[0]
+      @enterprise_group_count << k[1].count
     end
-    #@enterprise_group
   end
 
   def enterprise_group_ranking
@@ -72,7 +74,7 @@ class StatisticsController < ApplicationController
   end
 
 
-  def sanction_by_type_graph
+ def sanction_by_type_graph
     titulo = "Gráfico Sanções por Tipo"
     @chart = LazyHighCharts::HighChart.new('pie') do |f|
         f.chart({:defaultSeriesType=>"pie" ,:margin=> [50, 10, 10, 10]} )
