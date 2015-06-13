@@ -108,7 +108,7 @@ class StatisticsController < ApplicationController
 
   
   def total_by_state()
-    @results = []
+    results = []
     @years = @@sanjana
     @@states_list.each do |s|
       state = State.find_by_abbreviation("#{s}")
