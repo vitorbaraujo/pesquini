@@ -1,34 +1,18 @@
+<div class="container">
 
-<% states_list = ["AC", "AL","AM", "AP","BA", "CE","DF", "ES", "GO","RJ", "PA", "MT", "MA","MG", "SP", "RS", "SC", "PR", "PB", "RN",  "RR", "SE", "RO","PI" , "TO",  "PE",  "MS","Não Informado"] %>
+  <%= render 'back_button' %>
 
-<br>
-<br>
-<br>
-
-<div class="graphics">
-<%= form_tag("/statistics/sanction_by_type_graph", method: "get") do %>
-
-<div class="input-group custom-search-form">
-  <label>Selecione o Estado</label>
-    <select name="state_" class="form-control">
-      <option value="0">Todos</option>
-        <% states_list.each do |state_| %>
-          <option value="<%= state_ %>">
-            <%= state_ %>
-          </option>
-        <% end %>
-    </select>
+  <div class="search_sanction_type">
+    <span class="same_line">
+      Filtrar sanções por Estado:
+      <%= form_tag("/statistics/sanction_by_type_graph", method: "get", remote: true) do %>
+        <%= select_tag 'state_', options_for_select(@states, :selected => params[:state_]), id: "select_tag"%>
+        <%= submit_tag "Confirmar", name: nil, id: "select_button"%>
+      <% end %>
+    </span>
+  </div>
 </div>
 
-<div class="btn-group app-btn-group" role="group" aria-label="...">
-  <button type="submit" class="btn btn-primary app-btn">Confirmar</button>
+<div class="graph_sanction_type">
+  <%=  render  "sanction_by_type"%>
 </div>
-<% end %>
-
-</div>
-
-
-<%= high_chart("sanjana2", @chart) %>
-<h3 align = "center"><%= @titulo %></h3>
-<div id="sanjana" style="height: 200px"></div>
-

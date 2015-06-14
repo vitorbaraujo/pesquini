@@ -1,28 +1,20 @@
-<% sanjana = [1988, 1991, 1992, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015]  %>
-  
-<div class="graphics">
-<%= form_tag("/statistics/sanction_by_state_graph", method: "get") do %>
 
-<div class="input-group custom-search-form">
-  <label>Selecione o Ano</label>
-    <select name="year_" class="form-control">
-      <option value="0">Todos</option>
-        <% sanjana.each do |year_| %>
-          <option value="<%= year_ %>">
-            <%= year_ %>
-          </option>
-        <% end %>
-    </select>
-</div>
+<div class="container">
 
-<div class="btn-group app-btn-group" role="group" aria-label="...">
-  <button type="submit" class="btn btn-primary app-btn">Confirmar</button>
-</div>
+  <%= render 'back_button' %>
+
+<span class="same_line">
+     Filtrar sanções por Ano:
+<%= form_tag("/statistics/sanction_by_state_graph", method: "get", remote: true) do %>
+  <%= select_tag 'year_', options_for_select(@years, :selected => params[:year_]), id: "select_tag"%>
+  <%= submit_tag "Confirmar", name: nil, id: "select_button"%>
+
 <% end %>
+</span>
 
+
+<div class="graph_sanction_state">
+  <%=  render  "sanction_by_state"%>
 </div>
-  <%= high_chart("sanjana", @chart) %>
-  <h3 align = "center"><%= @titulo %></h3> 
-  <div id="sanjana" style="height: 800px"></div>
 
 </div>

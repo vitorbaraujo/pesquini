@@ -1,9 +1,19 @@
-  Rails.application.routes.draw do
+Rails.application.routes.draw do
   root 'welcome#index'
-  get 'parser/cei' => 'parser#import'
-  get 'parser' => 'parser#index'
+  get '/parser/cei' => 'parser/parser_cei#import'
+  get '/parser/payment' => 'parser/parser_payment#import'
+  #get '/parser' => 'parser#index'
+  get '/parser', :controller => 'parser/parser', :action => :index
 
   resources :enterprises, only: [:index, :show]
+
+  #users_controller
+  get '/signup' => 'users#new'
+
+  #session_controller
+  get '/signin' => 'sessions#new'
+  delete '/signout' => 'sessions#destroy'
+  resources :sessions, only: [:new, :create, :destroy]
 
   get '/rankings' => 'rankings#index'
   get '/statistics' => 'statistics#index'
@@ -14,6 +24,8 @@
   get '/graphics' => 'graphics#index'
   match 'statistics', controller: 'statistics', action: 'total_by_state', via: 'get'
   get '*unmatched_route', :to => 'application#raise_not_found!'
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
