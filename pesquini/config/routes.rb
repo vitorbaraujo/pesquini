@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'welcome#index'
-  get '/parser/cei' => 'parser/parser#import'
+  get '/parser/cei' => 'parser/parser_cei#import'
+  get '/parser/payment' => 'parser/parser_payment#import'
   #get '/parser' => 'parser#index'
   get '/parser', :controller => 'parser/parser', :action => :index
 
