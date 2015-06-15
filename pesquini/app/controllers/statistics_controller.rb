@@ -51,7 +51,7 @@ class StatisticsController < ApplicationController
 
   def enterprise_group_ranking
     @quantidade = params[:sanctions_count]
-    @enterprises = Enterprise.where(sanctions_count: @quantidade)
+    @enterprises = Enterprise.where(sanctions_count: @quantidade).paginate(:page => params[:page], :per_page => 10)
   end
 
   def sanction_by_state_graph

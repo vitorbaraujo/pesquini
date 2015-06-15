@@ -5,4 +5,6 @@
   <%@enterprises.each_with_index do |e, index| %>
     <h3><%= index +1 %> )   <%= link_to e.corporate_name, e %><br></h3>
   <% end %>
+  <%= will_paginate @enterprises,  renderer: BootstrapPagination::Rails %>
+
 </div>
