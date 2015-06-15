@@ -125,6 +125,7 @@ end
 
 Então(/^eu sou redirecionado para a Homepage$/) do
   visit '/'
+end
 
 Dado(/^que eu visitei a pagina de estatisticas$/) do
   visit '/statistics'
