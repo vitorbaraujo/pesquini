@@ -22,9 +22,10 @@ class EnterprisesController < ApplicationController
       a = Enterprise.all.sort_by{|x| x.sanctions_count}
       b = a.uniq.group_by(&:sanctions_count).to_a.reverse
 
-      xd = 0
-      b.each_with_index{|k,index|
-      xd = index if k[1].first.sanctions_count == enterprise.sanctions_count}
-    return xd +1
+      b.each_with_index do |k,index|
+        if k[0] == enterprise.sanctions_count
+          return index + 1
+        end
+      end
   end
- end
+end

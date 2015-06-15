@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe StatisticsController, :type => :controller do 
-  describe "GET" do 
-    
+RSpec.describe StatisticsController, :type => :controller do
+  describe "GET" do
+
     describe '#sanction_by_state_graph' do
       it "should work" do
         get :sanction_by_state_graph
@@ -15,11 +15,18 @@ RSpec.describe StatisticsController, :type => :controller do
         get :index
         expect(response).to have_http_status(:success)
       end
-    end    
+    end
 
     describe '#most_sanctioned_ranking' do
       it "should work" do
         get :most_sanctioned_ranking
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe '#enterprise_group_ranking' do
+      it "should work" do
+        get :enterprise_group_ranking
         expect(response).to have_http_status(:success)
       end
     end
