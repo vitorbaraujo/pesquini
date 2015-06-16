@@ -31,7 +31,7 @@ development:
 
 test: &test
   <<: *default
-  database: pesquini_development
+  database: pesquini_test
   adapter: postgresql
   encoding: unicode
   username: pesquini

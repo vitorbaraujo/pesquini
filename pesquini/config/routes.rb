@@ -1,7 +1,9 @@
-  Rails.application.routes.draw do
+Rails.application.routes.draw do
   root 'welcome#index'
-  get 'parser/cei' => 'parser#import'
-  get 'parser' => 'parser#index'
+  get '/parser/cei' => 'parser/parser_cei#import'
+  get '/parser/payment' => 'parser/parser_payment#import'
+  #get '/parser' => 'parser#index'
+  get '/parser', :controller => 'parser/parser', :action => :index
 
   resources :enterprises, only: [:index, :show]
 
@@ -15,6 +17,7 @@
 
   get '/rankings' => 'rankings#index'
   get '/statistics' => 'statistics#index'
+  get '/statistics/enterprise_group_ranking' => 'statistics#enterprise_group_ranking'
   get '/statistics/sanction_by_state_graph' => 'statistics#sanction_by_state_graph'
   get '/statistics/most_sanctioned_ranking' => 'statistics#most_sanctioned_ranking'
   get '/statistics/sanction_by_type_graph' => 'statistics#sanction_by_type_graph'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 8) do
+ActiveRecord::Schema.define(version: 20150614152039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,11 +20,17 @@ ActiveRecord::Schema.define(version: 8) do
     t.string  "cnpj"
     t.string  "corporate_name"
     t.integer "sanctions_count", default: 0
+    t.float   "payments_sum",    default: 0.0
   end
 
   create_table "payments", force: :cascade do |t|
-    t.integer "value"
-    t.date    "date"
+    t.string  "identifier",     default: ""
+    t.string  "process_number", default: ""
+    t.float   "initial_value"
+    t.date    "sign_date"
+    t.date    "start_date"
+    t.date    "end_date"
+    t.integer "enterprise_id"
   end
 
   create_table "sanction_types", force: :cascade do |t|
