@@ -1,0 +1,11 @@
+<div class="container">
+ <%= render 'back_button' %>
+<h2 align="center">Ranking das empresas com o maior numero pagamentos</h2>
+<br><br>
+<%@enterprises.each_with_index do |e, index| %>
+
+<h3><%= index + 1 %> )  <%= link_to e.corporate_name, e %><br></h3>
+<B>Total de pagamentos feitos a empresa:</B> R$ <%= e.payments_sum %>
+
+<% end %>
+</div> 
