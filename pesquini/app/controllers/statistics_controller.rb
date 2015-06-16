@@ -49,6 +49,10 @@ class StatisticsController < ApplicationController
     end
   end
 
+  def most_paymented_ranking
+    @enterprises = Enterprise.featured
+  end
+
   def enterprise_group_ranking
     @quantidade = params[:sanctions_count]
     @enterprises = Enterprise.where(sanctions_count: @quantidade).paginate(:page => params[:page], :per_page => 10)

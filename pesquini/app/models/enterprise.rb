@@ -4,7 +4,7 @@ class Enterprise < ActiveRecord::Base
   has_many :payments
   validates_uniqueness_of :cnpj
 
-  scope :featured, ->(number=nil){number ? order('sanctions_count DESC').limit(number) :order('sanctions_count DESC')}
+scope :featured,  -> { order('payments_sum DESC') .limit(10)}
 
   def refresh!
     e = Enterprise.find_by_cnpj(self.cnpj)
