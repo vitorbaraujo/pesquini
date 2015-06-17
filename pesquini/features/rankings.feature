@@ -8,7 +8,7 @@ Ao usuario acessar a pagina de estatisticas e selecionar a opçao "Empresas com 
 
 Dado que eu estou na pagina inicial da aplicaçao
 Dado que eu visitei a pagina de estatisticas
-Quando eu clico no link "Clique aqui para ser redirecionado para a página." referente a Empresas com mais sançoes
+Quando eu clico no link "Clique aqui para ser redirecionado para a página ." referente a Empresas com mais sançoes
 Entao vejo o ranking dos grupos das empresas com mais sançoes
 
 Cenario: Visualizar empresas dentro dos grupos do ranking
