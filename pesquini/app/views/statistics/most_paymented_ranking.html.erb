@@ -1,5 +1,6 @@
 <div class="container">
  <%= render 'back_button' %>
+ 
 <h2 align="center">Ranking das empresas com o maior numero pagamentos</h2>
 <br><br>
 <%@enterprises.each_with_index do |e, index| %>
@@ -9,3 +10,9 @@
 
 <% end %>
 </div> 
+
+<div = class="container">
+<span class="division"> <hr> 
+  <%= submit_tag "Todas", name: nil, id: "all_button"%>
+  <span class="division"> <hr> 
+</div>
