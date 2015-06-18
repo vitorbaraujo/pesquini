@@ -52,6 +52,10 @@ Dado(/^que eu estou em qualquer pagina da aplicaçao$/) do
   visit '/'
 end
 
+Dado(/^que estou na pagina "(.*?)"$/) do |arg1|
+  visit arg1
+end
+
 Entao(/^vejo o texto "(.*?)"$/) do |arg1|
   page.should have_content(arg1)
 end
