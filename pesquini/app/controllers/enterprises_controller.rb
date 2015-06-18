@@ -13,6 +13,7 @@ class EnterprisesController < ApplicationController
   def show
     @enterprise = Enterprise.find(params[:id])
     @collection = Sanction.where(enterprise_id: @enterprise.id)
+    @payments = Payment.where(enterprise_id: @enterprise.id).paginate(:page => params[:page], :per_page => 10)
     @sanctions = @collection.paginate(:page => params[:page], :per_page => 10)
     @position = enterprise_position(@enterprise)
   end

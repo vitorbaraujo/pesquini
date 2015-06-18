@@ -29,7 +29,25 @@
        <% end %>
        </div>
      </div>
+
+     <div class="payment-info">
+        <div class =" lowercase-letter">
+        <% @payments.each_with_index do |p, index| %>
+          <h4><b><%= index +1 %></b></h4>
+          <h4> <b>Identificador: </b> <%= p.identifier %> </h4>
+           <h4> <b>Número do processo: </b> <%= p.process_number %> </h4>
+          <h4> <b>Valor inicial: </b> <%= p.initial_value %> </h4>
+          <h4> <b>Data de assinatura: </b> <%= p.sign_date %> </h4>
+          <h4> <b>Inicio do pagamento: </b> <%= p.start_date %> </h4>
+          <h4> <b>Fim do pagamento: </b> <%= p.end_date %> </h4>
+
+          
+       <% end %>
+       </div>
+     </div>
     <%= will_paginate @sanctions,  renderer: BootstrapPagination::Rails %>
+    <%= will_paginate @payments,  renderer: BootstrapPagination::Rails %>
+
 
      <% if @sanctions.empty? %>
         <h3> Dados sobre sanções não informados </h3>
