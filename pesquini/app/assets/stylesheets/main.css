@@ -490,6 +490,23 @@ nav#footer p{
 	border-color: #FCAC45;
 	color: #ffffff;
 }
+/***Ajustando o footer para ficar no fim da página***/
+#footer {
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 5em;
+    margin-top: -5em;
+}
+
+html, body, .padding-page-top {
+	height:100%;
+}
+body > .padding-page-top {
+ height: auto; min-height: 100%; 	
+}
+
+.padding-page-top { padding-bottom: 5em; }
 /********************************************************/
 /* End */
 /********************************************************/
