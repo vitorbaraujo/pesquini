@@ -169,7 +169,10 @@ Dado(/^que eu estou na página do ranking das empresas que mais receberam pagame
   visit 'statistics/most_paymented_ranking'
 end
 
-Então(/^eu devo visualizar o ranking de todas as empresas que mais receberam pagamentos$/) do
-  pending # express the regexp above with the code you wish you had
+Quando(/^eu clico no link "(.*?)"\.$/) do |arg1|
+  click_link arg1
 end
 
+Então(/^eu devo visualizar o ranking de todas as empresas que mais receberam pagamentos$/) do
+  visit 'statistics/most_paymented_ranking?sanjana='
+end
