@@ -13,7 +13,15 @@
       <h4> <b>Posicao no ranking: </b><%= @position %> </h4>
 
     </div>
+
     <span id="title-hr"><hr></span>
+
+    <div id ="enterprises_selection">
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active" id="sanction-info-btn"><a href="#">Sanções</a></li>
+        <li role="presentation" id="payment-info-btn"><a href="#">Pagamentos</a></li>
+      </ul>
+    </div>
 
     <div class="sanction-info">
         <div class =" lowercase-letter">
@@ -27,12 +35,15 @@
           <h4> <b> Tipo Sanção: </b> <%= p.sanction_type.nil? ? "Dado não informado" : p.sanction_type.description.downcase! %> </h4>
           <hr align="left">
        <% end %>
+
+       <% if @sanctions.empty? %>
+         <h3> Dados sobre sanções não informados </h3>
+       <% end %>
+       <%= will_paginate @sanctions,  renderer: BootstrapPagination::Rails %>
+
        </div>
      </div>
 
-   <% if @sanctions.empty? %>
-        <h3> Dados sobre sanções não informados </h3>
-     <% end %>
 
      <div class="payment-info">
         <div class =" lowercase-letter">
@@ -49,10 +60,10 @@
       <% if @payments.empty? %>
         <h3> Dados sobre pagamentos não informados </h3>
       <% end %>
+      <%= will_paginate @payments,  renderer: BootstrapPagination::Rails %>
+
       </div>
      </div>
-    <%= will_paginate @sanctions,  renderer: BootstrapPagination::Rails %>
-    <%= will_paginate @payments,  renderer: BootstrapPagination::Rails %>
 
   </div>
 </div>
