@@ -13,6 +13,11 @@
 
 <div = class="container"
 <span class="division"> <hr> </span>
+  <% if !@all %> 
   <%= link_to "Todas", controller: 'statistics', action: 'most_paymented_ranking', sanjana: ""%>
+  <% end %>
+  <% if @all %>
+  <%= will_paginate @enterprises,  renderer: BootstrapPagination::Rails %>
+  <% end %>
 <span class="division"> <hr> </span>
 </div>

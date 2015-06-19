@@ -50,11 +50,13 @@ class StatisticsController < ApplicationController
   end
 
   def most_paymented_ranking
-    if params[:sanjana] 
-    @enterprises = Enterprise.featured
-  else
-    @enterprises = Enterprise.featured.limit(10)
-  end
+    @all = false
+    if params[:sanjana]
+      @all = true
+      @enterprises = Enterprise.featured_payments.paginate(:page => params[:page], :per_page => 20)
+    else
+      @enterprises = Enterprise.featured_payments(10)
+    end
   end
 
   def enterprise_group_ranking
