@@ -50,7 +50,11 @@ class StatisticsController < ApplicationController
   end
 
   def most_paymented_ranking
+    if params[:sanjana] 
     @enterprises = Enterprise.featured
+  else
+    @enterprises = Enterprise.featured.limit(10)
+  end
   end
 
   def enterprise_group_ranking
