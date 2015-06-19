@@ -1,4 +1,42 @@
  $(document ).ready(function ( ) {
+  var sanctions = document.getElementsByClassName("sanction-info");
+  var payments = document.getElementsByClassName("payment-info");
+
+  var sanctions_btn = document.getElementById("sanction-info-btn");
+  var payments_btn = document.getElementById("payment-info-btn");
+
+  if ($(sanctions_btn).hasClass("active"))
+  {
+    if (payments[0])
+    payments[0].style.display = "none";
+  }
+  else
+  {
+    if (sanctions[0])
+      sanctions[0].style.display = "none";
+  }
+
+  $(payments_btn).click(function () {
+    $(sanctions_btn).removeClass("active");
+    $(payments_btn).addClass('active');
+
+    $(sanctions).slideToggle("slow");
+    $(payments).slideToggle("slow");
+
+  });
+
+  $(sanctions_btn).on('click', function () {
+    $(payments_btn).removeClass("active");
+    $(sanctions_btn).addClass('active');
+
+    $(sanctions).slideToggle("slow");
+    $(payments).slideToggle("slow");
+  });
+
+});
+
+
+ $(document ).ready(function ( ) {
 
 if(document.URL.indexOf("#tf-sanction_by_state") != -1) {
   $("#tf-sanction_by_state").css("background-color","#101010");
