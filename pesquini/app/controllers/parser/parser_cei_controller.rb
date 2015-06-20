@@ -3,6 +3,11 @@ class Parser::ParserCeiController < Parser::ParserController
   require 'csv'
   @@filename = 'parser_data/CEIS.csv'
 
+  before_filter :authorize, only: [:check_nil_ascii, :check_date, :import, 
+                                       :build_state, :build_sanction_type, 
+                                       :build_enterprise, :build_sanction, 
+                                       :check_and_save]
+
   def index
 
   end

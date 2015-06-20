@@ -1,5 +1,4 @@
-<div id="container">
-	<div id="container">
+<div class="container">
 		<div class="signup">
 			<h1>Sign In</h1>
 			<%= form_for(:session, url: sessions_path) do |f| %>
@@ -7,10 +6,7 @@
 				<%= f.text_field :login, class: 'form-control' %><br><br>
 				<%= f.label :password, class: 'signup_text' %><br>
 				<%= f.password_field :password, class: 'form-control' %><br><br>
-
-				<%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+				<%= f.submit "Sign in", class: "btn btn-success" %>
 			<% end %>
-			<p>New user? <%= link_to "Sign up now!", signup_path %></p>
 		</div>
-	</div>
 </div>
