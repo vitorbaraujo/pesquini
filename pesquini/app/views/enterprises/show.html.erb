@@ -10,7 +10,7 @@
     <div class="section-title">
       <h2><%= @enterprise.corporate_name %> </h2><br>
       <h4> <b>CNPJ da Empresa:  </b><%= @enterprise.cnpj %> </h4>
-      <h4> <b>Posicao no ranking: </b><%= @position %> </h4>
+      <h4> <b>Posição no <%= link_to "grupo", controller: 'statistics', action: 'most_sanctioned_ranking' %> do ranking de empresas mais sancionadas: </b><%= @position %> </h4>
 
     </div>
 
@@ -24,45 +24,12 @@
     </div>
 
     <div class="sanction-info">
-        <div class =" lowercase-letter">
-        <% @sanctions.each_with_index do |p, index| %>
-          <h4><b><%= index +1 %></b></h4>
-          <h4> <b>Órgao Sancionador: </b> <%= p.sanction_organ.downcase! %> </h4>
-          <h4> <b> Número do processo: </b> <%= p.process_number %> </h4>
-          <h4> <b>Data de Inicio da Sanção: </b> <%= p.initial_date %> </h4>
-          <h4> <b> Data Final da Sanção: </b> <%= p.final_date %> </h4>
-          <h4> <b> UF: </b> <%= p.state.nil? ? "Dado nao informado" : p.state.abbreviation %> </h4>
-          <h4> <b> Tipo Sanção: </b> <%= p.sanction_type.nil? ? "Dado não informado" : p.sanction_type.description.downcase! %> </h4>
-          <hr align="left">
-       <% end %>
-
-       <% if @sanctions.empty? %>
-         <h3> Dados sobre sanções não informados </h3>
-       <% end %>
-       <%= will_paginate @sanctions,  renderer: BootstrapPagination::Rails %>
-
-       </div>
-     </div>
+      <%= render "sanctions" %>
+    </div>
 
 
      <div class="payment-info">
-        <div class =" lowercase-letter">
-    <% @payments.each_with_index do |p, index| %>
-          <h4><b><%= index +1 %></b></h4>
-          <h4> <b>Identificador: </b> <%= p.identifier %> </h4>
-           <h4> <b>Número do processo: </b> <%= p.process_number %> </h4>
-          <h4> <b>Valor inicial: </b> <%= p.initial_value %> </h4>
-          <h4> <b>Data de assinatura: </b> <%= p.sign_date %> </h4>
-          <h4> <b>Inicio do pagamento: </b> <%= p.start_date %> </h4>
-          <h4> <b>Fim do pagamento: </b> <%= p.end_date %> </h4>
-     <% end %>
-        
-      <% if @payments.empty? %>
-        <h3> Dados sobre pagamentos não informados </h3>
-      <% end %>
-      <%= will_paginate @payments,  renderer: BootstrapPagination::Rails %>
-
-      </div>
+      <%= render "payments" %>
      </div>
 
   </div>

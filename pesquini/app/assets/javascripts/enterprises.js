@@ -20,8 +20,8 @@
     $(sanctions_btn).removeClass("active");
     $(payments_btn).addClass('active');
 
-    $(sanctions).slideToggle("slow");
-    $(payments).slideToggle("slow");
+    $(sanctions).fadeOut("slow");
+    $(payments).delay(500).fadeIn("slow");
 
   });
 
@@ -29,8 +29,8 @@
     $(payments_btn).removeClass("active");
     $(sanctions_btn).addClass('active');
 
-    $(sanctions).slideToggle("slow");
-    $(payments).slideToggle("slow");
+    $(payments).fadeOut("slow");
+    $(sanctions).delay(500).fadeIn("slow");
   });
 
 });
