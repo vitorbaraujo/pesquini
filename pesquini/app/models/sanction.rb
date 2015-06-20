@@ -13,4 +13,6 @@ class Sanction < ActiveRecord::Base
     s = Sanction.find_by_process_number(self.process_number)
   end
 
+ 
+
 end	
