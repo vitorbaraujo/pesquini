@@ -8,7 +8,7 @@ ul.sanction_by_state-list li{
   line-height: 30px;
   font-family: 'Open Sans', sans-serif;
 }
-ul.sanction_by_state-list li span{ 
+ul.sanction_by_state-list li span{
   margin-right: 10px;
 }
 
@@ -22,11 +22,15 @@ ul.most_sanctioned_ranking-list li{
   line-height: 30px;
   font-family: 'Open Sans', sans-serif;
 }
-ul.most_sanctioned_ranking-list li span{ 
+ul.most_sanctioned_ranking-list li span{
   margin-right: 10px;
 }
 
 #tf-sanction_by_type{
+  padding: 50px;
+}
+
+#tf-payment_rankings{
   padding: 50px;
 }
 
