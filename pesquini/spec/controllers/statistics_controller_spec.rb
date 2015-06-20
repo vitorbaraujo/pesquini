@@ -37,5 +37,12 @@ RSpec.describe StatisticsController, :type => :controller do
         expect(response).to have_http_status(:success)
       end
     end
+
+    describe '#most_paymented_ranking' do
+      it "should work" do
+        get :most_paymented_ranking
+        expect(response).to have_http_status(:success)
+      end
+    end
   end
 end
