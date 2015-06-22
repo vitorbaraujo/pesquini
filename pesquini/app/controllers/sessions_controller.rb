@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       sign_in user
       redirect_to root_path
     else
-      flash[:error] = 'Invalid combination.'
+      flash[:error] = "Login ou senha invalidos!"
       render :new
     end
   end

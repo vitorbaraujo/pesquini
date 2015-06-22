@@ -157,3 +157,22 @@ Entao(/^vejo o nome de todas as empresas com (\d+) sanções$/) do |arg1|
   page.should have_content arg1
 end
 
+Quando(/^eu clico no icone "(.*?)" referente a Empresas que mais receberam pagamentos$/) do |arg1|
+  click_link arg1
+end
+
+Entao(/^vejo o ranking das (\d+) empresas que mais receberam pagamentos$/) do |arg1|
+  visit 'statistics/most_paymented_ranking'
+end
+
+Dado(/^que eu estou na página do ranking das empresas que mais receberam pagamentos$/) do
+  visit 'statistics/most_paymented_ranking'
+end
+
+Quando(/^eu clico no link "(.*?)"\.$/) do |arg1|
+  click_link arg1
+end
+
+Então(/^eu devo visualizar o ranking de todas as empresas que mais receberam pagamentos$/) do
+  visit 'statistics/most_paymented_ranking?sanjana='
+end

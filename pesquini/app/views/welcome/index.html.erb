@@ -193,7 +193,7 @@
     </div>
     <div class="space"></div>
     <div class="row">
-      
+
       <div class="col-md-3 col-sm-6 service">
         <%= link_to(statistics_path(:anchor => "tf-sanction_by_state"))do %>
         <i class="fa fa-bar-chart"></i>
@@ -215,6 +215,14 @@
         <i class="fa fa-pie-chart"></i>
         <h4><strong>Tipos de sanções</strong></h4>
         <p>Gráfico que indica os tipos de sanção mais recorrentes e suas quantidades.</p>
+        <% end %>
+      </div>
+
+       <div class="col-md-3 col-sm-6 service">
+        <%= link_to(statistics_path(:anchor => "tf-payment_rankings"))do %>
+        <i class="fa fa-usd"></i>
+        <h4><strong>Empresas com maior numero de pagamentos</strong></h4>
+        <p>Ranking que indica as empresas que mais receberam pagamentos do governo.</p>
         <% end %>
       </div>
       <!--

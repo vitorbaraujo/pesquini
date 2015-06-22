@@ -12,7 +12,7 @@ Entao vejo o grafico de pizza de sanção por tipo
 Cenário: Ver grafico de estados com mais sanções
 
 Dado que eu estou na index de statistics
-Quando eu clico no no link "Clique aqui para ser redirecionado para a página .."
+Quando eu clico no no link "Clique aqui para ser redirecionado para a página."
 Entao vejo o grafico de estados com mais sanções
 
 
