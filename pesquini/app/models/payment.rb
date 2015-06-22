@@ -1,6 +1,6 @@
 class Payment < ActiveRecord::Base
 
-  belongs_to :enterprise, counter_cache: true
+  belongs_to :enterprise
 
   validates_uniqueness_of :process_number
 

@@ -21,7 +21,6 @@ class EnterprisesController < ApplicationController
   end
 
   def enterprise_position(enterprise)
-
       a = Enterprise.all.sort_by{|x| x.sanctions_count}
       b = a.uniq.group_by(&:sanctions_count).to_a.reverse
 
