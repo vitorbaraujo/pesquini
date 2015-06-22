@@ -18,4 +18,9 @@
 //= require highcharts
 //= require highcharts/highcharts-more
 //= require highcharts/modules/exporting
-//= require_tree .
+//require_tree .
+//= require dinamic_selection
+//= require enterprises
+//= require main
+//= require search
+//= require smooth_scrolling

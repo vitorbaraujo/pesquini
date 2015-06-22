@@ -143,7 +143,21 @@
   text-transform:capitalize;
 }
 
+#enterprises_show #enterprises_selection .nav-tabs > li{
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+     zoom:1; /* hasLayout ie7 trigger */
+}
 
+#enterprises_show #enterprises_selection .nav-tabs {
+    text-align:center;
+}
+
+#enterprises_show .payment-info{
+  padding-top:30px;
+}
 /********************************************************/
 /* End */
 /********************************************************/
+

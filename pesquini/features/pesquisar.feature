@@ -29,4 +29,4 @@ Dado que estou na index na welcome
 Quando eu clico no link "Estatisticas"
 Então eu sou redirecionado ao quadro de estatisticas
 Quando eu clico no link "Estados com mais sanções"
-Então eu vejo o texto "Nesse gráfico estão disponiveis as informações sobre a quantidade de sanções que cada unidade federativa brasileira recebeu desde o começo da obtenção de dados. "
+Então eu vejo o texto "Este gráfico ilustra quais tipo de sanções as empresas brasileiras mais sofreram de forma geral. Como também demonstra através de um filtro por estado, qual o tipo de sanção mais ocorreu em cada uma das unidades federativas do Brasil. "
