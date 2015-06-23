@@ -3,7 +3,7 @@
           <h4><b><div class= "index_number"><%= @page_num*@per_page + index +1%></div></b></h4>
           <h4> <b>Identificador: </b> <%= p.identifier %> </h4>
           <h4> <b>Número do processo: </b> <%= p.process_number %> </h4>
-          <h4> <b>Valor inicial: </b> <%= p.initial_value %> </h4>
+          <h4> <b>Valor inicial: </b> <%= number_to_currency(p.initial_value, unit: "R$ ", separator: ",", delimiter: ".")%> </h4>
           <h4> <b>Data de assinatura: </b> <%= p.sign_date.strftime("%d/%m/%Y") %> </h4>
           <h4> <b>Inicio do pagamento: </b> <%= p.start_date.strftime("%d/%m/%Y") %> </h4>
           <h4> <b>Fim do pagamento: </b> <%= p.end_date.strftime("%d/%m/%Y") %> </h4>
