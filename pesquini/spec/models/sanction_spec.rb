@@ -13,6 +13,14 @@ describe Sanction do
     it { should respond_to(:process_number) }
   it { should be_valid }
 
+  describe 'percentual_sanction' do
+    it " to do work" do
+      b = Sanction.percentual_sanction(10000)
+      c = b.to_i
+      expect(c).to eq(188)
+    end
+  end
+
   describe "uniqueness validation of process_number" do
     
     describe "unique process_number" do

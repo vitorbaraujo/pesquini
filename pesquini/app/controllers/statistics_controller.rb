@@ -129,13 +129,6 @@ class StatisticsController < ApplicationController
 ######################################################
 # Métoodos auxiliares
 
-  def percentual_sanction(value)
-      total = Sanction.all.count
-      value * 100 / total
-  end
-
-
-
   def total_by_state()
     results = []
     @years = @@sanjana

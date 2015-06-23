@@ -13,6 +13,10 @@ class Sanction < ActiveRecord::Base
     s = Sanction.find_by_process_number(self.process_number)
   end
 
- 
+   def self.percentual_sanction(value)
+      total = Sanction.all.count
+      value * 100.0 / total
+  end
+
 
 end	
