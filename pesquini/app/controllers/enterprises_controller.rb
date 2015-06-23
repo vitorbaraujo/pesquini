@@ -18,6 +18,7 @@ class EnterprisesController < ApplicationController
     @payments = Payment.where(enterprise_id: @enterprise.id).paginate(:page => params[:page], :per_page => @per_page )
     @sanctions = @collection.paginate(:page => params[:page], :per_page => @per_page)
     @position = enterprise_position(@enterprise)
+    @payment_position = enterprise_payment_position(@enterprise)
   end
 
   def enterprise_position(enterprise)
@@ -30,4 +31,10 @@ class EnterprisesController < ApplicationController
         end
       end
   end
+
+  def enterprise_payment_position(enterprise)
+    p = Enterprise.all.sort_by{|x| x.payments_count}
+    return 2
+  end
+
 end
