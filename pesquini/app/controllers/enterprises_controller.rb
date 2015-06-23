@@ -33,8 +33,12 @@ class EnterprisesController < ApplicationController
   end
 
   def enterprise_payment_position(enterprise)
-    p = Enterprise.all.sort_by{|x| x.payments_count}
-    return 2
+    p = Enterprise.featured_payments  
+    
+      p.each_with_index do |a, index|
+        if a.payments_sum == enterprise.payments_sum
+          return index + 1 
+        end
+      end
   end
-
 end
