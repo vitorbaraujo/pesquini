@@ -43,7 +43,7 @@ describe Enterprise do
       end
     end
 
-    describe "payment_after_sanction" do
+    describe "#payment_after_sanction" do
       it "should return false if have any sanction or any payment" do
         e = Enterprise.new
         expect(e.sanctions.count).to be(0)
@@ -63,7 +63,17 @@ describe Enterprise do
         @sanction.save
         expect(@enterprise.payment_after_sanction?).to be false
       end
-
     end
+
+    describe "#self.enterprise_position" do
+      it "should return 1 if there is only 1 enterprise" do
+        e = Enterprise.new
+        e.sanctions_count = 10000
+        e.save
+
+        expect(Enterprise.enterprise_position(e)).to eq(1);
+      end
+    end
+
   end   
 end
