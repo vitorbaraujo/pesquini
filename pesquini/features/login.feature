@@ -22,4 +22,3 @@ Cenário: Efetuar login inexistente
 Dado que eu estou na pagina "/signin"
 Quando eu clico no botão "Sign in"
 Entao eu vejo o texto "Login ou senha invalidos!"
-

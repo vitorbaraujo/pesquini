@@ -108,11 +108,3 @@ end
 Dado(/^que eu insira um password existente$/) do
   fill_in 'session_password', :with=> "sanjana123"
 end
-
-
-
-
-
-
-
-
