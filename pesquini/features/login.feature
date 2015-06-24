@@ -12,6 +12,8 @@ Cenário: Efetuar login existente
 
 Dado que um login exista
 Dado que eu estou na pagina "/signin"
+Dado que eu insira um login existente
+Dado que eu insira um password existente
 Quando eu clico no botão "Sign in"
 Então sou redirecionado para homepage e o parser executado
 

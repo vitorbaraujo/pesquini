@@ -8,4 +8,4 @@ Ao usuário clicar no item de menu "Saiba mais" devera ser mostrado informaçoes
 
 Dado que eu estou na pagina "/"
 Quando eu clico no link "Clique aqui saber sobre mais sanções e informações sobre elas"
-Entao eu vejo o texto "Suspensão temporária (Lei de Licitações)"
+Entao eu vejo o texto "CONHEÇA AS SANÇÕES"

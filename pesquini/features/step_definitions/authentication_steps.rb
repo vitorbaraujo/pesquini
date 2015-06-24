@@ -1,15 +1,7 @@
 # encoding: utf-8
 
-Dado(/^que a empresa samsung exista$/) do
-  @enterprise = Enterprise.new
-  @enterprise.corporate_name = "samsung"
-  @enterprise.cnpj = "555"
-  @enterprise.save
-end
-
-
 Dado(/^que insiro uma empresa existente$/) do
-  fill_in 'q_corporate_name_cont', :with=> "samsung"
+  fill_in 'q_corporate_name_cont', :with=> "COOPERSEMO"
 end
 
 Quando(/^eu clico no botão "(.*?)"$/) do |arg1|
@@ -17,7 +9,7 @@ Quando(/^eu clico no botão "(.*?)"$/) do |arg1|
 end
 
 Entao(/^vejo os dados prévios desta empresa\.$/) do
-page.should have_content('555')
+page.should have_content('COOPERSEMO')
 end
 
 Quando(/^eu clico no link "(.*?)"$/) do |arg1|
@@ -51,7 +43,7 @@ end
 
 Dado(/^que um login exista$/) do
   @user = User.new
-  @user.login = "admin"
+  @user.login = "sanjaninha"
   @user.password_digest = "sanjana123"
   @user.save
 end
@@ -81,12 +73,12 @@ Entao(/^vejo o nome de todas as empresas com (\d+) sanções$/) do |arg1|
 end
 
 Entao(/^vejo o ranking das (\d+) empresas que mais receberam pagamentos$/) do |arg1|
-  visit 'statistics/most_paymented_ranking'
+  page.should have_content (1)
 end
 
 
 Então(/^eu devo visualizar o ranking de todas as empresas que mais receberam pagamentos$/) do
-  visit 'statistics/most_paymented_ranking?sanjana='
+  page.should have_content (20)
 end
 
 Dado(/^que eu estou na pagina "(.*?)"$/) do |arg1|
@@ -108,6 +100,18 @@ end
 Então(/^sou redirecionado para homepage e o parser executado$/) do
   page.should have_content ("Pesquisa")
 end
+
+Dado(/^que eu insira um login existente$/) do
+  fill_in 'session_login', :with=> "sanjaninha"
+end
+
+Dado(/^que eu insira um password existente$/) do
+  fill_in 'session_password', :with=> "sanjana123"
+end
+
+
+
+
 
 
 
