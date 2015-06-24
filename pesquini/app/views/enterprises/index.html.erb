@@ -5,18 +5,17 @@
       <div class="container">
 
         <div class="service">
-          <i class="fa fa-search-plus fa_search"></i>
-          <h4><strong>Ferramenta de busca</strong></h4>
+
         </div>
 
-        <div class="search_form_enterprises off">
+        <div class="search_form_enterprises">
           <h1>Ferramenta de busca</h1>
           <hr>
           <%= search_form_for @search do |f| %>
             <%= f.label :corporate_name_cont, "Nome ou CNPJ:" %>
             <%= f.search_field :corporate_name_cont%>
             <%= f.submit %>
-          <% end %> 
+          <% end %>
  <!--         <div class="additional_search">
             <i class="fa fa-angle-double-down fa_down"></i>
             <h4><strong>Mais opções de busca</strong></h4>
@@ -38,7 +37,7 @@
 
     <% else %>
       <div class="entreprises_title">
-        <h1> Lista das empresas encontradas</h1> 
+        <h1> Lista das empresas encontradas</h1>
         <hr>
       </div>
       <% @enterprises.each do |p| %>
