@@ -1,10 +1,23 @@
 #language: pt
 
-Funcionalidade: Efetuar o login
+Funcionalidade: Efetuar login como administrador para rodar o parser
 
-Cenário: Abrir pagina de login
+Cenário: Carregar pagina de login
+
+Dado que eu estou na pagina "/"
+Quando eu tento rodar o parser
+Então devo visulizar uma pagina para efetuar o login
+
+Cenário: Efetuar login existente
 
 Dado que um login exista
 Dado que eu estou na pagina "/signin"
 Quando eu clico no botão "Sign in"
-Então eu sou redirecionado para a Homepage
+Então sou redirecionado para homepage e o parser executado
+
+Cenário: Efetuar login inexistente
+
+Dado que eu estou na pagina "/signin"
+Quando eu clico no botão "Sign in"
+Entao eu vejo o texto "Login ou senha invalidos!"
+

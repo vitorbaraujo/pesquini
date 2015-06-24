@@ -97,6 +97,18 @@ Dado(/^que insiro uma empresa inexistente$/) do
   fill_in 'q_corporate_name_cont', :with=> "inexistente"
 end
 
+Quando(/^eu tento rodar o parser$/) do
+  visit '/parser/cei'
+end
+
+Então(/^devo visulizar uma pagina para efetuar o login$/) do
+  page.should have_content ("Login")
+end
+
+Então(/^sou redirecionado para homepage e o parser executado$/) do
+  page.should have_content ("Pesquisa")
+end
+
 
 
 
