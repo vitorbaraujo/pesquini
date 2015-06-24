@@ -34,6 +34,23 @@ describe State do
         expect(duplicated_state).not_to be_valid
       end
     end
+
+
+    describe "#refresh!" do
+      before do
+        @s = State.new
+        @s.abbreviation = "Es_Teste"
+        @s.save
+      end
+
+      it "should return state" do
+        expect(@s.refresh!).to eq(@s);
+      end
+
+      it "should not return other state" do
+        expect(@s.refresh!).not_to eq(@state);
+      end  
+    end
     
   end
 end

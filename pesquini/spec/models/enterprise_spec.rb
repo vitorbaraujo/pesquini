@@ -75,5 +75,22 @@ describe Enterprise do
       end
     end
 
+    describe "#refresh!" do
+      before do
+        @e = Enterprise.new
+        @e.cnpj = "12575431567543"
+        @e.save
+      end
+
+      it "should return enterprise" do
+        expect(@e.refresh!).to eq(@e);
+      end
+
+      it "should not return other enterprise" do
+        expect(@e.refresh!).not_to eq(@enterprise);
+      end  
+    end
+
+
   end   
 end

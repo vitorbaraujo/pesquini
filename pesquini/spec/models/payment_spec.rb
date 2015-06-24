@@ -29,6 +29,22 @@ describe Payment do
         expect(duplicated_payment).not_to be_valid
       end
     end
+
+    describe "#refresh!" do
+      before do
+        @p = Payment.new
+        @p.process_number = "437924"
+        @p.save
+      end
+
+      it "should return Payment" do
+        expect(@p.refresh!).to eq(@p);
+      end
+
+      it "should not return other Payment" do
+        expect(@p.refresh!).not_to eq(@payment);
+      end  
+    end
     
   end
 end
