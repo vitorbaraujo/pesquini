@@ -4,31 +4,13 @@ class StatisticsController < ApplicationController
 ######################################################
 # Declarações de variáveis Globais
 
-@@states_list = ["BA", "DF", "RJ", "PA", "MG", "SP", "AM", "RS", "SC", "ES", "PR",
-                   "PB", "RN", "CE", "AL", "RR", "SE", "RO","PI" , "AC",
-                   "TO", "GO", "PE", "AP", "MS", "MT", "MA","Não Informado"]
+@@states_list = State.all_states
 
 @@sanjana = ["Todos",1988, 1991, 1992, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002,
              2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013,
-             2014, 2015]
+             2014, 2015] 
 
-@@sanction_type_list = [
- [ "INIDONEIDADE - LEGISLAçãO ESTADUAL", "Inidoneidade - Legislação Estadual"],
- [ "IMPEDIMENTO - LEI DO PREGãO", "Impedimento - Lei do Pregão"],
- [ "PROIBIçãO - LEI ELEITORAL", "Proibição - Lei Eleitoral"],
- [ "INIDONEIDADE - LEI DE LICITAçõES","Inidoneidade - Lei de Licitações"],
- [ "SUSPENSãO - LEI DE LICITAçõES","Suspensão - Lei de Impedimento Licitações"],
- [ "SUSPENSãO - LEGISLAçãO ESTADUAL", "Suspensão - Legislação estadual"],
- [ "PROIBIçãO - LEI DE IMPROBIDADE", "Proibição - Lei de improbidade"],
- [ "DECISãO JUDICIAL LIMINAR/CAUTELAR QUE IMPEçA CONTRATAçãO","Decisão Judicial liminar"] ,
- [ "INIDONEIDADE - LEI DA ANTT E ANTAQ ","Inidoneidade - Lei da ANTT e ANTAQ"] ,
- [ "INIDONEIDADE - LEI ORGâNICA TCU", "Inidoneidade - Lei Orgânica TCU"],
- [ "IMPEDIMENTO - LEGISLAçãO ESTADUAL", "Impedimento - Legislação Estadual"],
- [ "SUSPENSãO E IMPEDIMENTO - LEI DE ACESSO à INFORMAçãO","Suspensão e Impedimento - Lei de Acesso à Informação"],
- [ "PROIBIçãO - LEI ANTITRUSTE", "Proibição - Lei Antitruste"],
- [ "IMPEDIMENTO - LEI DO RDC", "Impedimento - Lei do RDC"],
- [ "PROIBIçãO - LEI AMBIENTAL", "Proibição - Lei Ambiental" ],
- ]
+@@sanction_type_list = SanctionType.all_sanction_types
 
 
 ######################################################
@@ -38,15 +20,11 @@ class StatisticsController < ApplicationController
   end
 
   def most_sanctioned_ranking
-    @enterprise_group = []
-    @enterprise_group_count = []
-    a = Enterprise.all.sort_by{|x| x.sanctions_count}
-    b = a.uniq.group_by(&:sanctions_count).to_a.reverse
 
-    b.each do |k|
-      @enterprise_group << k[0]
-      @enterprise_group_count << k[1].count
-    end
+    enterprise_group_array = Enterprise.most_sanctioned_ranking
+    @enterprise_group = enterprise_group_array[0]
+    @enterprise_group_count = enterprise_group_array[1]
+
   end
 
   def most_paymented_ranking
@@ -117,7 +95,6 @@ class StatisticsController < ApplicationController
       @states = @@states_list.clone
       @states.unshift("Todos")
     end
-
     respond_to do |format|
       format.html # show.html.erb
       format.js

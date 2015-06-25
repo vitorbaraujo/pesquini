@@ -52,4 +52,22 @@ class Enterprise < ActiveRecord::Base
       end
   end
 
+  def self.most_sanctioned_ranking
+    enterprise_group = []
+    enterprise_group_count = []
+    @enterprise_group_array = []
+    a = Enterprise.all.sort_by{|x| x.sanctions_count}
+    b = a.uniq.group_by(&:sanctions_count).to_a.reverse
+
+    b.each do |k|
+      enterprise_group << k[0]
+      enterprise_group_count << k[1].count
+    end
+      @enterprise_group_array << enterprise_group
+      @enterprise_group_array << enterprise_group_count
+      @enterprise_group_array
+  end
+
+
+
 end
