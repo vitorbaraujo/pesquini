@@ -5,4 +5,3 @@ class WelcomeController < ApplicationController
     @enterprises = @search.result
   end
 end
-

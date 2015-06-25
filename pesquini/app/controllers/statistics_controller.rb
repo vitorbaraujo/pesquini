@@ -6,9 +6,7 @@ class StatisticsController < ApplicationController
 
 @@states_list = State.all_states
 
-@@sanjana = ["Todos",1988, 1991, 1992, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002,
-             2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013,
-             2014, 2015] 
+@@sanjana = Sanction.all_years
 
 @@sanction_type_list = SanctionType.all_sanction_types
 
@@ -158,6 +156,4 @@ class StatisticsController < ApplicationController
     results = results.sort_by { |i| i[0] }
     results
   end
-
-
 end

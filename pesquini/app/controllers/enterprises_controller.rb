@@ -23,11 +23,10 @@ class EnterprisesController < ApplicationController
 
   def enterprise_payment_position(enterprise)
     p = Enterprise.featured_payments  
-    
       p.each_with_index do |a, index|
         if a.payments_sum == enterprise.payments_sum
           return index + 1 
         end
       end
+    end
   end
-end

@@ -10,7 +10,6 @@ class SessionsController < ApplicationController
     user = User.find_by(login: login)
 
     if user && user.authenticate(password)
-      puts "bla"
       sign_in user
       redirect_to root_path
     else
