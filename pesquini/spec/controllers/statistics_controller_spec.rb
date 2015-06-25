@@ -1,8 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe StatisticsController, :type => :controller do
-  describe "GET" do
 
+  before do
+    @sanction = Sanction.new
+    @sanction.process_number = "9090"
+    @sanction.save
+  end
+
+  
+  describe "GET" do
     describe '#sanction_by_state_graph' do
       it "should work" do
         get :sanction_by_state_graph

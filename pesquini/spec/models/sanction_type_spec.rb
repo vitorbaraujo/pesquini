@@ -14,7 +14,6 @@ describe SanctionType do
   it { should be_valid }
 
   describe "uniqueness validation of description" do
-    
     describe "unique description" do
       it "should be_valid" do
         uniqueness_sanction_type = SanctionType.new
@@ -29,6 +28,22 @@ describe SanctionType do
         duplicated_sanction_type.description = "Proibição - Lei Eleitoral" 
         expect(duplicated_sanction_type).not_to be_valid
       end
+    end
+
+    describe "#refresh!" do
+      before do
+        @s = SanctionType.new
+        @s.description = "Teste 1"
+        @s.save
+      end
+
+      it "should return SanctionType" do
+        expect(@s.refresh!).to eq(@s);
+      end
+
+      it "should not return other SanctionType" do
+        expect(@s.refresh!).not_to eq(@sanction_type);
+      end  
     end
     
   end

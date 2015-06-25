@@ -40,4 +40,34 @@ class Enterprise < ActiveRecord::Base
   def refresh!
     e = Enterprise.find_by_cnpj(self.cnpj)
   end
+
+  def self.enterprise_position(enterprise)
+      orderedSanc = self.featured_sanctions
+      groupedSanc = orderedSanc.uniq.group_by(&:sanctions_count).to_a
+
+      groupedSanc.each_with_index do |k,index|
+        if k[0] == enterprise.sanctions_count
+          return index + 1
+        end
+      end
+  end
+
+  def self.most_sanctioned_ranking
+    enterprise_group = []
+    enterprise_group_count = []
+    @enterprise_group_array = []
+    a = Enterprise.all.sort_by{|x| x.sanctions_count}
+    b = a.uniq.group_by(&:sanctions_count).to_a.reverse
+
+    b.each do |k|
+      enterprise_group << k[0]
+      enterprise_group_count << k[1].count
+    end
+      @enterprise_group_array << enterprise_group
+      @enterprise_group_array << enterprise_group_count
+      @enterprise_group_array
+  end
+
+
+
 end

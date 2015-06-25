@@ -17,7 +17,4 @@ class ApplicationController < ActionController::Base
       f.html{ render :template => "errors/404", :status => 404 }
     end
   end
-
 end
-
-
