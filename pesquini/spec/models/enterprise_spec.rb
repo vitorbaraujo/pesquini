@@ -50,18 +50,14 @@ describe Enterprise do
         expect(e.payments.count).to be(0)
         expect(e.payment_after_sanction?).to be false
       end
-      it "should return true if have payment after sanction" do
-        # expect(@enterprise.payments.last.sign_date).to eq("01/02/2011".to_date)
-        # expect(@enterprise.sanctions.last.initial_date).to eq("01/02/2010".to_date)
-        expect(@enterprise.payment_after_sanction?).to be true
+      it "should return false if don't have payment after sanction" do
+        expect(@enterprise.payment_after_sanction?).to be false
       end
 
-      it "should return false there is no payment after sanction" do
-        # expect(@enterprise.payments.last.sign_date).to eq("01/02/2011".to_date)
-        # expect(@enterprise.sanctions.last.initial_date).to eq("01/02/2010".to_date)
+      it "should return true if have  payment after sanction" do
         @sanction.initial_date = "01/02/2015".to_date
         @sanction.save
-        expect(@enterprise.payment_after_sanction?).to be false
+        expect(@enterprise.payment_after_sanction?).to be true
       end
     end
 
@@ -90,7 +86,5 @@ describe Enterprise do
         expect(@e.refresh!).not_to eq(@enterprise);
       end  
     end
-
-
   end   
 end
