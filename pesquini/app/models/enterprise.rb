@@ -31,7 +31,7 @@ class Enterprise < ActiveRecord::Base
     sanction = last_sanction
     payment = last_payment
     if sanction && payment
-      payment.sign_date > sanction.initial_date
+      payment.sign_date < sanction.initial_date
     else
       false
     end
