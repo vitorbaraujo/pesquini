@@ -1,5 +1,10 @@
+/*
+  File: show.js
+  Purpose: File that renders javascript in show view
+  License : LGPL. No copyright.
+*/
 
-  var sanctions_btn = document.getElementById("sanction-info-btn");
+var sanctions_btn = document.getElementById("sanction-info-btn");
 
 if ($(sanctions_btn).hasClass("active"))
 {
