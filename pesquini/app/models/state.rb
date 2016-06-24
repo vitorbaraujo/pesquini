@@ -3,7 +3,7 @@ class State < ActiveRecord::Base
   validates_uniqueness_of :abbreviation
 
   def refresh!
-    s = State.find_by_abbreviation(self.abbreviation)
+    sanctions = State.find_by_abbreviation(self.abbreviation)
   end
 
   def self.all_states
