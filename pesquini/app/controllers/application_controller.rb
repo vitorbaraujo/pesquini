@@ -13,8 +13,8 @@ class ApplicationController < ActionController::Base
   end
 
   def render_not_found
-    respond_to do |f|
-      f.html{ render :template => "errors/404", :status => 404 }
+    respond_to do |render_not_found|
+      render_not_found.html{ render :template => "errors/404", :status => 404 }
     end
   end
 end
