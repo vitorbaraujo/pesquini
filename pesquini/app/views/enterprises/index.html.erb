@@ -1,7 +1,7 @@
 <!--
-File: index.html.erb
-Purpose: File that shows all enterprises searched
-License : LGPL. No copyright.
+  File: index.html.erb
+  Purpose: File that shows all enterprises searched
+  License : LGPL. No copyright.
 -->
 
 <div id="enterprises_index">
@@ -36,17 +36,10 @@ License : LGPL. No copyright.
 
   <div class="container">
 
-    <% if @enterprises.blank? %>
+    <% if !@enterprises.blank? %>
       <div class="entreprises_title">
-        <h3>
-          Não existem sanções contra a empresa procurada.
-        </h3>
+        <h1> Lista das empresas encontradas</h1>
         <hr>
-      </div>
-    <% else %>
-      <div class="entreprises_title">
-      <h1> Lista das empresas encontradas</h1>
-      <hr>
       </div>
 
       <% @enterprises.each do |p| %>
@@ -54,7 +47,13 @@ License : LGPL. No copyright.
         <span class="same_line">  <h3>CNPJ:</h3> <%= p.cnpj %>  </span>
         <hr>
       <% end %>
-
+    <% else %>
+      <div class="entreprises_title">
+        <h3>
+          Não existem sanções contra a empresa procurada.
+        </h3>
+        <hr>
+      </div>
     <% end %>
 
     <div class="pagination">
