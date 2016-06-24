@@ -18,10 +18,12 @@ class Enterprise < ActiveRecord::Base
   # return: Last sanction
   def last_sanction
     sanction = self.sanctions.last
-    unless sanction.nil?
+    if !(sanction.nil?)
       self.sanctions.each do |s|
         sanction = s if s.initial_date > sanction.initial_date
       end
+    else
+      # Nothing to do
     end
     sanction
   end
@@ -33,10 +35,16 @@ class Enterprise < ActiveRecord::Base
   # return: Last payment
   def last_payment
     payment = self.payments.last
-    unless payment.nil?
+    if !(payment.nil?)
       self.payments.each do |f|
-        payment = f if f.sign_date > payment.sign_date
+        if f.sign_date > payment.sign_date
+          payment = f
+        else
+          # Nothing to do
+        end
       end
+    else
+      # Nothing to do
     end
     payment
   end
@@ -50,8 +58,10 @@ class Enterprise < ActiveRecord::Base
   def payment_after_sanction?
     sanction = last_sanction
     payment = last_payment
-    if sanction && payment
-      payment.sign_date < sanction.initial_date
+    if(sanction && payment)
+      if payment.sign_date < sanction.initial_date{
+        true
+      }
     else
       false
     end
@@ -78,6 +88,8 @@ class Enterprise < ActiveRecord::Base
       groupedSanc.each_with_index do |k,index|
         if k[0] == enterprise.sanctions_count
           return index + 1
+        else
+          # Do nothing
         end
       end
   end
@@ -98,11 +110,10 @@ class Enterprise < ActiveRecord::Base
       enterprise_group << k[0]
       enterprise_group_count << k[1].count
     end
+
       @enterprise_group_array << enterprise_group
       @enterprise_group_array << enterprise_group_count
       @enterprise_group_array
   end
-
-
 
 end
