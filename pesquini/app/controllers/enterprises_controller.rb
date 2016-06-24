@@ -18,6 +18,8 @@ class EnterprisesController < ApplicationController
       @search = Enterprise.search(params[:q].try(:merge, m: 'or'))
       @enterprises = @search.result.paginate(:page => params[:page], :per_page => 10)
     end
+
+    return @enterprises
   end
 
   # name: show
@@ -38,6 +40,8 @@ class EnterprisesController < ApplicationController
     @sanctions = @collection.paginate(:page => params[:page], :per_page => @per_page)
     @payment_position = enterprise_payment_position(@enterprise)
     @position = Enterprise.enterprise_position(@enterprise)
+
+    return @position
   end
 
   # name: enterprise_payment_position
@@ -46,10 +50,11 @@ class EnterprisesController < ApplicationController
   #- enterprise: A object of Enterprise class
   # return: Position in ranking
   def enterprise_payment_position(enterprise)
-    p = Enterprise.featured_payments
-    p.each_with_index do |a, index|
-      if a.payments_sum == enterprise.payments_sum
-        return index + 1
+    payments_featured = Enterprise.featured_payments
+    payments_featured.each_with_index do |another_enterprise, index|
+      if another_enterprise.payments_sum == enterprise.payments_sum
+        position = index + 1
+        return position
       else
         # Nothing to do
       end
