@@ -1,9 +1,14 @@
+<!--
+File: most_sanctioned_ranking.html.erb
+Purpose: View that shows ranking with enterprises with most sanctions
+License : LGPL. No copyright.
+!-->
+
 <div class="container">
-
   <%= render 'back_button' %>
-
-  <div id="titulo_ranking"><h2>Ranking de empresas com mais sanções</h2>
-  <hr>
+  <div id="titulo_ranking">
+    <h2>Ranking de empresas com mais sanções</h2>
+    <hr>
   </div>
   <% @enterprise_group.each_with_index do |e, index| %>
     <% qtde = @enterprise_group_count[index]%>
