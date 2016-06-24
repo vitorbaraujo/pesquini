@@ -16,7 +16,13 @@ class SanctionType < ActiveRecord::Base
   # - none
   # return: a SanctionType object
   def refresh!
-    s = SanctionType.find_by_description(self.description)
+    if self.description
+      s = SanctionType.find_by_description(self.description)
+    else
+      # nothing to do
+    end
+
+    s
   end
 
   # name: self.all_sanction_types
@@ -43,6 +49,7 @@ class SanctionType < ActiveRecord::Base
                         [ "IMPEDIMENTO - LEI DO RDC", "Impedimento - Lei do RDC"],
                         [ "PROIBIçãO - LEI AMBIENTAL", "Proibição - Lei Ambiental" ],
                       ]
+
     stantion_types
   end
 
