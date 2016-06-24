@@ -27,7 +27,11 @@ class EnterprisesController < ApplicationController
   # return: A enterprise with it's info
   def show
     @per_page = 10
-    @page_num = params[:page].to_i > 0 ? params[:page].to_i  - 1 : 0
+    if params[:page].to_i > 0
+      @page_num = params[:page].to_i - 1
+    else
+      @page_num = 0
+    end
     @enterprise = Enterprise.find(params[:id])
     @collection = Sanction.where(enterprise_id: @enterprise.id)
     @payments = Payment.where(enterprise_id: @enterprise.id).paginate(:page => params[:page], :per_page => @per_page )
@@ -46,6 +50,8 @@ class EnterprisesController < ApplicationController
     p.each_with_index do |a, index|
       if a.payments_sum == enterprise.payments_sum
         return index + 1
+      else
+        # Nothing to do
       end
     end
   end
