@@ -13,7 +13,12 @@ class WelcomeController < ApplicationController
   # - none
   # return: relation of objects of type Enterprise
   def index
-    params[:q][:cnpj_eq] = params[:q][:corporate_name_cont] unless params[:q].nil?
+    if !params[:q].nil?
+      params[:q][:cnpj_eq] = params[:q][:corporate_name_cont]
+    else
+      # nothing to do
+    end
+
     @search = Enterprise.search(params[:q].try(:merge, m: 'or'))
     @enterprises = @search.result
   end
