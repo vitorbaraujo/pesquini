@@ -19,8 +19,14 @@ class WelcomeController < ApplicationController
       # nothing to do
     end
 
-    @search = Enterprise.search(params[:q].try(:merge, m: 'or'))
+    parameters_to_search = params[:q]
+    parameters_to_search.try(:merge, m: 'or')
+
+    @search = Enterprise.search(parameters_to_search)
+
     @enterprises = @search.result
+
+    return @enterprises
   end
 
 end
