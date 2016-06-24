@@ -24,7 +24,7 @@ module SessionsHelper
   #- user: A object from the User class
   # return: User set to the variable
   def current_user=(user)
-    	@current_user = user
+    @current_user = user
   end
 
   # name: current_user
@@ -44,7 +44,11 @@ module SessionsHelper
   #- none
   # return: True if there is anyone logged and false if there is no one
   def signed_in?
-    !current_user.nil?
+    if current_user.nil?
+      false
+    else
+      true
+    end
   end
 
   # name: authorize
@@ -53,8 +57,12 @@ module SessionsHelper
   # parameters:
   #- none
   # return: Redirected to sign in page or nothing if there is a logged user
-  def authorize
-    redirect_to '/signin', alert: "Nao autorizado !" unless signed_in?
+  def authorize/
+    if !(signed_in?)
+      redirect_to '/signin', alert: "Nao autorizado !"
+    else
+      # Do nothing
+    end
   end
 
   # name: sign_out
