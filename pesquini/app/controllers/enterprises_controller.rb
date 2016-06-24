@@ -1,4 +1,14 @@
+# File: enterprises_controller.rb
+# Purpose: File that implements business logic for enterprises
+# License : LGPL. No copyright
+
 class EnterprisesController < ApplicationController
+
+  # name: index
+  # explanation: page with enterprises
+  # parameters:
+  #- none
+  # return: List of enterprises
   def index
     if params[:q].nil?
       @search = Enterprise.search(params[:q].try(:merge, m: 'or'))
@@ -10,6 +20,11 @@ class EnterprisesController < ApplicationController
     end
   end
 
+  # name: show
+  # explanation: Shows more info about a enterprise
+  # parameters:
+  #- none
+  # return: A enterprise with it's info
   def show
     @per_page = 10
     @page_num = params[:page].to_i > 0 ? params[:page].to_i  - 1 : 0
@@ -21,12 +36,17 @@ class EnterprisesController < ApplicationController
     @position = Enterprise.enterprise_position(@enterprise)
   end
 
+  # name: enterprise_payment_position
+  # explanation: Finds a enterprise in the ranking for payments
+  # parameters:
+  #- enterprise: A object of Enterprise class
+  # return: Position in ranking
   def enterprise_payment_position(enterprise)
-    p = Enterprise.featured_payments  
-      p.each_with_index do |a, index|
-        if a.payments_sum == enterprise.payments_sum
-          return index + 1 
-        end
+    p = Enterprise.featured_payments
+    p.each_with_index do |a, index|
+      if a.payments_sum == enterprise.payments_sum
+        return index + 1
       end
     end
   end
+end
