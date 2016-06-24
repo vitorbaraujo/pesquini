@@ -57,7 +57,7 @@ module SessionsHelper
   # parameters:
   #- none
   # return: Redirected to sign in page or nothing if there is a logged user
-  def authorize/
+  def authorize
     if !(signed_in?)
       redirect_to '/signin', alert: "Nao autorizado !"
     else

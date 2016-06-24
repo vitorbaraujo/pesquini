@@ -19,9 +19,13 @@ License : LGPL. No copyright.
   <span class="division"> <hr> </span>
     <% if !@all %>
       <%= link_to "Todas", controller: 'statistics', action: 'most_paymented_ranking', sanjana: ""%>
+    <% else %>
+      <!-- Do nothing !-->
     <% end %>
     <% if @all %>
       <%= will_paginate @enterprises,  renderer: BootstrapPagination::Rails %>
+    <% else %>
+      <!-- Do nothing !-->
     <% end %>
     <span class="division">
       <hr>
