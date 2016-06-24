@@ -18,10 +18,10 @@
         <h1>Ferramenta de busca</h1>
         <hr>
 
-        <%= search_form_for @search do |f| %>
-          <%= f.label :corporate_name_cont, "Nome ou CNPJ:" %>
-          <%= f.search_field :corporate_name_cont%>
-          <%= f.submit %>
+        <%= search_form_for @search do |form_attributes| %>
+          <%= form_attributes.label :corporate_name_cont, "Nome ou CNPJ:" %>
+          <%= form_attributes.search_field :corporate_name_cont%>
+          <%= form_attributes.submit %>
         <% end %>
 
       </div>
@@ -42,9 +42,9 @@
         <hr>
       </div>
 
-      <% @enterprises.each do |p| %>
-        <span class="same_line">  <h3>Empresa:</h3><%= link_to p.corporate_name, p %>  </span>
-        <span class="same_line">  <h3>CNPJ:</h3> <%= p.cnpj %>  </span>
+      <% @enterprises.each do |enterprise| %>
+        <span class="same_line">  <h3>Empresa:</h3><%= link_to enterprise.corporate_name, enterprise %>  </span>
+        <span class="same_line">  <h3>CNPJ:</h3> <%= enterprise.cnpj %>  </span>
         <hr>
       <% end %>
     <% else %>
