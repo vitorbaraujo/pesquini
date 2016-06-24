@@ -14,6 +14,8 @@ class UsersController < ApplicationController
   # return: object of type User
   def new
     @user = User.new
+
+    return @user
   end
 
 end
