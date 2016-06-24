@@ -12,11 +12,16 @@ module ApplicationHelper
   # - level: symbol to inform type of flash message
   # return: string
   def flash_class(level)
-    case level
-        when :notice then "alert alert-info"
-        when :success then "alert alert-success"
-        when :error then "alert alert-error"
-        when :alert then "alert alert-error"
+    if level == :notice
+      "alert alert-info"
+    elsif level == :success
+      "alert alert-success"
+    elsif level == :error
+      "alert alert-error"
+    elsif level == :alert
+      "alert alert-error"
+    else
+      # nothing to do
     end
   end
 
