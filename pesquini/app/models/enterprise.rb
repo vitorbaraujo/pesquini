@@ -19,13 +19,17 @@ class Enterprise < ActiveRecord::Base
   def last_sanction
     sanction = self.sanctions.last
     if !(sanction.nil?)
-      self.sanctions.each do |s|
-        sanction = s if s.initial_date > sanction.initial_date
+      self.sanctions.each do |a_sanction|
+        if a_sanction.initial_date > sanction.initial_date
+          sanction = a_sanction
+        else
+          # Nothing to do
+        end
       end
     else
       # Nothing to do
     end
-    sanction
+    return sanction
   end
 
   # name: last_payment
@@ -36,9 +40,9 @@ class Enterprise < ActiveRecord::Base
   def last_payment
     payment = self.payments.last
     if !(payment.nil?)
-      self.payments.each do |f|
-        if f.sign_date > payment.sign_date
-          payment = f
+      self.payments.each do |a_payment|
+        if a_payment.sign_date > payment.sign_date
+          payment = a_payment
         else
           # Nothing to do
         end
@@ -46,7 +50,7 @@ class Enterprise < ActiveRecord::Base
     else
       # Nothing to do
     end
-    payment
+    return payment
   end
 
   # name: payment_after_sanction?
@@ -58,13 +62,15 @@ class Enterprise < ActiveRecord::Base
   def payment_after_sanction?
     sanction = last_sanction
     payment = last_payment
+    result_of_operation = nil
     if(sanction && payment)
       if payment.sign_date < sanction.initial_date
-        true
+        result_of_operation = true
       else
-        false
+        result_of_operation = false
       end
     end
+    return result_of_operation
   end
 
   # name: refresh!
@@ -73,7 +79,8 @@ class Enterprise < ActiveRecord::Base
   #-none
   # return: Enterprise
   def refresh!
-    e = Enterprise.find_by_cnpj(self.cnpj)
+    enterprise = Enterprise.find_by_cnpj(self.cnpj)
+    return enterprise
   end
 
   # name: self.enterprise_poition
@@ -85,9 +92,10 @@ class Enterprise < ActiveRecord::Base
       orderedSanc = self.featured_sanctions
       groupedSanc = orderedSanc.uniq.group_by(&:sanctions_count).to_a
 
-      groupedSanc.each_with_index do |k,index|
-        if k[0] == enterprise.sanctions_count
-          return index + 1
+      groupedSanc.each_with_index do |all_sanctions,index|
+        if all_sanctions[0] == enterprise.sanctions_count
+          position = index + 1
+          return position
         else
           # Do nothing
         end
@@ -103,17 +111,17 @@ class Enterprise < ActiveRecord::Base
     enterprise_group = []
     enterprise_group_count = []
     @enterprise_group_array = []
-    a = Enterprise.all.sort_by{|x| x.sanctions_count}
-    b = a.uniq.group_by(&:sanctions_count).to_a.reverse
+    enterprises_sorted = Enterprise.all.sort_by{|enterprise| enterprise.sanctions_count}
+    reversed_by_sanctions = enterprises_sorted.uniq.group_by(&:sanctions_count).to_a.reverse
 
-    b.each do |k|
-      enterprise_group << k[0]
-      enterprise_group_count << k[1].count
+    reversed_by_sanctions.each do |index|
+      enterprise_group << index[0]
+      enterprise_group_count << index[1].count
     end
 
       @enterprise_group_array << enterprise_group
       @enterprise_group_array << enterprise_group_count
-      @enterprise_group_array
+      return @enterprise_group_array
   end
 
 end
