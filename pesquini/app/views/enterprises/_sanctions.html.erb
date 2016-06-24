@@ -11,43 +11,46 @@
       <b><div class= "index_number"><%= @page_num*@per_page + index +1%></div></b>
     </h4>
     <h4>
-      <b>Órgao Sancionador: </b> <%= p.sanction_organ.downcase! %>
+      <% santion_organ_downcase = p.sanction_organ.downcase! %>
+      <b>Órgao Sancionador: </b> <%= santion_organ_downcase %>
     </h4>
     <h4>
       <b> Número do processo: </b> <%= p.process_number %>
     </h4>
     <h4>
       <% if !p.initial_date.nil? %>
-        <% dis = "Dado nao informado" %>
+        <% sanction_initial_date = "Dado nao informado" %>
       <% else %>
-        <% dis = p.initial_date.strftime("%d/%m/%Y") %>
+        <% signature_pattern = "%d/%m/%Y" %>
+        <% sanction_initial_date = p.initial_date.strftime(signature_pattern) %>
       <% end %>
-      <b>Data de Inicio da Sanção: </b> <%= dis %>
+      <b>Data de Inicio da Sanção: </b> <%= sanction_initial_date %>
     </h4>
     <h4>
       <% if !p.final_date.nil?%>
-        <% dfs = p.final_date.strftime("%d/%m/%Y") %>
+        <% signature_pattern = "%d/%m/%Y" %>
+        <% sanction_final_date = p.final_date.strftime(signature_pattern) %>
       <% else %>
-        <% dfs = "Dado nao informado" %>
+        <% sanction_final_date = "Dado nao informado" %>
       <% end %>
-      <b> Data Final da Sanção: </b> <%= dfs %>
+      <b> Data Final da Sanção: </b> <%= sanction_final_date %>
     </h4>
     <h4>
       <% if !p.state.nil?%>
-        <% u = p.state.abbreviation %>
+        <% country_state = p.state.abbreviation %>
       <% else %>
-        <% u = "Dado nao informado" %>
+        <% country_state = "Dado nao informado" %>
       <% end %>
-      <b> UF: </b> <%= u %>
+      <b> UF: </b> <%= country_state %>
     </h4>
     <h4>
       <% if !p.sanction_type.nil? %>
-        <% ts = p.sanction_type.description.downcase! %>
+        <% sanction_type = p.sanction_type.description.downcase! %>
       <% else %>
-        <% ts = "Dado não informado" %>
+        <% sanction_type = "Dado não informado" %>
       <% end %>
 
-      <b> Tipo Sanção: </b> <%= ts %>
+      <b> Tipo Sanção: </b> <%= sanction_type %>
     </h4>
 
     <% if @enterprise.payment_after_sanction? %>
