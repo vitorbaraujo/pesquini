@@ -34,7 +34,11 @@ class Sanction < ActiveRecord::Base
   # - none
   # return: a Sanction object
   def refresh!
-    s = Sanction.find_by_process_number(self.process_number)
+    if self.process_number
+      s = Sanction.find_by_process_number(self.process_number)
+    else
+      # nothing to do
+    end
   end
 
   # name: self.percentual_sanction
@@ -44,7 +48,12 @@ class Sanction < ActiveRecord::Base
   # return: double
   def self.percentual_sanction(value)
     total = Sanction.all.count
-    value * 100.0 / total
+
+    if total > 0
+      value * 100.0 / total
+    else
+      # nothing to do
+    end
   end
 
 end
