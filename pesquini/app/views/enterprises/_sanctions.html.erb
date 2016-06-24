@@ -17,16 +17,37 @@
       <b> Número do processo: </b> <%= p.process_number %>
     </h4>
     <h4>
-      <b>Data de Inicio da Sanção: </b> <%= p.initial_date.nil? ? "Dado nao informado" :p.initial_date.strftime("%d/%m/%Y") %>
+      <% if !p.initial_date.nil? %>
+        <% dis = "Dado nao informado" %>
+      <% else %>
+        <% dis = p.initial_date.strftime("%d/%m/%Y") %>
+      <% end %>
+      <b>Data de Inicio da Sanção: </b> <%= dis %>
     </h4>
     <h4>
-      <b> Data Final da Sanção: </b> <%= p.final_date.nil? ? "Dado nao informado"  :p.final_date.strftime("%d/%m/%Y") %>
+      <% if !p.final_date.nil?%>
+        <% dfs = p.final_date.strftime("%d/%m/%Y") %>
+      <% else %>
+        <% dfs = "Dado nao informado" %>
+      <% end %>
+      <b> Data Final da Sanção: </b> <%= dfs %>
     </h4>
     <h4>
-      <b> UF: </b> <%= p.state.nil? ? "Dado nao informado" : p.state.abbreviation %>
+      <% if !p.state.nil?%>
+        <% u = p.state.abbreviation %>
+      <% else %>
+        <% u = "Dado nao informado" %>
+      <% end %>
+      <b> UF: </b> <%= u %>
     </h4>
     <h4>
-      <b> Tipo Sanção: </b> <%= p.sanction_type.nil? ? "Dado não informado" : p.sanction_type.description.downcase! %>
+      <% if !p.sanction_type.nil? %>
+        <% ts = p.sanction_type.description.downcase! %>
+      <% else %>
+        <% ts = "Dado não informado" %>
+      <% end %>
+
+      <b> Tipo Sanção: </b> <%= ts %>
     </h4>
 
     <% if @enterprise.payment_after_sanction? %>
@@ -44,6 +65,8 @@
 
   <% if @sanctions.empty? %>
     <h3> Dados sobre sanções não informados </h3>
+  <% else %>
+    <!-- nothing to do -->
   <% end %>
 
   <%= will_paginate @sanctions,  renderer: BootstrapPagination::Rails %>
