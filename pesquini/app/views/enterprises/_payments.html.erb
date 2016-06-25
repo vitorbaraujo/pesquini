@@ -1,18 +1,64 @@
-        <div class =" lowercase-letter">
-    <% @payments.each_with_index do |p, index| %>
-          <h4><b><div class= "index_number"><%= @page_num*@per_page + index +1%></div></b></h4>
-          <h4> <b>Identificador: </b> <%= p.identifier %> </h4>
-          <h4> <b>Número do processo: </b> <%= p.process_number %> </h4>
-          <h4> <b>Valor inicial: </b> <%= number_to_currency(p.initial_value, unit: "R$ ", separator: ",", delimiter: ".")%> </h4>
-          <h4> <b>Data de assinatura: </b> <%= p.sign_date.strftime("%d/%m/%Y") %> </h4>
-          <h4> <b>Inicio do pagamento: </b> <%= p.start_date.strftime("%d/%m/%Y") %> </h4>
-          <h4> <b>Fim do pagamento: </b> <%= p.end_date.strftime("%d/%m/%Y") %> </h4>
-          <hr align="left">
-     <% end %>
+<!--
+  File: _payments.html.erb
+  Purpose: File that renders information for a payment
+  License : LGPL. No copyright.
+-->
 
-      <% if @payments.empty? %>
-        <h3> Dados sobre pagamentos não informados </h3>
-      <% end %>
-      <%= will_paginate @payments,  renderer: BootstrapPagination::Rails %>
+<div class =" lowercase-letter">
 
-      </div>
+  <% @payments.each_with_index do |p, index| %>
+    <h4>
+      <% index_number = @page_num * @per_page %>
+      <% index_number = index_number + index + 1 %>
+      <b>
+        <div class= "index_number">
+          <%= index_number %>
+        </div>
+      </b>
+    </h4>
+    <h4>
+      <b>Identificador: </b> <%= p.identifier %>
+    </h4>
+    <h4>
+      <b>Número do processo: </b> <%= p.process_number %>
+    </h4>
+    <h4>
+      <% unit_to_initial_value = "R$ " %>
+      <% separator_to_initial_value = "," %>
+      <% delimiter_to_initial_value = "," %>
+      <% initial_value =  number_to_currency(
+                            p.initial_value, 
+                            unit: unit_to_initial_value,
+                            separator: separator_to_initial_value,
+                            delimiter: delimiter_to_initial_value
+                          )
+      %>
+      <b>Valor inicial: </b><%= initial_value %>
+    </h4>
+    <h4>
+      <% signature_pattern = "%d/%m/%Y" %>
+      <% signature_date = p.sign_date.strftime(signature_pattern) %>
+      <b>Data de assinatura: </b> <%= signature_date %>
+    </h4>
+    <h4>
+      <% signature_pattern = "%d/%m/%Y" %>
+      <% payment_start_date = p.start_date.strftime(signature_pattern) %>
+      <b>Inicio do pagamento: </b> <%= payment_start_date %>
+    </h4>
+    <h4>
+      <% signature_pattern = "%d/%m/%Y" %>
+      <% payment_end_date = p.end_date.strftime(signature_pattern) %>
+      <b>Fim do pagamento: </b> <%= payment_end_date %>
+    </h4>
+    <hr align="left">
+  <% end %>
+
+  <% if @payments.empty? %>
+    <h3> Dados sobre pagamentos não informados </h3>
+  <% else %>
+    <!-- nothing to do -->
+  <% end %>
+
+  <%= will_paginate @payments,  renderer: BootstrapPagination::Rails %>
+
+</div>
