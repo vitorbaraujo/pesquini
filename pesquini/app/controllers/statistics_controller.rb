@@ -34,6 +34,9 @@ class StatisticsController < ApplicationController
 
   def most_sanctioned_ranking
     enterprise_group_array = Enterprise.most_sanctioned_ranking
+
+    assert(enterprise_group_array.kind_of?(Enterprise))
+
     @enterprise_group = enterprise_group_array[0]
     @enterprise_group_count = enterprise_group_array[1]
 
@@ -52,8 +55,12 @@ class StatisticsController < ApplicationController
     if params[:sanjana]
       @all = true
       @enterprises = Enterprise.featured_payments.paginate(:page => params[:page], :per_page => 20)
+
+      assert(@enterprises.kind_of?(Enterprise))
     else
       @enterprises = Enterprise.featured_payments(10)
+
+      assert(@enterprises.kind_of?(Enterprise))
     end
 
     return @enterprises
@@ -67,7 +74,12 @@ class StatisticsController < ApplicationController
 
   def enterprise_group_ranking
     @quantidade = params[:sanctions_count]
+
+    assert(@quantidade.kind_of?(Enterprise))
+
     @enterprises = Enterprise.where(sanctions_count: @quantidade).paginate(:page => params[:page], :per_page => 10)
+
+    assert(@enterprises.kind_of?(Enterprise))
 
     return @enterprises
   end
@@ -80,7 +92,12 @@ class StatisticsController < ApplicationController
 
   def payment_group_ranking
     @quantidade = params[:payments_count]
+
+    assert(@quantidade.kind_of?(Enterprise))
+
     @enterprises = Enterprise.where(payments_count: @quantidade).paginate(:page => params[:page], :per_page => 10)
+
+    assert(@enterprise.kind_of?(Enterprise))
 
     return @enterprises
   end
@@ -153,6 +170,9 @@ class StatisticsController < ApplicationController
     
     if (!@states)
       @states = @@states_list.clone
+
+      assert(@states.kind_of?(Enterprise))
+
       @states.unshift("Todos")
     else
       #nothing to do
@@ -175,10 +195,16 @@ class StatisticsController < ApplicationController
     # Iniciating variables
     results = []
     @years = @@sanjana
-    
+
     @@states_list.each do |s|
       state = State.find_by_abbreviation("#{s}")
+
+      assert(state.kind_of?(State))
+
       sanctions_by_state = Sanction.where(state_id: state[:id])
+
+      assert(sanctions_by_state.kind_of?(Sanction))
+
       selected_year = []
       if(params[:year_].to_i != 0)
         sanctions_by_state.each do |s|
@@ -210,26 +236,40 @@ class StatisticsController < ApplicationController
 
     state = State.find_by_abbreviation(params[:state_])
 
+    assert(state.kind_of?(State))
+
     @@sanction_type_list.each do |s|
       sanction = SanctionType.find_by_description(s[0])
+
+      assert(sanction.kind_of?(Sanction))
+
       sanctions_by_type = Sanction.where(sanction_type:  sanction)
+
+      assert(sanctions_by_type.kind_of?(Sanction))
+
       if (params[:state_] && params[:state_] != "Todos")
         sanctions_by_type = sanctions_by_type.where(state_id: state[:id])
+
+        assert(sanctions_by_type.kind_of?(Sanction))
+
       else
         #nothing to do
       end
+
       cont = cont + (sanctions_by_type.count)
       results2 << s[1]
       results2 << (sanctions_by_type.count)
       results << results2
       results2 = []
     end
+
     results2 << "Não Informado"
-      if (params[:state_] && params[:state_] != "Todos")
-        total =Sanction.where(state_id: state[:id] ).count
-      else
-        total = Sanction.count
-      end
+
+    if (params[:state_] && params[:state_] != "Todos")
+      total =Sanction.where(state_id: state[:id] ).count
+    else
+      total = Sanction.count
+    end
     results2 << (total - cont)
     results << results2
     results = results.sort_by { |i| i[0] }
