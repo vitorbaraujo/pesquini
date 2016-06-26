@@ -22,6 +22,7 @@ class StatisticsController < ApplicationController
   # return: none
 
   def  index
+    return
   end
 
   # name: most_sanctioned_ranking
@@ -35,6 +36,8 @@ class StatisticsController < ApplicationController
     enterprise_group_array = Enterprise.most_sanctioned_ranking
     @enterprise_group = enterprise_group_array[0]
     @enterprise_group_count = enterprise_group_array[1]
+
+    return enterprise_group_array
   end
 
   # name: most_paymented_ranking
@@ -52,6 +55,8 @@ class StatisticsController < ApplicationController
     else
       @enterprises = Enterprise.featured_payments(10)
     end
+
+    return @enterprises
   end
 
   # name: enterprise_group_ranking
@@ -63,6 +68,8 @@ class StatisticsController < ApplicationController
   def enterprise_group_ranking
     @quantidade = params[:sanctions_count]
     @enterprises = Enterprise.where(sanctions_count: @quantidade).paginate(:page => params[:page], :per_page => 10)
+
+    return @enterprises
   end
 
   # name: payment_group_ranking
@@ -74,6 +81,8 @@ class StatisticsController < ApplicationController
   def payment_group_ranking
     @quantidade = params[:payments_count]
     @enterprises = Enterprise.where(payments_count: @quantidade).paginate(:page => params[:page], :per_page => 10)
+
+    return @enterprises
   end
 
   # name: sanction_by_state_graph
@@ -106,6 +115,7 @@ class StatisticsController < ApplicationController
       f.chart({:defaultSeriesType=>"column"})
     end
 
+    return @chart
   end
 
   # name: sanction_by_type_graph
@@ -150,6 +160,8 @@ class StatisticsController < ApplicationController
       format.html # show.html.erb
       format.js
     end
+
+    return @chart
   end
 
   # name: total_by_state
@@ -178,7 +190,7 @@ class StatisticsController < ApplicationController
         results << (sanctions_by_state.count)
       end
     end
-    results
+    return results
   end
 
   # name: total_by_type
@@ -218,6 +230,6 @@ class StatisticsController < ApplicationController
     results2 << (total - cont)
     results << results2
     results = results.sort_by { |i| i[0] }
-    results
+    return results
   end
 end
