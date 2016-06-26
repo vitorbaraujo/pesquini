@@ -16,7 +16,17 @@ class SanctionType < ActiveRecord::Base
   # - none
   # return: a SanctionType object
   def refresh!
-    s = SanctionType.find_by_description(self.description)
+    single_sanction = nil
+
+    description = self.description
+
+    if description
+      single_sanction = SanctionType.find_by_description(description)
+    else
+      # nothing to do
+    end
+
+    return single_sanction
   end
 
   # name: self.all_sanction_types
@@ -27,22 +37,39 @@ class SanctionType < ActiveRecord::Base
   # return: a hash containing all sanction types
   def self.all_sanction_types
     stantion_types =  [
-                        [ "INIDONEIDADE - LEGISLAçãO ESTADUAL", "Inidoneidade - Legislação Estadual"],
-                        [ "IMPEDIMENTO - LEI DO PREGãO", "Impedimento - Lei do Pregão"],
-                        [ "PROIBIçãO - LEI ELEITORAL", "Proibição - Lei Eleitoral"],
-                        [ "INIDONEIDADE - LEI DE LICITAçõES","Inidoneidade - Lei de Licitações"],
-                        [ "SUSPENSãO - LEI DE LICITAçõES","Suspensão - Lei de Impedimento Licitações"],
-                        [ "SUSPENSãO - LEGISLAçãO ESTADUAL", "Suspensão - Legislação estadual"],
-                        [ "PROIBIçãO - LEI DE IMPROBIDADE", "Proibição - Lei de improbidade"],
-                        [ "DECISãO JUDICIAL LIMINAR/CAUTELAR QUE IMPEçA CONTRATAçãO","Decisão Judicial liminar"] ,
-                        [ "INIDONEIDADE - LEI DA ANTT E ANTAQ ","Inidoneidade - Lei da ANTT e ANTAQ"] ,
-                        [ "INIDONEIDADE - LEI ORGâNICA TCU", "Inidoneidade - Lei Orgânica TCU"],
-                        [ "IMPEDIMENTO - LEGISLAçãO ESTADUAL", "Impedimento - Legislação Estadual"],
-                        [ "SUSPENSãO E IMPEDIMENTO - LEI DE ACESSO à INFORMAçãO","Suspensão e Impedimento - Lei de Acesso à Informação"],
-                        [ "PROIBIçãO - LEI ANTITRUSTE", "Proibição - Lei Antitruste"],
-                        [ "IMPEDIMENTO - LEI DO RDC", "Impedimento - Lei do RDC"],
-                        [ "PROIBIçãO - LEI AMBIENTAL", "Proibição - Lei Ambiental" ],
+                        [ "INIDONEIDADE - LEGISLAçãO ESTADUAL",
+                         "Inidoneidade - Legislação Estadual" ],
+                        [ "IMPEDIMENTO - LEI DO PREGãO",
+                          "Impedimento - Lei do Pregão" ],
+                        [ "PROIBIçãO - LEI ELEITORAL",
+                          "Proibição - Lei Eleitoral" ],
+                        [ "INIDONEIDADE - LEI DE LICITAçõES",
+                          "Inidoneidade - Lei de Licitações" ],
+                        [ "SUSPENSãO - LEI DE LICITAçõES",
+                          "Suspensão - Lei de Impedimento Licitações" ],
+                        [ "SUSPENSãO - LEGISLAçãO ESTADUAL",
+                          "Suspensão - Legislação estadual" ],
+                        [ "PROIBIçãO - LEI DE IMPROBIDADE",
+                          "Proibição - Lei de improbidade" ],
+                        [ "DECISãO JUDICIAL LIMINAR/CAUTELAR QUE IMPEçA
+                          CONTRATAçãO",
+                          "Decisão Judicial liminar" ],
+                        [ "INIDONEIDADE - LEI DA ANTT E ANTAQ ",
+                          "Inidoneidade - Lei da ANTT e ANTAQ" ],
+                        [ "INIDONEIDADE - LEI ORGâNICA TCU",
+                          "Inidoneidade - Lei Orgânica TCU" ],
+                        [ "IMPEDIMENTO - LEGISLAçãO ESTADUAL",
+                          "Impedimento - Legislação Estadual" ],
+                        [ "SUSPENSãO E IMPEDIMENTO - LEI DE ACESSO à INFORMAçãO",
+                          "Suspensão e Impedimento - Lei de Acesso à Informação" ],
+                        [ "PROIBIçãO - LEI ANTITRUSTE",
+                          "Proibição - Lei Antitruste" ],
+                        [ "IMPEDIMENTO - LEI DO RDC",
+                          "Impedimento - Lei do RDC" ],
+                        [ "PROIBIçãO - LEI AMBIENTAL",
+                          "Proibição - Lei Ambiental" ],
                       ]
+
     stantion_types
   end
 

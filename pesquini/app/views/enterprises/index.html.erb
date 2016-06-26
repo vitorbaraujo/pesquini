@@ -1,7 +1,7 @@
 <!--
-File: index.html.erb
-Purpose: File that shows all enterprises searched
-License : LGPL. No copyright.
+  File: index.html.erb
+  Purpose: File that shows all enterprises searched
+  License : LGPL. No copyright.
 -->
 
 <div id="enterprises_index">
@@ -18,10 +18,10 @@ License : LGPL. No copyright.
         <h1>Ferramenta de busca</h1>
         <hr>
 
-        <%= search_form_for @search do |f| %>
-          <%= f.label :corporate_name_cont, "Nome ou CNPJ:" %>
-          <%= f.search_field :corporate_name_cont%>
-          <%= f.submit %>
+        <%= search_form_for @search do |form_attributes| %>
+          <%= form_attributes.label :corporate_name_cont, "Nome ou CNPJ:" %>
+          <%= form_attributes.search_field :corporate_name_cont%>
+          <%= form_attributes.submit %>
         <% end %>
 
       </div>
@@ -36,25 +36,24 @@ License : LGPL. No copyright.
 
   <div class="container">
 
-    <% if @enterprises.blank? %>
+    <% if !@enterprises.blank? %>
+      <div class="entreprises_title">
+        <h1> Lista das empresas encontradas</h1>
+        <hr>
+      </div>
+
+      <% @enterprises.each do |enterprise| %>
+        <span class="same_line">  <h3>Empresa:</h3><%= link_to enterprise.corporate_name, enterprise %>  </span>
+        <span class="same_line">  <h3>CNPJ:</h3> <%= enterprise.cnpj %>  </span>
+        <hr>
+      <% end %>
+    <% else %>
       <div class="entreprises_title">
         <h3>
           Não existem sanções contra a empresa procurada.
         </h3>
         <hr>
       </div>
-    <% else %>
-      <div class="entreprises_title">
-      <h1> Lista das empresas encontradas</h1>
-      <hr>
-      </div>
-
-      <% @enterprises.each do |p| %>
-        <span class="same_line">  <h3>Empresa:</h3><%= link_to p.corporate_name, p %>  </span>
-        <span class="same_line">  <h3>CNPJ:</h3> <%= p.cnpj %>  </span>
-        <hr>
-      <% end %>
-
     <% end %>
 
     <div class="pagination">

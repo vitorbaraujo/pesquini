@@ -9,9 +9,10 @@ class SessionsController < ApplicationController
     password = params[:session][:password]
     user = User.find_by(login: login)
 
-    if user && user.authenticate(password)
+    if (user && user.authenticate(password))
       sign_in user
-      redirect_to root_path
+    return redirect_to root_path
+    
     else
       flash[:error] = "Login ou senha invalidos!"
       render :new
@@ -19,9 +20,13 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    if signed_in?
+    if (signed_in?)
       sign_out 
-      redirect_to root_path
+    return redirect_to root_path
     end
   end
+
+    else 
+      # Nothing to do
+    end 
 end
