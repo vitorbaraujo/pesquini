@@ -18,4 +18,12 @@ class ApplicationController < ActionController::Base
       render_not_found.html{ render :template => "errors/404", :status => 404 }
     end
   end
+
+  def assert(condition)
+   if(condition)
+     # nothing to do
+   else
+     raise_not_found!
+   end
+  end
 end
