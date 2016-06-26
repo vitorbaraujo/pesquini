@@ -22,6 +22,7 @@ class StatisticsController < ApplicationController
   # return: none
 
   def  index
+    return
   end
 
   # name: most_sanctioned_ranking
@@ -35,6 +36,8 @@ class StatisticsController < ApplicationController
     enterprise_group_array = Enterprise.most_sanctioned_ranking
     @enterprise_group = enterprise_group_array[0]
     @enterprise_group_count = enterprise_group_array[1]
+
+    return enterprise_group_array
   end
 
   # name: most_paymented_ranking
@@ -52,6 +55,8 @@ class StatisticsController < ApplicationController
     else
       @enterprises = Enterprise.featured_payments(10)
     end
+
+    return @enterprises
   end
 
   # name: enterprise_group_ranking
@@ -63,6 +68,8 @@ class StatisticsController < ApplicationController
   def enterprise_group_ranking
     @quantidade = params[:sanctions_count]
     @enterprises = Enterprise.where(sanctions_count: @quantidade).paginate(:page => params[:page], :per_page => 10)
+
+    return @enterprises
   end
 
   # name: payment_group_ranking
@@ -74,6 +81,8 @@ class StatisticsController < ApplicationController
   def payment_group_ranking
     @quantidade = params[:payments_count]
     @enterprises = Enterprise.where(payments_count: @quantidade).paginate(:page => params[:page], :per_page => 10)
+
+    return @enterprises
   end
 
   # name: sanction_by_state_graph
@@ -90,9 +99,13 @@ class StatisticsController < ApplicationController
     # Graphic structure
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(:text => titulo)
+
       if(params[:year_].to_i != 0)
-         f.title(:text => paras[:year_].to_i )
-       end
+        f.title(:text => paras[:year_].to_i )
+      else
+        #nothing to do
+      end
+
       f.xAxis(:categories => @@states_list)
       f.series(:name => "Número de Sanções", :yAxis => 0, :data => total_by_state)
       f.yAxis [
@@ -102,6 +115,7 @@ class StatisticsController < ApplicationController
       f.chart({:defaultSeriesType=>"column"})
     end
 
+    return @chart
   end
 
   # name: sanction_by_type_graph
@@ -139,11 +153,15 @@ class StatisticsController < ApplicationController
     if (!@states)
       @states = @@states_list.clone
       @states.unshift("Todos")
+    else
+      #nothing to do
     end
     respond_to do |format|
       format.html # show.html.erb
       format.js
     end
+
+    return @chart
   end
 
   # name: total_by_state
@@ -163,14 +181,16 @@ class StatisticsController < ApplicationController
         sanctions_by_state.each do |s|
           if(s.initial_date.year ==  params[:year_].to_i)
             selected_year << s
+          else
+            #nothing to do
           end
-      end
+        end
         results << (selected_year.count)
       else
         results << (sanctions_by_state.count)
       end
     end
-    results
+    return results
   end
 
   # name: total_by_type
@@ -180,6 +200,7 @@ class StatisticsController < ApplicationController
   # return: the number of total.
 
   def total_by_type()
+    #Iniciating variables
     results = []
     results2 = []
     cont = 0
@@ -191,6 +212,8 @@ class StatisticsController < ApplicationController
       sanctions_by_type = Sanction.where(sanction_type:  sanction)
       if (params[:state_] && params[:state_] != "Todos")
         sanctions_by_type = sanctions_by_type.where(state_id: state[:id])
+      else
+        #nothing to do
       end
       cont = cont + (sanctions_by_type.count)
       results2 << s[1]
@@ -207,6 +230,6 @@ class StatisticsController < ApplicationController
     results2 << (total - cont)
     results << results2
     results = results.sort_by { |i| i[0] }
-    results
+    return results
   end
 end

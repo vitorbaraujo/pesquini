@@ -66,10 +66,10 @@ class Parser::ParserController < ApplicationController
   def check_and_save(c)
     begin
       c.save!
-      c
+      return c
     rescue ActiveRecord::RecordInvalid
       c = c.refresh!
-      c
+      return c
     end
   end
 

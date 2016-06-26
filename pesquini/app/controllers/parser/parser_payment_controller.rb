@@ -28,6 +28,7 @@ class Parser::ParserPaymentController < Parser::ParserController
   # return: none
 
   def index
+    return
   end
 
   # name: check_value
@@ -54,7 +55,9 @@ class Parser::ParserPaymentController < Parser::ParserController
   # return: an Payment.
 
   def import
+    #Iniciating variables
     constante = 0
+
     Enterprise.find_each do |e|
 
       # Url where the government data is hosted
@@ -81,7 +84,7 @@ class Parser::ParserPaymentController < Parser::ParserController
       end
     end
     puts "="*50
-    puts "Quantidade de empresas sem pagamentos: ", constante
+    return puts "Quantidade de empresas sem pagamentos: ", constante
   end
 
   # name: check_and_save
@@ -93,10 +96,10 @@ class Parser::ParserPaymentController < Parser::ParserController
   def check_and_save(c)
     begin
       c.save!
-      c
+      return c
     rescue ActiveRecord::RecordInvalid
       c = c.refresh!
-      c
+      return c
     end
   end
 end

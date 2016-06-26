@@ -29,6 +29,7 @@ class Parser::ParserCeiController < Parser::ParserController
   # return: none
 
   def index
+    return
   end
 
   # name: check_nil_ascii
@@ -66,6 +67,7 @@ class Parser::ParserCeiController < Parser::ParserController
   # return: a hash with the read data.
 
   def import
+    #Iniciating variables
     xd = 0
     CSV.foreach(@@filename, :headers => true, :col_sep => "\t",
                 :encoding => 'ISO-8859-1') do |row|
@@ -83,45 +85,48 @@ class Parser::ParserCeiController < Parser::ParserController
   # explanation: This method saves a instance of State.
   # parameters:
   # - row_data
-  # return: A State.
+  # return: A instance of State.
 
   def build_state(row_data)
     s = State.new
     s.abbreviation = check_nil_ascii(row_data["UF Órgão Sancionador"])
-    check_and_save(s)
+
+    return check_and_save(s)
   end
 
   # name: build_sanction_type
   # explanation: This method saves a instance of SanctionType.
   # parameters:
   # - row_data
-  # return: A SanctionType.
+  # return: A instance of SanctionType.
 
   def build_sanction_type(row_data)
     s = SanctionType.new
     s.description = check_nil_ascii(row_data["Tipo Sanção"])
-    check_and_save(s)
+
+    return check_and_save(s)
   end
 
   # name: build_enterprise
   # explanation: This method saves a instance of Enterprise.
   # parameters:
   # - row_data
-  # return: An Enterprise.
+  # return: A instance of Enterprise.
 
   def build_enterprise(row_data)
     e = Enterprise.new
     e.cnpj = row_data["CPF ou CNPJ do Sancionado"]
     # e.trading_name = check_nil_ascii(row_data["Nome Fantasia - Cadastro Receita"])
     e.corporate_name = check_nil_ascii(row_data["Razão Social - Cadastro Receita"])
-    check_and_save(e)
+
+    return check_and_save(e)
   end
 
   # name: build_sanction
   # explanation: This method saves a instance of Sanction.
   # parameters:
   # - row_data
-  # return: A Sanction.
+  # return: A instance of Sanction.
 
   def build_sanction(row_data, sanction_type, state, enterprise)
     s = Sanction.new
@@ -132,7 +137,8 @@ class Parser::ParserCeiController < Parser::ParserController
     s.sanction_type_id = sanction_type.id
     s.sanction_organ = check_nil_ascii(row_data["Órgão Sancionador"])
     s.state_id = state.id
-    check_and_save(s)
+    
+    return check_and_save(s)
   end
 
   # name: check_and_save
@@ -144,10 +150,10 @@ class Parser::ParserCeiController < Parser::ParserController
   def check_and_save(c)
     begin
       c.save!
-      c
+      return c
     rescue ActiveRecord::RecordInvalid
       c = c.refresh!
-      c
+      return c
     end
   end
 
