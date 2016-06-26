@@ -83,7 +83,7 @@ class Parser::ParserCeiController < Parser::ParserController
   # explanation: This method saves a instance of State.
   # parameters:
   # - row_data
-  # return: A State.
+  # return: A instance of State.
 
   def build_state(row_data)
     s = State.new
@@ -95,7 +95,7 @@ class Parser::ParserCeiController < Parser::ParserController
   # explanation: This method saves a instance of SanctionType.
   # parameters:
   # - row_data
-  # return: A SanctionType.
+  # return: A instance of SanctionType.
 
   def build_sanction_type(row_data)
     s = SanctionType.new
@@ -107,7 +107,7 @@ class Parser::ParserCeiController < Parser::ParserController
   # explanation: This method saves a instance of Enterprise.
   # parameters:
   # - row_data
-  # return: An Enterprise.
+  # return: A instance of Enterprise.
 
   def build_enterprise(row_data)
     e = Enterprise.new
@@ -121,7 +121,7 @@ class Parser::ParserCeiController < Parser::ParserController
   # explanation: This method saves a instance of Sanction.
   # parameters:
   # - row_data
-  # return: A Sanction.
+  # return: A instance of Sanction.
 
   def build_sanction(row_data, sanction_type, state, enterprise)
     s = Sanction.new
