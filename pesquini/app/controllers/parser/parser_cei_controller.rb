@@ -88,10 +88,13 @@ class Parser::ParserCeiController < Parser::ParserController
   # return: A instance of State.
 
   def build_state(row_data)
-    s = State.new
-    s.abbreviation = check_nil_ascii(row_data["UF Órgão Sancionador"])
+    state = State.new
 
-    return check_and_save(s)
+    assert(state.kind_of?(State))
+
+    state.abbreviation = check_nil_ascii(row_data["UF Órgão Sancionador"])
+
+    return check_and_save(state)
   end
 
   # name: build_sanction_type
@@ -101,10 +104,13 @@ class Parser::ParserCeiController < Parser::ParserController
   # return: A instance of SanctionType.
 
   def build_sanction_type(row_data)
-    s = SanctionType.new
-    s.description = check_nil_ascii(row_data["Tipo Sanção"])
+    sanction = SanctionType.new
 
-    return check_and_save(s)
+    assert(sanction.kind_of?(Sanction))
+
+    sanction.description = check_nil_ascii(row_data["Tipo Sanção"])
+
+    return check_and_save(sanction)
   end
 
   # name: build_enterprise
@@ -114,12 +120,14 @@ class Parser::ParserCeiController < Parser::ParserController
   # return: A instance of Enterprise.
 
   def build_enterprise(row_data)
-    e = Enterprise.new
-    e.cnpj = row_data["CPF ou CNPJ do Sancionado"]
-    # e.trading_name = check_nil_ascii(row_data["Nome Fantasia - Cadastro Receita"])
-    e.corporate_name = check_nil_ascii(row_data["Razão Social - Cadastro Receita"])
+    enterprise = Enterprise.new
 
-    return check_and_save(e)
+    assert(enterprise.kind_of?(Enterprise))
+
+    enterprise.cnpj = row_data["CPF ou CNPJ do Sancionado"]
+    enterprise.corporate_name = check_nil_ascii(row_data["Razão Social - Cadastro Receita"])
+
+    return check_and_save(enterprise)
   end
 
   # name: build_sanction
@@ -129,16 +137,19 @@ class Parser::ParserCeiController < Parser::ParserController
   # return: A instance of Sanction.
 
   def build_sanction(row_data, sanction_type, state, enterprise)
-    s = Sanction.new
-    s.initial_date = check_date(row_data["Data Início Sanção"])
-    s.final_date = check_date(row_data["Data Final Sanção"])
-    s.process_number = check_nil_ascii(row_data["Número do processo"])
-    s.enterprise_id = enterprise.id
-    s.sanction_type_id = sanction_type.id
-    s.sanction_organ = check_nil_ascii(row_data["Órgão Sancionador"])
-    s.state_id = state.id
+    sanction = Sanction.new
 
-    return check_and_save(s)
+    assert(sanction.kind_of?(Sanction))
+
+    sanction.initial_date = check_date(row_data["Data Início Sanção"])
+    sanction.final_date = check_date(row_data["Data Final Sanção"])
+    sanction.process_number = check_nil_ascii(row_data["Número do processo"])
+    sanction.enterprise_id = enterprise.id
+    sanction.sanction_type_id = sanction_type.id
+    sanction.sanction_organ = check_nil_ascii(row_data["Órgão Sancionador"])
+    sanction.state_id = state.id
+
+    return check_and_save(sanction)
   end
 
   # name: check_and_save

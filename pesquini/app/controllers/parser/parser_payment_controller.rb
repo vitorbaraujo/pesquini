@@ -60,7 +60,7 @@ class Parser::ParserPaymentController < Parser::ParserController
 
     Enterprise.find_each do |enterprise|
 
-      assert(enterprise.kind_of?(Sanction))
+      assert(enterprise.kind_of?(Enterprise))
 
       # Url where the government data is hosted
       url = 'http://compras.dados.gov.br/contratos/v1/contratos.csv?cnpj_contratada='
