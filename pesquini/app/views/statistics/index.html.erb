@@ -14,16 +14,23 @@ License : LGPL. No copyright.
       <div class="col-md-6">
         <div class="about-text">
           <div class="section-title">
-            <h2><strong>Estados </strong>com mais sanções</h2>
+            <% states_with_most_sanctions = "Estados com mais sanções" %>
+            <h2>
+              <%= states_with_most_sanctions %>
+            </h2>
             <hr>
             <div class="clearfix">
             </div>
           </div>
-          <p class="intro"> Este gráfico ilustra quais tipo de sanções as empresas brasileiras mais sofreram de forma geral. Como também demonstra através de um filtro por estado, qual o tipo de sanção mais ocorreu em cada uma das unidades federativas do Brasil. </p>
+          <% graph_most_suffered_sanctions = "Este gráfico ilustra quais tipo de sanções as empresas brasileiras mais sofreram de forma geral. Como também demonstra através de um filtro por estado, qual o tipo de sanção mais ocorreu em cada uma das unidades federativas do Brasil." %>
+          <p class="intro"><%= graph_most_suffered_sanctions %></p>
           <ul class="about-list">
             <li>
               <span class="fa fa-dot-circle-o"></span>
-              <strong>Link</strong> -  <a href ="/statistics/sanction_by_state_graph"><em>Clique aqui para ser redirecionado para a página.</em></a>
+              <% links = "Link -" %>
+              <% redirect = "Clique aqui para ser redirecionado para a página" %>
+
+              <strong><%= links %></strong><a href ="/statistics/sanction_by_state_graph"><em><%= redirect %></em></a>
             </li>
           </ul>
         </div>
@@ -44,11 +51,15 @@ License : LGPL. No copyright.
       <div class="col-md-6">
         <div class="about-text">
           <div class="section-title">
-            <h2><strong>Empresas </strong>com mais sanções</h2>
+            <% enterprises_with_most_sanction = "Empresas com mais sanções" %>
+            <h2>
+              <%= enterprises_with_most_sanction%>
+            </h2>
             <hr>
             <div class="clearfix"></div>
           </div>
-          <p class="intro">Este ranking possui informações sobre as empresas que mais receberam sanções desde 1988, separando-as por grupos de número de sanções</p>
+          <% introduction = "Este ranking possui informações sobre as empresas que mais receberam sanções desde 1988, separando-as por grupos de número de sanções" %>
+          <p class="intro"><%= introduction %></p>
           <ul class="about-list">
             <li>
               <span class="fa fa-dot-circle-o"></span>
@@ -81,7 +92,7 @@ License : LGPL. No copyright.
           <ul class="about-list">
             <li>
               <span class="fa fa-dot-circle-o"></span>
-              <strong>Link</strong> -  <a href ="/statistics/sanction_by_type_graph"><em>Clique aqui para ser redirecionado para a página...</em></a>
+              <strong><%= links %></strong><a href ="/statistics/sanction_by_type_graph"><em><%= redirect %></em></a>
             </li>
           </ul>
         </div>
@@ -101,15 +112,20 @@ License : LGPL. No copyright.
       <div class="col-md-6">
         <div class="about-text">
           <div class="section-title">
-            <h2><strong>Empresas </strong>com mais pagamentos</h2>
+            <% enterprises_with_most_payment = "Empresas com mais pagamentos" %>
+            <h2><%= enterprises_with_most_payment %></h2>
             <hr>
             <div class="clearfix"></div>
           </div>
-          <p class="intro">Nesse tópico está disponivel o ranking com as informações sobre as empresas que mais recebram pagamentos referentes a licitaçoes do governo desde o começo da obtenção de dados.</p>
+          <% another_introduction = "Nesse tópico está disponivel o ranking com as informações sobre as empresas que mais recebram pagamentos referentes a licitaçoes do governo desde o começo da obtenção de dados." %>
+
+          <p class="intro">
+            <%= another_introduction %>
+          </p>
           <ul class="about-list">
             <li>
               <span class="fa fa-dot-circle-o"></span>
-              <strong>Link</strong> -  <a href ="/statistics/most_paymented_ranking"><em> Clique aqui para ser redirecionado para a página ...</em></a>
+              <strong><%= links %></strong><a href ="/statistics/most_paymented_ranking"><em><%= redirect %></em></a>
             </li>
           </ul>
         </div>
