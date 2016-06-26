@@ -8,7 +8,7 @@
 class UsersController < ApplicationController
 
   # name: new
-  # explanation: this method instantiates a new user
+  # explanation: this method instantiates a new user to be used in the view
   # parameters:
   # - none
   # return: object of type User

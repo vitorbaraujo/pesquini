@@ -13,7 +13,7 @@ class WelcomeController < ApplicationController
   # - none
   # return: relation of objects of type Enterprise
   def index
-    @enterprises = nil
+    @searched_enterprises = nil
     @search = nil
     parameters_to_search = []
 
@@ -28,15 +28,15 @@ class WelcomeController < ApplicationController
       assert(@search.kind_of?(Ransack::Search))
     end
 
-    @enterprises = @search.result
+    @searched_enterprises = @search.result
 
-    assert(@enterprises.kind_of?(Enterprise::ActiveRecord_Relation))
+    assert(@searched_enterprises.kind_of?(Enterprise::ActiveRecord_Relation))
 
-    @enterprises.each do |enterprise|
+    @searched_enterprises.each do |enterprise|
       assert(enterprise.kind_of?(Enterprise))
     end
 
-    return @enterprises
+    return @searched_enterprises
   end
 
 end
