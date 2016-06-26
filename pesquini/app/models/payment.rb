@@ -18,6 +18,7 @@ class Payment < ActiveRecord::Base
 
   def refresh!
     p = Payment.find_by_process_number(self.process_number)
+    return p
   end
   
 end
