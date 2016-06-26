@@ -6,12 +6,15 @@ License : LGPL. No copyright.
 
 <div class="container">
  <%= render 'back_button' %>
- <h2 align="center">Ranking das empresas que mais receberam verba em pagamentos</h2>
+ <% verb_ranking = "Ranking das empresas que mais receberam verba em pagamentos" %>
+ <h2 align="center"><%= verb_ranking %></h2>
  <br><br>
 
- <%@enterprises.each_with_index do |e, index| %>
- <h3><%= index + 1 %> )  <%= link_to e.corporate_name, e %><br></h3>
- <B>Total de pagamentos feitos a empresa:</B> <%=  number_to_currency(e.payments_sum, unit: "R$ ", separator: ",", delimiter: ".") %>
+ <%@enterprises.each_with_index do |enterprise, position| %>
+ <% message = "#{position+1} ) " %>
+ <h3><%= message %><%= link_to enterprise.corporate_name, enterprise %><br></h3>
+ <% another_message = "Total de pagamentos feitos a empresa: #{number_to_currency(enterprise.payments_sum, unit: "R$ ", separator: ",", delimiter: ".")}" %>
+ <B><%= another_message  %></B>
  <% end %>
 </div>
 
