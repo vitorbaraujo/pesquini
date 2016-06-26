@@ -1,16 +1,41 @@
+# File: paerser_cei_controller.rb
+# Purpose: Implementation of parser cei controller.
+# License: LGPL. No copyright.
+
+# This class of the controller sets the behavior for parsing enterprise, 
+# state and sanctions.
+
 class Parser::ParserCeiController < Parser::ParserController
 
   require 'csv'
+
+  # Path to file for parser
   @@filename = 'parser_data/CEIS.csv'
 
-  before_filter :authorize, only: [:check_nil_ascii, :check_date, :import, 
-                                       :build_state, :build_sanction_type, 
-                                       :build_enterprise, :build_sanction, 
-                                       :check_and_save]
+  # Specify that the filter should be applied to the given controller actions
+  before_filter :authorize, only: [:check_nil_ascii, 
+                                    :check_date, 
+                                    :import, 
+                                    :build_state, 
+                                    :build_sanction_type, 
+                                    :build_enterprise, 
+                                    :build_sanction, 
+                                    :check_and_save]
+
+  # name: index
+  # explanation: This method calls a view and has no logic implemented.
+  # parameters:
+  # - none
+  # return: none
 
   def index
-
   end
+
+  # name: check_nil_ascii
+  # explanation: This method checks if the field is empty.
+  # parameters:
+  # - text
+  # return: Text in upcase or the message "Não Informado".
 
   def check_nil_ascii(text)
     if text.include?("\u0000")
@@ -20,6 +45,12 @@ class Parser::ParserCeiController < Parser::ParserController
     end
   end
 
+  # name: check_date
+  # explanation: This method converts text in the format of date.
+  # parameters:
+  # - text
+  # return: the date format of text.
+
   def check_date(text)
     begin
       return text.to_date
@@ -27,6 +58,12 @@ class Parser::ParserCeiController < Parser::ParserController
       return nil
     end
   end
+
+  # name: import
+  # explanation: This method import datas of the file.
+  # parameters:
+  # - none
+  # return: a hash with the read data.
 
   def import
     xd = 0
@@ -42,17 +79,35 @@ class Parser::ParserCeiController < Parser::ParserController
     end
   end
 
+  # name: build_state
+  # explanation: This method saves a instance of State.
+  # parameters:
+  # - row_data
+  # return: A State.
+
   def build_state(row_data)
     s = State.new
     s.abbreviation = check_nil_ascii(row_data["UF Órgão Sancionador"])
     check_and_save(s)
   end
 
+  # name: build_sanction_type
+  # explanation: This method saves a instance of SanctionType.
+  # parameters:
+  # - row_data
+  # return: A SanctionType.
+
   def build_sanction_type(row_data)
     s = SanctionType.new
     s.description = check_nil_ascii(row_data["Tipo Sanção"])
     check_and_save(s)
   end
+
+  # name: build_enterprise
+  # explanation: This method saves a instance of Enterprise.
+  # parameters:
+  # - row_data
+  # return: An Enterprise.
 
   def build_enterprise(row_data)
     e = Enterprise.new
@@ -61,6 +116,12 @@ class Parser::ParserCeiController < Parser::ParserController
     e.corporate_name = check_nil_ascii(row_data["Razão Social - Cadastro Receita"])
     check_and_save(e)
   end
+
+  # name: build_sanction
+  # explanation: This method saves a instance of Sanction.
+  # parameters:
+  # - row_data
+  # return: A Sanction.
 
   def build_sanction(row_data, sanction_type, state, enterprise)
     s = Sanction.new
@@ -74,6 +135,12 @@ class Parser::ParserCeiController < Parser::ParserController
     check_and_save(s)
   end
 
+  # name: check_and_save
+  # explanation: This method checks the data received and save it.
+  # parameters:
+  # - c
+  # return: a C.
+
   def check_and_save(c)
     begin
       c.save!
@@ -83,4 +150,5 @@ class Parser::ParserCeiController < Parser::ParserController
       c
     end
   end
+
 end

@@ -21,6 +21,15 @@ class Parser::ParserPaymentController < Parser::ParserController
                                     :build_sanction, 
                                     :check_and_save]
 
+  # name: index
+  # explanation: This method calls a view and has no logic implemented.
+  # parameters:
+  # - none
+  # return: none
+
+  def index
+  end
+
   # name: check_value
   # explanation: This method recieves a string representing a payment value in 
   # and make a convertion of type.
