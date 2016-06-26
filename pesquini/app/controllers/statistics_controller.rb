@@ -1,29 +1,48 @@
+# File: statistics_controller.rb
+# Purpose: Implementation of Statistics Controller
+# License: LGPL. No copyright.
+
+# This controller calculates the statistics with the data application
+
 class StatisticsController < ApplicationController
 
+# Globals variables
 
-######################################################
-# Declarações de variáveis Globais
-
+#List all states
 @@states_list = State.all_states
-
+#List all years
 @@sanjana = Sanction.all_years
-
+#List all types
 @@sanction_type_list = SanctionType.all_sanction_types
 
-
-######################################################
-# Métodos da controller
+  # name: index
+  # explanation: This method calls a view and has no logic implemented.
+  # parameters:
+  # - none
+  # return: none
 
   def  index
   end
 
-  def most_sanctioned_ranking
+  # name: most_sanctioned_ranking
+  # explanation: This method makes a ranking of the enterprise that 
+  # was sanctioned more.
+  # parameters:
+  # - none
+  # return: an array with the ranking.
 
+  def most_sanctioned_ranking
     enterprise_group_array = Enterprise.most_sanctioned_ranking
     @enterprise_group = enterprise_group_array[0]
     @enterprise_group_count = enterprise_group_array[1]
-
   end
+
+  # name: most_paymented_ranking
+  # explanation: This method makes a ranking of the enterprise that 
+  # was paymented more.
+  # parameters:
+  # - none
+  # return: an array with the ranking and paginate ranking.
 
   def most_paymented_ranking
     @all = false
@@ -35,24 +54,44 @@ class StatisticsController < ApplicationController
     end
   end
 
+  # name: enterprise_group_ranking
+  # explanation: This method paginates enterprises sanctions by ten per page.
+  # parameters:
+  # - none
+  # return: the pagines.
+
   def enterprise_group_ranking
     @quantidade = params[:sanctions_count]
     @enterprises = Enterprise.where(sanctions_count: @quantidade).paginate(:page => params[:page], :per_page => 10)
   end
+
+  # name: payment_group_ranking
+  # explanation: This method paginates enterprises payments by ten per page.
+  # parameters:
+  # - none
+  # return: the pagines.
 
   def payment_group_ranking
     @quantidade = params[:payments_count]
     @enterprises = Enterprise.where(payments_count: @quantidade).paginate(:page => params[:page], :per_page => 10)
   end
 
+  # name: sanction_by_state_graph
+  # explanation: This method makes the graph of sanctions per state.
+  # parameters:
+  # - none
+  # return: the graph.
+
   def sanction_by_state_graph
     gon.states = @@states_list
     gon.dados = total_by_state
     titulo = "Gráfico de Sanções por Estado"
+
+    # Graphic structure
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(:text => titulo)
       if(params[:year_].to_i != 0)
-         f.title(:text => params[:year_].to_i )
+         f.title(:text => paras[:year_].to_i )
        end
       f.xAxis(:categories => @@states_list)
       f.series(:name => "Número de Sanções", :yAxis => 0, :data => total_by_state)
@@ -62,11 +101,19 @@ class StatisticsController < ApplicationController
       f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
       f.chart({:defaultSeriesType=>"column"})
     end
+
   end
 
+  # name: sanction_by_type_graph
+  # explanation: This method makes the graph of sanctions per type.
+  # parameters:
+  # - none
+  # return: the graph.
 
  def sanction_by_type_graph
     titulo = "Gráfico Sanções por Tipo"
+
+    # Graphic structure
     @chart = LazyHighCharts::HighChart.new('pie') do |f|
         f.chart({:defaultSeriesType=>"pie" ,:margin=> [50, 10, 10, 10]} )
         f.series({
@@ -88,7 +135,7 @@ class StatisticsController < ApplicationController
           }
         })
     end
-
+    
     if (!@states)
       @states = @@states_list.clone
       @states.unshift("Todos")
@@ -97,14 +144,15 @@ class StatisticsController < ApplicationController
       format.html # show.html.erb
       format.js
     end
-
   end
 
+  # name: total_by_state
+  # explanation: This method count the total numner of sanctions per state.
+  # parameters:
+  # - none
+  # return: the number of total.
 
-######################################################
-# Métoodos auxiliares
-
-  def total_by_state()
+  def total_by_state
     results = []
     @years = @@sanjana
     @@states_list.each do |s|
@@ -125,6 +173,11 @@ class StatisticsController < ApplicationController
     results
   end
 
+  # name: total_by_type
+  # explanation: This method count the total numner of sanctions per type.
+  # parameters:
+  # - none
+  # return: the number of total.
 
   def total_by_type()
     results = []
