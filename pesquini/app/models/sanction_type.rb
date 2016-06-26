@@ -20,7 +20,7 @@ class SanctionType < ActiveRecord::Base
 
     description = self.description
 
-    if description
+    if !description.nil?
       single_sanction = SanctionType.find_by_description(description)
     else
       # nothing to do
@@ -36,7 +36,7 @@ class SanctionType < ActiveRecord::Base
   # - none
   # return: a hash containing all sanction types
   def self.all_sanction_types
-    stantion_types =  [
+    sanction_types_hash =  [
                         [ "INIDONEIDADE - LEGISLAçãO ESTADUAL",
                          "Inidoneidade - Legislação Estadual" ],
                         [ "IMPEDIMENTO - LEI DO PREGãO",
@@ -70,7 +70,15 @@ class SanctionType < ActiveRecord::Base
                           "Proibição - Lei Ambiental" ],
                       ]
 
-    stantion_types
+    sanction_types = []
+
+    if !sanction_types_hash.nil?
+      sanction_types = sanction_types_hash
+    else
+      # nothing to do
+    end
+
+    sanction_types
   end
 
 end
