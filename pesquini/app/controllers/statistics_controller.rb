@@ -8,11 +8,11 @@ class StatisticsController < ApplicationController
 
 # Globals variables
 
-#List all states
+#List of all states
 @@states_list = State.all_states
-#List all years
+#List of all years
 @@sanjana = Sanction.all_years
-#List all types
+#List of all types
 @@sanction_type_list = SanctionType.all_sanction_types
 
   # name: index
@@ -92,21 +92,21 @@ class StatisticsController < ApplicationController
   # return: the graph.
 
   def sanction_by_state_graph
-    gon.states = @@states_list
-    gon.dados = total_by_state
-    titulo = "Gráfico de Sanções por Estado"
+    # Iniciating variables
+    list_states = @@states_list
+    graph_tittle = "Gráfico de Sanções por Estado"
 
     # Graphic structure
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title(:text => titulo)
+      f.title(:text => graph_tittle)
 
       if(params[:year_].to_i != 0)
-        f.title(:text => paras[:year_].to_i )
+        f.title(:text => params[:year_].to_i )
       else
         #nothing to do
       end
 
-      f.xAxis(:categories => @@states_list)
+      f.xAxis(:categories => list_states)
       f.series(:name => "Número de Sanções", :yAxis => 0, :data => total_by_state)
       f.yAxis [
       {:title => {:text => "Sanções", :margin => 30} },
@@ -125,7 +125,8 @@ class StatisticsController < ApplicationController
   # return: the graph.
 
  def sanction_by_type_graph
-    titulo = "Gráfico Sanções por Tipo"
+    # Iniciating variables
+    graph_tittle = "Gráfico Sanções por Tipo"
 
     # Graphic structure
     @chart = LazyHighCharts::HighChart.new('pie') do |f|
@@ -135,7 +136,7 @@ class StatisticsController < ApplicationController
                  :name=> 'Sanções Encontradas',
                  :data => total_by_type
         })
-        f.options[:title][:text] = titulo
+        f.options[:title][:text] = graph_tittle
         f.legend(:layout=> 'vertical',:style=> {:left=> 'auto', :bottom=> 'auto', :right=> '50px', :top=> '100px'})
         f.plot_options(:pie=>{
           :allowPointSelect=>true,
@@ -171,8 +172,10 @@ class StatisticsController < ApplicationController
   # return: the number of total.
 
   def total_by_state
+    # Iniciating variables
     results = []
     @years = @@sanjana
+    
     @@states_list.each do |s|
       state = State.find_by_abbreviation("#{s}")
       sanctions_by_state = Sanction.where(state_id: state[:id])
