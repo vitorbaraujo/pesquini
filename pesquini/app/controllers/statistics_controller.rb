@@ -90,9 +90,13 @@ class StatisticsController < ApplicationController
     # Graphic structure
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(:text => titulo)
+
       if(params[:year_].to_i != 0)
-         f.title(:text => paras[:year_].to_i )
-       end
+        f.title(:text => paras[:year_].to_i )
+      else
+        #nothing to do
+      end
+
       f.xAxis(:categories => @@states_list)
       f.series(:name => "Número de Sanções", :yAxis => 0, :data => total_by_state)
       f.yAxis [
@@ -139,6 +143,8 @@ class StatisticsController < ApplicationController
     if (!@states)
       @states = @@states_list.clone
       @states.unshift("Todos")
+    else
+      #nothing to do
     end
     respond_to do |format|
       format.html # show.html.erb
@@ -163,8 +169,10 @@ class StatisticsController < ApplicationController
         sanctions_by_state.each do |s|
           if(s.initial_date.year ==  params[:year_].to_i)
             selected_year << s
+          else
+            #nothing to do
           end
-      end
+        end
         results << (selected_year.count)
       else
         results << (sanctions_by_state.count)
@@ -180,6 +188,7 @@ class StatisticsController < ApplicationController
   # return: the number of total.
 
   def total_by_type()
+    #Iniciating variables
     results = []
     results2 = []
     cont = 0
@@ -191,6 +200,8 @@ class StatisticsController < ApplicationController
       sanctions_by_type = Sanction.where(sanction_type:  sanction)
       if (params[:state_] && params[:state_] != "Todos")
         sanctions_by_type = sanctions_by_type.where(state_id: state[:id])
+      else
+        #nothing to do
       end
       cont = cont + (sanctions_by_type.count)
       results2 << s[1]
