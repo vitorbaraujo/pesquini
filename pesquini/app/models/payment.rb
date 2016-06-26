@@ -17,8 +17,8 @@ class Payment < ActiveRecord::Base
   # return: A instance of Payment.
 
   def refresh!
-    p = Payment.find_by_process_number(self.process_number)
-    return p
+    payment = Payment.find_by_process_number(self.process_number)
+    return payment
   end
   
 end
