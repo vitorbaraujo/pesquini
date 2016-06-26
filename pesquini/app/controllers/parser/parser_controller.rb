@@ -63,13 +63,13 @@ class Parser::ParserController < ApplicationController
   # - c
   # return: a C.
 
-  def check_and_save(c)
+  def check_and_save(data_text)
     begin
-      c.save!
-      return c
+      data_text.save!
+      return data_text
     rescue ActiveRecord::RecordInvalid
-      c = c.refresh!
-      return c
+      data_text = data_text.refresh!
+      return data_text
     end
   end
 

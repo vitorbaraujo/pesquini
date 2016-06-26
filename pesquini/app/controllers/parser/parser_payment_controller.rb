@@ -52,7 +52,7 @@ class Parser::ParserPaymentController < Parser::ParserController
   # explanation: This method recieves the data of the file.
   # parameters:
   # - none
-  # return: an Payment.
+  # return: A instance of Payment.
 
   def import
     #Iniciating variables
@@ -62,6 +62,7 @@ class Parser::ParserPaymentController < Parser::ParserController
 
       # Url where the government data is hosted
       url = 'http://compras.dados.gov.br/contratos/v1/contratos.csv?cnpj_contratada='
+
       begin
         data =  open(url+e.cnpj).read
         csv = CSV.parse(data, :headers => true, :encoding => 'ISO-8859-1')
@@ -90,16 +91,17 @@ class Parser::ParserPaymentController < Parser::ParserController
   # name: check_and_save
   # explanation: This method checks the data received and save it.
   # parameters:
-  # - c
-  # return: a C.
+  # - data_text
+  # return: a data_text.
 
-  def check_and_save(c)
+  def check_and_save(data_text)
     begin
-      c.save!
-      return c
+      data_text.save!
+      return data_text
     rescue ActiveRecord::RecordInvalid
-      c = c.refresh!
-      return c
+      data_text = data_text.refresh!
+      return data_text
     end
   end
+
 end

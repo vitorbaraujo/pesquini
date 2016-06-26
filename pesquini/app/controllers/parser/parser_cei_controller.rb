@@ -137,23 +137,23 @@ class Parser::ParserCeiController < Parser::ParserController
     s.sanction_type_id = sanction_type.id
     s.sanction_organ = check_nil_ascii(row_data["Órgão Sancionador"])
     s.state_id = state.id
-    
+
     return check_and_save(s)
   end
 
   # name: check_and_save
   # explanation: This method checks the data received and save it.
   # parameters:
-  # - c
-  # return: a C.
+  # - data_text
+  # return: a data_text.
 
-  def check_and_save(c)
+  def check_and_save(data_text)
     begin
-      c.save!
-      return c
+      data_text.save!
+      return data_text
     rescue ActiveRecord::RecordInvalid
-      c = c.refresh!
-      return c
+      data_text = data_text.refresh!
+      return data_text
     end
   end
 
