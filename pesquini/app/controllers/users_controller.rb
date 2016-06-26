@@ -15,6 +15,9 @@ class UsersController < ApplicationController
   def new
     @user = User.new
 
+    assert(!@user.nil?)
+    assert(@user.kind_of?(User))
+
     return @user
   end
 
