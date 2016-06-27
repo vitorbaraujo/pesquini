@@ -141,6 +141,18 @@ class Parser::ParserCeiController < Parser::ParserController
 
     assert(sanction.kind_of?(Sanction))
 
+    create_sanction(sanction)
+
+    return check_and_save(sanction)
+  end
+
+  # name: create_sanction
+  # explanation: This method creates a instance of Sanction.
+  # parameters:
+  # - sanction
+  # return: A instance of Sanction.
+
+  def create_sanction(sanction)
     sanction.initial_date = check_date(row_data["Data Início Sanção"])
     sanction.final_date = check_date(row_data["Data Final Sanção"])
     sanction.process_number = check_nil_ascii(row_data["Número do processo"])
@@ -149,9 +161,8 @@ class Parser::ParserCeiController < Parser::ParserController
     sanction.sanction_organ = check_nil_ascii(row_data["Órgão Sancionador"])
     sanction.state_id = state.id
 
-    return check_and_save(sanction)
+    return sanction
   end
-
   # name: check_and_save
   # explanation: This method checks the data received and save it.
   # parameters:
