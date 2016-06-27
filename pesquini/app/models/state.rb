@@ -19,7 +19,7 @@ class State < ActiveRecord::Base
 
   def update_state
       actual_sanction = State.find_by_abbreviation( self.abbreviation )
-      assert_object_is_not_null( actual_sanction )
+      assert(!actual_sanction.nil?)
       
     return actual_sanction
   end
@@ -34,7 +34,7 @@ class State < ActiveRecord::Base
     states = ["BA", "DF", "RJ", "PA", "MG", "SP", "AM", "RS", "SC", "ES", "PR",
      "PB", "RN", "CE", "AL", "RR", "SE", "RO","PI" , "AC",
      "TO", "GO", "PE", "AP", "MS", "MT", "MA","Não Informado"]
-      assert_object_is_not_null( states )
+     assert(!states.nil?)
 
     return states
 
