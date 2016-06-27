@@ -17,8 +17,11 @@ class WelcomeController < ApplicationController
     @search = nil
     parameters_to_search = []
 
-    params[:q][:cnpj_eq] = params[:q][:corporate_name_cont]
-
+    if !params[:q].nil?
+      params[:q][:cnpj_eq] = params[:q][:corporate_name_cont]
+    else
+      # nothing to do
+    end
     parameters_to_search = params[:q]
     parameters_to_search.try(:merge, m: 'or')
 
