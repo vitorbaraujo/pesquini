@@ -113,7 +113,18 @@ class StatisticsController < ApplicationController
     list_states = @@states_list
     graph_tittle = "Gráfico de Sanções por Estado"
 
-    # Graphic structure
+    graphic_structure
+
+    return @chart
+  end
+
+  # name: graprich_sanction_by_state_structure
+  # explanation: This method builds the graph chart.
+  # parameters:
+  # - none
+  # return: the chart.
+
+  def graphic_sanction_by_state_structure
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(:text => graph_tittle)
 
@@ -141,11 +152,49 @@ class StatisticsController < ApplicationController
   # - none
   # return: the graph.
 
- def sanction_by_type_graph
+  def sanction_by_type_graph
+    graprich_sanction_by_type_structure
+    
+    verify_state(@states)
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.js
+    end
+
+    return @chart
+  end
+
+  # name: verify_state
+  # explanation: This method checks states.
+  # parameters:
+  # - states
+  # return: States.
+
+  def verify_state(@states)
+    if (!@states)
+      @states = @@states_list.clone
+
+      assert(@states.kind_of?(Enterprise))
+
+      @states.unshift("Todos")
+    else
+      #nothing to do
+    end
+
+    return @states
+  end
+
+  # name: graprich_sanction_by_type_structure
+  # explanation: This method builds the graph chart.
+  # parameters:
+  # - none
+  # return: the chart.
+
+  def graphic_sanction_by_type_structure
     # Iniciating variables
     graph_tittle = "Gráfico Sanções por Tipo"
 
-    # Graphic structure
     @chart = LazyHighCharts::HighChart.new('pie') do |f|
         f.chart({:defaultSeriesType=>"pie" ,:margin=> [50, 10, 10, 10]} )
         f.series({
@@ -167,21 +216,6 @@ class StatisticsController < ApplicationController
           }
         })
     end
-    
-    if (!@states)
-      @states = @@states_list.clone
-
-      assert(@states.kind_of?(Enterprise))
-
-      @states.unshift("Todos")
-    else
-      #nothing to do
-    end
-    respond_to do |format|
-      format.html # show.html.erb
-      format.js
-    end
-
     return @chart
   end
 
@@ -238,6 +272,18 @@ class StatisticsController < ApplicationController
 
     assert(state.kind_of?(State))
 
+    count_sanction_type(sanction)
+
+    count_sanction
+  end
+
+  # name: count_sanction_type
+  # explanation: This method count the total of sanctions per tyṕe.
+  # parameters:
+  # - sanction
+  # return: the number of sanctions per type.
+
+  def count_sanction_type(sanction)  
     @@sanction_type_list.each do |s|
       sanction = SanctionType.find_by_description(s[0])
 
@@ -265,6 +311,16 @@ class StatisticsController < ApplicationController
 
     results2 << "Não Informado"
 
+    return results and results2
+  end
+
+  # name: count_sanction
+  # explanation: This method count the total of sanctions.
+  # parameters:
+  # - sanction
+  # return: the number of sanctions.
+
+  def count_sanction
     if (params[:state_] && params[:state_] != "Todos")
       total =Sanction.where(state_id: state[:id] ).count
     else
@@ -273,6 +329,8 @@ class StatisticsController < ApplicationController
     results2 << (total - cont)
     results << results2
     results = results.sort_by { |i| i[0] }
-    return results
+    
+    return results and results2
   end
+
 end
