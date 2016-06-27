@@ -45,11 +45,10 @@ class SessionsController < ApplicationController
     
     if (signed_in?)
       sign_out 
-    return redirect_to root_path
-    end
-  end
-
+      return redirect_to root_path
     else 
       # Nothing to do
     end 
+  end
+
 end
