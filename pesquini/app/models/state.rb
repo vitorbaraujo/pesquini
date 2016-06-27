@@ -1,12 +1,11 @@
 #  File: state
-#  Purpose: Implementation of state model 
+#  Purpose: Implementation of state model
 #  License : LGPL. No copyright.
 
 # This controller represents states in the Brazilian territory
 
 
 class State < ActiveRecord::Base
-  include Assertions
 
   has_many :sanctions
   validates_uniqueness_of :abbreviation
@@ -18,9 +17,8 @@ class State < ActiveRecord::Base
 # return: actual_sanction
 
   def update_state
-      actual_sanction = State.find_by_abbreviation( self.abbreviation )
-      assert_object_is_not_null( actual_sanction )
-      
+    actual_sanction = State.find_by_abbreviation( self.abbreviation )
+
     return actual_sanction
   end
 
@@ -34,7 +32,6 @@ class State < ActiveRecord::Base
     states = ["BA", "DF", "RJ", "PA", "MG", "SP", "AM", "RS", "SC", "ES", "PR",
      "PB", "RN", "CE", "AL", "RR", "SE", "RO","PI" , "AC",
      "TO", "GO", "PE", "AP", "MS", "MT", "MA","Não Informado"]
-      assert_object_is_not_null( states )
 
     return states
 
