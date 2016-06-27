@@ -111,9 +111,10 @@ class StatisticsController < ApplicationController
   def sanction_by_state_graph
     # Iniciating variables
     list_states = @@states_list
-    graph_tittle = "Gráfico de Sanções por Estado"
+    graph_title = "Gráfico de Sanções por Estado"
 
-    graphic_structure
+    # graphic_structure
+    @chart = graphic_sanction_by_state_structure(graph_title, list_states)
 
     return @chart
   end
@@ -124,9 +125,9 @@ class StatisticsController < ApplicationController
   # - none
   # return: the chart.
 
-  def graphic_sanction_by_state_structure
-    @chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title(:text => graph_tittle)
+  def graphic_sanction_by_state_structure(graph_title, list_states)
+    chart = LazyHighCharts::HighChart.new('graph') do |f|
+      f.title(:text => graph_title)
 
       if(params[:year_].to_i != 0)
         f.title(:text => params[:year_].to_i )
@@ -142,8 +143,6 @@ class StatisticsController < ApplicationController
       f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
       f.chart({:defaultSeriesType=>"column"})
     end
-
-    return @chart
   end
 
   # name: sanction_by_type_graph
@@ -153,56 +152,41 @@ class StatisticsController < ApplicationController
   # return: the graph.
 
   def sanction_by_type_graph
-    graprich_sanction_by_type_structure
+    graph_title = "Gráfico Sanções por Tipo"
+
+    @chart = graphic_sanction_by_type_structure(graph_title)
     
     verify_state(@states)
 
+    # if (!@states)
+    #   @states = @@states_list.clone
+    #   @states.unshift("Todos")
+    # end
     respond_to do |format|
       format.html # show.html.erb
       format.js
     end
 
-    return @chart
+    # return @chart
   end
 
-  # name: verify_state
-  # explanation: This method checks states.
-  # parameters:
-  # - states
-  # return: States.
-
-  def verify_state(@states)
-    if (!@states)
-      @states = @@states_list.clone
-
-      assert(@states.kind_of?(Enterprise))
-
-      @states.unshift("Todos")
-    else
-      #nothing to do
-    end
-
-    return @states
-  end
-
-  # name: graprich_sanction_by_type_structure
+  # name: graphic_sanction_by_type_structure
   # explanation: This method builds the graph chart.
   # parameters:
   # - none
   # return: the chart.
 
-  def graphic_sanction_by_type_structure
+  def graphic_sanction_by_type_structure(graph_title)
     # Iniciating variables
-    graph_tittle = "Gráfico Sanções por Tipo"
 
-    @chart = LazyHighCharts::HighChart.new('pie') do |f|
+    chart = LazyHighCharts::HighChart.new('pie') do |f|
         f.chart({:defaultSeriesType=>"pie" ,:margin=> [50, 10, 10, 10]} )
         f.series({
                  :type=> 'pie',
                  :name=> 'Sanções Encontradas',
                  :data => total_by_type
         })
-        f.options[:title][:text] = graph_tittle
+        f.options[:title][:text] = graph_title
         f.legend(:layout=> 'vertical',:style=> {:left=> 'auto', :bottom=> 'auto', :right=> '50px', :top=> '100px'})
         f.plot_options(:pie=>{
           :allowPointSelect=>true,
@@ -216,7 +200,28 @@ class StatisticsController < ApplicationController
           }
         })
     end
-    return @chart
+
+    return chart
+  end
+
+  # name: verify_state
+  # explanation: This method checks states.
+  # parameters:
+  # - states
+  # return: States.
+
+  def verify_state(states)
+    if (!states)
+      states = @@states_list.clone
+
+      assert(states.kind_of?(Enterprise))
+
+      states.unshift("Todos")
+    else
+      #nothing to do
+    end
+
+    return states
   end
 
   # name: total_by_state
@@ -233,24 +238,26 @@ class StatisticsController < ApplicationController
     @@states_list.each do |s|
       state = State.find_by_abbreviation("#{s}")
 
-      assert(state.kind_of?(State))
+      if state
+        assert(state.kind_of?(State))
 
-      sanctions_by_state = Sanction.where(state_id: state[:id])
+        sanctions_by_state = Sanction.where(state_id: state[:id])
 
-      assert(sanctions_by_state.kind_of?(Sanction))
+        assert(sanctions_by_state.kind_of?(Sanction))
 
-      selected_year = []
-      if(params[:year_].to_i != 0)
-        sanctions_by_state.each do |s|
-          if(s.initial_date.year ==  params[:year_].to_i)
-            selected_year << s
-          else
-            #nothing to do
+        selected_year = []
+        if(params[:year_].to_i != 0)
+          sanctions_by_state.each do |s|
+            if(s.initial_date.year ==  params[:year_].to_i)
+              selected_year << s
+            else
+              #nothing to do
+            end
           end
+          results << (selected_year.count)
+        else
+          results << (sanctions_by_state.count)
         end
-        results << (selected_year.count)
-      else
-        results << (sanctions_by_state.count)
       end
     end
     return results
@@ -311,7 +318,7 @@ class StatisticsController < ApplicationController
 
     results2 << "Não Informado"
 
-    return results and results2
+    return results && results2
   end
 
   # name: count_sanction
@@ -330,7 +337,7 @@ class StatisticsController < ApplicationController
     results << results2
     results = results.sort_by { |i| i[0] }
     
-    return results and results2
+    return results && results2
   end
 
 end
