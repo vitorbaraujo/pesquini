@@ -69,28 +69,39 @@ class Parser::ParserPaymentController < Parser::ParserController
         data =  open(url + enterprise.cnpj).read
         csv = CSV.parse(data, :headers => true, :encoding => 'ISO-8859-1')
 
-        csv.each_with_index do |row, i|
-          payment = Payment.new
-
-          assert(payment.kind_of?(Payment))
-
-          payment.identifier = check_nil_ascii(row[0])
-          payment.process_number = check_nil_ascii(row[10])
-          payment.initial_value = check_value(row[16])
-          payment.sign_date = check_date(row[12])
-          payment.start_date = check_date(row[14])
-          payment.end_date = check_date(row[15])
-          payment.enterprise = enterprise
-          enterprise.payments_sum = enterprise.payments_sum + p.initial_value
-          check_and_save(enterprise)
-          check_and_save(payment)
-        end
+        create_payment(csv)
       rescue
         constante = constante + 1
       end
     end
     puts "="*50
     return puts "Quantidade de empresas sem pagamentos: ", constante
+  end
+
+  # name: import
+  # explanation: This method creates a instance of Payment
+  # parameters:
+  # - csv
+  # return: A instance of Payment.
+
+  def create_payment(csv)
+    csv.each_with_index do |row, i|
+    payment = Payment.new
+
+    assert(payment.kind_of?(Payment))
+
+    payment.identifier = check_nil_ascii(row[0])
+    payment.process_number = check_nil_ascii(row[10])
+    payment.initial_value = check_value(row[16])
+    payment.sign_date = check_date(row[12])
+    payment.start_date = check_date(row[14])
+    payment.end_date = check_date(row[15])
+    payment.enterprise = enterprise
+    enterprise.payments_sum = enterprise.payments_sum + p.initial_value
+    check_and_save(enterprise)
+    check_and_save(payment)
+    
+    end
   end
 
   # name: check_and_save
