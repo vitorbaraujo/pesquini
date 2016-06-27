@@ -12,7 +12,11 @@ class Sanction < ActiveRecord::Base
 
   validates_uniqueness_of :process_number
 
-  scope :by_year, lambda { |year| where('extract(year from initial_date) = ?', year) }
+  scope :by_year, lambda { |year| where('extract(year from initial_date) = ?',
+                           year) }
+
+  NO_SANCTIONS = 0
+  ONE_HUNDRED_PERCENT = 100.0
 
   # name: self.all_years
   # explanation: this method lists all supported years in the system
@@ -20,11 +24,19 @@ class Sanction < ActiveRecord::Base
   # - none
   # return: a hash containing all years
   def self.all_years
-    all_years = [
-                  "Todos", 1988, 1991,1992, 1995, 1996, 1997, 1998, 1999,
+    all_years_hash = [
+                  "Todos", 1988, 1991, 1992, 1995, 1996, 1997, 1998, 1999,
                   2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008,
                   2009, 2010, 2011, 2012, 2013, 2014, 2015
                 ]
+
+    all_years = []
+
+    if !all_years_hash.nil?
+      all_years = all_years_hash
+    else
+      # nothing to do
+    end
 
     return all_years
   end
@@ -39,7 +51,7 @@ class Sanction < ActiveRecord::Base
 
     process_number = self.process_number
 
-    if process_number
+    if !process_number.nil?
       single_sanction = Sanction.find_by_process_number(process_number)
     else
       # nothing to do
@@ -56,11 +68,11 @@ class Sanction < ActiveRecord::Base
   def self.percentual_sanction(value)
     total_count_sanctions = Sanction.all.count
 
-    percentual_sanction = 0
+    percentual_sanction = NO_SANCTIONS
 
-    if total_count_sanctions > 0
-      percentual_sanction = value * 100.0
-      percentual_sanction = percentual_sanction / total
+    if total_count_sanctions > NO_SANCTIONS
+      percentual_sanction = value * ONE_HUNDRED_PERCENT
+      percentual_sanction = percentual_sanction / total_count_sanctions
     else
       # nothing to do
     end
