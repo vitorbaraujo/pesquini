@@ -1,3 +1,9 @@
+#  File: messages
+#  Purpose: Implementation of messages view 
+#  License : LGPL. No copyright.
+
+# This view list the messages
+
 <% flash.each do |key, value| %>
   <div class="alert alert-<%= key %>">
   <%= link_to data-dismiss="alert" class="close", "#" %> 
