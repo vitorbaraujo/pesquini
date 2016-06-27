@@ -18,10 +18,7 @@ class Payment < ActiveRecord::Base
 
   def refresh!
     payment = Payment.find_by_process_number(self.process_number)
-
-    assert(payment.kind_of?(Payment))
-
     return payment
   end
-  
+
 end
