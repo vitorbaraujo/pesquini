@@ -1,3 +1,8 @@
+#  File: application
+#  Purpose: File that renders javascript in show view
+#  License : LGPL. No copyright.
+# This controller contains the logic involving generate mensag the erro correspondent view of a single user.
+
 class ApplicationController < ActionController::Base
   include SessionsHelper
   include Assertions
@@ -9,10 +14,22 @@ class ApplicationController < ActionController::Base
     rescue_from ActiveRecord::RecordNotFound, :with => :render_not_found
     rescue_from ActionController::RoutingError, :with => :render_not_found
 
+# name: raise_not_found
+# explanation: this method set default error message for routing errors in controllers.
+# parameters:
+# - non
+# return: none
+
   def raise_not_found!
       raise ActionController::RoutingError.new("No route matches \
       #{params[:unmatched_route]}")
   end
+
+# name: render_not_found
+# explanation: this method set default error message that was called when an error
+# parameters:
+# - non
+# return: none
 
   def render_not_found
       respond_to do |render_not_found|
